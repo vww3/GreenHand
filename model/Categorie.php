@@ -1,12 +1,19 @@
 <?php 
 class Categorie extends Model{
-	public $id;
+	var $table = "categorie";
 
 	public function __construct(){
 		parent::__construct('g_mvc_test', 'root', '', 'localhost');
 	}
 
-	var $table = "categorie";
+	
+
+	public function getLast($num = 5){
+		return $this->find(array(
+			'limit' => $num,
+			'order' => 'id DESC'
+			));
+	}
 }
 
 

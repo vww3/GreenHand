@@ -1,68 +1,33 @@
-<?php require('core/core.php'); ?>
-<?php $model = Model::load("Categorie"); ?>
-
 <?php 
 
-if(!empty($_POST)){
-	print_r($model->save($_POST));
+define('WEBROOT', str_replace('index.php', '',$_SERVER['SCRIPT_NAME']));
+
+define('ROOT', str_replace('index.php', '',$_SERVER['SCRIPT_FILENAME']));
+
+//inclure tous les fichiers du core
+require(ROOT.'core/Model.php');
+require(ROOT.'core/Controller.php');
+
+
+//on récupère sous forme de tableau les éléments de l'URL  
+$param = explode('/', $_GET['p']);
+
+$controller = $param[0];
+$action = isset($param[1]) ? $param[1] : 'index';
+
+require('controller/'.$controller.'.php');
+
+$controller = new $controller();
+
+//on vérifie si l'action du controller existe
+if(method_exists($controller, $action)){
+	unset($param[0]); unset($param[1]); 
+	call_user_func_array(array($controller, $action),$param);
+ 	//$controller->$action();
+}else{
+	echo "error 404";
 }
 
-if(isset($_GET["suppr"])){
-	$model->delete($_GET["suppr"]);
-}
-
-?>
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>GreenHand</title>
-</head>
-<body>
-
-<div class="container">
-	<ul>
-	<?php 
-	$cat1 = $model->find(array(
-		"order" => " position ASC",
-		"field" => "id, name"
-		));
-
-	echo '<pre>' . print_r($cat1, true). '</pre>';
-
-
-	foreach ($cat1 as $c) :?>
-		<li><a href="index.php?id=<?= $c->id?>"><?= $c->name ?></a> <a href="index.php?suppr=<?= $c->id?>">[x]</a> </li>
-		
-
-	<?php endforeach;?>
-	 <li><a href="index.php">Ajouter une catégorie</a></li>
-	</ul>
-
-	<p>
-		<form action="index.php" method="post">
-			<?php
-			if(!empty($_GET["id"])){
-				$id = $_GET["id"];
-				$model->id = $id;
-				$cat = $model->read();
-
-				echo '<input type="hidden" name="id" value="'. $cat->id.'">';
-			}else{
-				$cat = new StdClass();
-				$cat->name = "";
-				$cat->position = 0;
-			}
-			 ?>
-
-			 <input type="text" name="name" value="<?php echo $cat->name;?>">
-			 <input type="text" name="position" value="<?php echo $cat->position;?>">
-			 <input type="submit" value="Envoyer">
-		</form>
-	</p>
-</div>
-	
-</body>
-</html>
+ 
