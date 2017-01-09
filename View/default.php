@@ -10,19 +10,19 @@
 		<meta name="msapplication-TileImage" content="<?= IMAGE ?>favicon/ms-icon-144x144.png">
 		<meta name="theme-color" content="#ffffff">
 		
-<?php foreach ($this->metadatas as $name => $value) : ?>
+<?php foreach ($this->metadatas as $name => $value) { ?>
 
-    <?php if (is_array($value)) : ?>
+    <?php if (is_array($value)) { ?>
     
-    	<?php foreach ($value as $type => $data): ?>
+    	<?php foreach ($value as $type => $data) { ?>
         <meta property="<?= $name ?>:<?= $type ?>" content="<?= $data ?>">
-        <?php endforeach ?>
+        <?php } ?>
         
-    <?php else : ?>
+    <?php } else { ?>
         <meta name="<?= $name ?>" content="<?= $value ?>">
-	<? endif ?>
+	<?php } ?>
 	
-<?php endforeach ?>
+<?php } ?>
 
 		<!-- Générés par http://www.favicon-generator.org -->
 		<link rel="apple-touch-icon icon" sizes="57x57" href="<?= IMAGE ?>favicon/apple-icon-57x57.png">
@@ -44,13 +44,13 @@
 		
 		<?= $this->_contentForLayout ?>
 		
-<?php foreach ($this->styles as $style) : ?>
+<?php foreach ($this->styles as $style) { ?>
         <link rel="stylesheet" href="<?= STYLE.$style ?>.css">
-<?php endforeach ?>
+<?php } ?>
 
-<?php foreach ($this->javascript as $script) : ?>
+<?php foreach ($this->javascript as $script) { ?>
         <script src="<?= JAVASCRIPT.$script ?>.js"></script>
-<?php endforeach ?>
+<?php } ?>
             		
 	</body>
 
