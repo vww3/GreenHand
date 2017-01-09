@@ -1,6 +1,8 @@
 <?php
 namespace System;
 
+use DateTime;
+
 /**
  * String class.
  */

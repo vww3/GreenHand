@@ -2,14 +2,17 @@
 namespace System;
 
 /**
- * Crypt class.
+ * Crypt static class. This class allows to manipulate Mcrypt functions more easily.
+ *
+ * @package IRON
+ * @link ... nothing yet...
+ * @author Mickaël Boidin <mickael.boidin@icloud.com>
  */
 class Crypt
 {    
     /**
-     * _typeOfEncryption
+     * The encryption type
      * 
-     * (default value: MCRYPT_RIJNDAEL_128)
      * @var mixed
      * @access private
      * @static
@@ -17,9 +20,8 @@ class Crypt
     private static $_typeOfEncryption = MCRYPT_RIJNDAEL_128;
 
     /**
-     * modeOfEncryption
+     * The encryption mode
      * 
-     * (default value: MCRYPT_MODE_ECB)
      * @var mixed
      * @access private
      * @static
@@ -27,7 +29,7 @@ class Crypt
     private static $_modeOfEncryption = MCRYPT_MODE_ECB;
 
     /**
-     * _iv generator function.
+     * Vector generator.
      * 
      * @access private
      * @static
@@ -44,11 +46,11 @@ class Crypt
     }
 
     /**
-     * _keyGenerator function.
+     * Key generator.
      * 
      * @access private
      * @static
-     * @param $salt
+     * @param $salt The salt used for encryption and decryption
      * @return string
      */
     private static function _keyGenerator($salt)
@@ -63,12 +65,12 @@ class Crypt
     }
 
     /**
-     * encrypt function.
+     * Encrypt datas.
      * 
      * @access public
      * @static
-     * @param $data
-     * @param $salt (default: SALT)
+     * @param mixed $data The uncrypted data to encrypt
+     * @param string $salt The salt used for the encryption
      * @return string
      */
     public static function encrypt($data, $salt = SALT)
@@ -85,12 +87,12 @@ class Crypt
     }
 
     /**
-     * decrypt function.
+     * Decrypt datas.
      * 
      * @access public
      * @static
-     * @param $data
-     * @param $salt (default: SALT)
+     * @param mixed $data The encrypted data to decrypt
+     * @param string $salt The salt used for the encryption
      * @return string
      */
     public static function decrypt($data, $salt = SALT)

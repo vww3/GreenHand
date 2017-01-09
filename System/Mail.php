@@ -3,41 +3,46 @@ namespace System;
 
 class Mail
 {
-	private $to;
-	private $from;
-	private $subject;
-	private $header;
-	private $message;
-	private $boundary;
-	
-    public function __construct(string $to, string $subject)
+    private $from;
+    private $subject;
+    private $message;
+        
+    public $charset = 'UTF-8';
+    public $encoding = '8bit';
+    public $type = 'text/html';
+    public $mime = '1.0';
+    
+    private static function implode($list)
     {
-	    $this->to = $to;
-	    $this->subject = $subject;
-	    
-	    if (!preg_match("#^[a-z0-9._-]+@(hotmail|live|msn).[a-z]{2,4}$#", $this->to))
-		    $break = "\r\n";
-		else
-		    $break = "\n";
-	    
-	    $this->boundary = "-----=".md5(rand());
-	    
-	    $this->header = "From: \"GreenHand\"<green@hand.fr>".$break
-	    	."Reply-to: \"GreenHand\" <green@hand.fr>".$break
-			."MIME-Version: 1.0".$break;
-			."Content-Type: text/html;".$break
-			."boundary=\"$this->boundary\"".$break;
-			
-		$this->message = $break."--".$this->boundary.$break;
-			."Content-Type: text/html; charset=\"ISO-8859-1\"".$break;
-			."Content-Transfer-Encoding: 8bit".$break;
-			.$break.$message_html.$break;
-			.$break."--".$this->boundary."--".$break;
-			.$break."--".$this->boundary."--".$break;		
+        return is_array($list) ? implode(', ', $list) : $list;
     }
     
-    public function send()
+    public function __construct($subject, $message, $from)
     {
-	    mail($this->to, $this->subject, $this->message, $this->header);
+        $this->message = $message;
+        $this->subject = $subject;
+        $this->from = $from;
     }
+    
+    public function send($to, $cc = null, $bcc = null)
+    {
+        $header  = 'MIME-Version: ' . $this->mime . '' . "\r\n";
+        $header .= 'Content-type: ' . $this->type . '; charset=' . $this->charset . "\r\n";
+        
+        $header .= 'From: ' . $this->from . "\r\n";
+        
+        if($cc != null)
+            $header .= 'Cc: ' . self::implode($cc) . "\r\n";
+        
+        if($bcc != null)
+            $header .= 'Bcc: ' . self::implode($bcc) . "\r\n";
+                
+        return mail(
+            self::implode($to),
+            $this->subject,
+            $this->message,
+            $header
+        );
+    }    
+    
 }

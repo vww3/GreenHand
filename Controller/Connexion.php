@@ -6,6 +6,7 @@ use System\Helper\Form;
 use System\Crypt;
 use System\Debug;
 use System\Str;
+use System\Mail;
 
 /**
  * connexion class.
@@ -15,6 +16,29 @@ class Connexion extends Controller
 	protected function __construct()
 	{
 		$this->styles[] = 'mikastrap';		
+	}
+	
+	private function sendValidationEmail($name, $email, $key)
+	{
+		$mail = new Mail(
+			'Email de test',
+			'<html><head>
+					<title>Bienvenue '.$name.' chez GreenHand</title>
+				</head>
+				<body>
+					<h1>Encore un petit effort et tu seras un GreenHand</h1>
+					<p>Merci <b>'.$name.'</b> de t\'être inscrit sur <a href="'.PROTOCOL.DOMAIN.BASE.'">GreenHand</a>.</p>
+					<p>Pour activer ton compte et ainsi pouvoir profiter pleinement de GreenHand, il faut que tu cliques sur le lien plus bas. Ton compte n\'a besoin d\'être activé qu\'une seule fois.</p>
+					<div><a href="'.PROTOCOL.DOMAIN.BASE.'connexion/validate/'.$key.'">ACTIVATION<a></div>
+					<p>Amuse-toi bien et à bientôt sur notre site</p>
+					<p><i>-- Emma Louviot & Mickaël Boidin, fondateurs de GreendHand</i></p>
+				</body>
+			</html>',
+			'GreenHand <no-reply@greenhand.fr>'
+		);
+		$mail->send($name.' <'.$email.'>');
+		
+		//Debug::show($mail);
 	}
 	
     /**
@@ -45,6 +69,7 @@ class Connexion extends Controller
 			    $datas['validationKey'] = md5(uniqid());
 			    
 				$this->model('Users')->save($datas);
+				$this->sendValidationEmail($datas['name'], $datas['email'], $datas['validationKey']);				
 			}
 	    }
 	    
@@ -69,7 +94,7 @@ class Connexion extends Controller
 			    if($formSignIn->noErrors()) {
 					$_SESSION['user'] = $user;
 					
-					//$this->go(PREVIOUS);
+					//$this->go(BASE.'accueil');
 				}
 		    }
 	    }
@@ -80,7 +105,7 @@ class Connexion extends Controller
 	    
 	    $this->view();
 	    
-	    Debug::session();
+	    Debug::show($this, CONTROLLER); Debug::session();
     }
     
     public function validate($key = null)

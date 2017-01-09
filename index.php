@@ -39,6 +39,5 @@
  █     █  ████  ██     ██  ███   █
  █████████████████████████████████
  
- By Mickaël BOIDIN
- Contact : mickael.boidin@icloud.com
+ By Mickaël Boidin <mickael.boidin@icloud.com>
 */
