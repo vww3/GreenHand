@@ -34,10 +34,10 @@ class Loader
      * 
      * @access public
      * @static
-     * @param string $class
+     * @param $class
      * @return void
      */
-    public static function load(string $class)
+    public static function load($class)
     {
 	    $file = str_replace('\\', '/', $class);
 	    self::$_loaded[] = $class;
