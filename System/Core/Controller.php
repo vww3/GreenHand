@@ -79,10 +79,10 @@ class Controller
      * model loader function.
      *
      * @access protected
-     * @param string $name
+     * @param $name
      * @return Model
      */
-    protected function model(string $name)
+    protected function model($name)
     {
         if (empty($this->_models[$name])) {
             $model = '\Model\\'.$name;
@@ -98,10 +98,10 @@ class Controller
      * Automaticly, it will load a view and inject all of it in the template
      *
      * @access protected
-     * @param string $name (default: __ACTION__)
+     * @param $name (default: __ACTION__)
      * @return void
      */
-    protected function view(string $name = ACTION)
+    protected function view($name = ACTION)
     {
         ob_start();
 
@@ -174,10 +174,10 @@ class Controller
      * 
      * @access public
      * @static
-     * @param string $url
+     * @param $url
      * @return void
      */
-    public static function go(string $url)
+    public static function go($url)
     {
         header('location: '.$url);
         exit;        
