@@ -18,7 +18,7 @@ session_start();
 define('DEFAULT_CONTROLLER'  ,    'Connexion');
 define('DEFAULT_ACTION'      ,    'index');
 define('DEFAULT_LANGUAGE'    ,    'fr');
-define('MULTILINGUAL'        ,    true);
+define('MULTILINGUAL'        ,    false);
 define('TIMEZONE'            ,    'Europe/Paris');
 define('SALT'                ,    '^msziéçà&76(sfé1ù*$');
 
@@ -55,3 +55,9 @@ define('FANCYBOX_CSS'        ,    '../Javascript/jquery/fancybox/fancybox');
 define('TINYMCE'             ,    'tinyMCE/tinymce.min');
 define('TINYMCE_INIT'        ,    'tinyMCE/init');
 define('CHART'               ,    'chart/chart');
+
+//CONSTANTANTES DECLAREE PAR LE CONTROLLER
+// --> BASE = racine du site = RACINE/LANGUE
+// --> CONTROLLER = nom du controlleur appellée
+// --> ACTION = nom de l'action demandée
+// --> LANGUE = langue actuelle du site
