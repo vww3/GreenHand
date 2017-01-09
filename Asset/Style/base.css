@@ -1,0 +1,44 @@
+body {
+	font-size: 16px;
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+
+
+ul.bad {
+	background: #c82929;
+	color: white;
+	padding: 30px;
+}
+
+
+
+form {
+	padding: 10px 30px 30px;
+	background: #a8d6fd;
+}
+
+label {
+	width: 30%;
+	display: inline-block;
+}
+
+input {
+	width: 70%;
+}
+
+input[type="submit"] {
+	width: 100%;
+	-webkit-appearance: none; appearance: none;
+	cursor: pointer;
+	background: white;
+	border: none;
+	padding: 10px 15px;
+	font-size: 1em;
+	margin-top: 30px;
+	transition: .5s ease border-radius;
+}
+
+input[type="submit"]:hover {
+	border-radius: 30px;
+}

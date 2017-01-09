@@ -1,0 +1,42 @@
+.menu * {
+	transition: all ease .3s;
+}
+
+.menu input#hamburgeur { 
+	display: none;
+}
+
+.menu label[for="hamburgeur"]{
+	background: url('burger.svg') no-repeat center center;
+	background-size: 30px;
+	margin: 0;
+	padding: 20px 30px;
+	width: 30px;
+	cursor: pointer;
+	text-indent: -10000px;
+	display: none;
+}
+
+@media screen and (max-width: 760px) {
+	
+	.menu label[for="hamburgeur"]{
+		display: inline-block;
+	}
+
+	.menu input#hamburgeur:checked ~ label {
+		margin-left: 200px;
+		transform: rotate(90deg);
+	}
+	
+	.menu input#hamburgeur:checked ~ nav {
+		left: 0;
+	}
+	
+	.menu nav {
+		position: fixed;
+		top: 0;
+		left: -200px;
+		width: 200px;
+	}
+
+}

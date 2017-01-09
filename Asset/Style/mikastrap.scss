@@ -1,0 +1,140 @@
+/*****************************************************
+	
+	█   █ ███ █  █  ███   ███ ███ ████   ███  ████
+	██ ██  █  █ █  █   █ █     █  █   █ █   █ █   █
+	█ █ █  █  ██   █████  ██   █  ████  █████ ████
+	█   █  █  █ █  █   █    █  █  █   █ █   █ █
+	█   █ ███ █  █ █   █ ███   █  █   █ █   █ █
+		
+	================================================
+	
+	by Mickaël BOIDIN <mickael.boidin@icloud.com>
+	                   
+******************************************************/
+
+$grids: 6 9 12;
+$gutters: 15;
+$container: 1024;
+$screens: ( m: 1024*3/4, l: $container );
+
+// ===========================================================================
+//
+//	BASE OF MIKASTRAP
+//
+// ===========================================================================
+ 
+* { box-sizing: border-box; }
+body { padding: 0; margin: 0; }
+.container { max-width: #{$container}px; margin-left: auto; margin-right: auto; }
+
+// Build the base grid selectors
+$base: '';
+@each $width in $grids
+{
+	@if $base == '' {
+		$base: '.grid-#{$width}';
+	} @else {
+		$base: $base + ', .grid-#{$width}';
+	}
+}
+
+#{$base}
+{
+	// Use Flex display and relative position
+	display: flex; flex-wrap: wrap; position: relative;
+	
+	// Positionning of the grid content
+	&.grid-top		{ justify-content: flex-start; align-items: flex-start; align-content: flex-start; }
+	&.grid-center	{ justify-content: center; }
+	&.grid-middle	{ align-items: center; }
+	&.grid-bottom 	{ justify-content: flex-end; align-items: flex-end; align-content: flex-end; }
+	
+	//Default behavior	
+	> * { width: 100%; position: relative; }
+}
+
+// ===========================================================================
+//
+//	GUTTERS (Only if positive non-null value)
+//
+// ===========================================================================
+@if ($gutters > 0) {
+	
+/** 
+ * GUTTERS
+ *
+ * @size : #{$gutters}px
+ */
+	
+	// set gutters
+	#{$base}
+	{
+		&, > *
+		{
+			padding-left: 	#{$gutters / 2}px;
+			padding-right:	#{$gutters / 2}px;
+		}
+		
+		&.spaced, > *.spaced
+		{
+			padding-top: #{$gutters / 2}px;
+			padding-bottom: #{$gutters / 2}px;
+		}
+		
+		// remove gutters
+		[class*="grid-"][class*="col-"],
+		& > [class*="grid-"]
+		{
+			padding-left:	0;
+			padding-right:	0;
+		}		
+	}
+	
+}
+
+// ===========================================================================
+//
+//	GRIDS
+//
+// ===========================================================================
+
+@mixin columns($gridSize, $label:"")
+{
+	@if $label != "" { $label: -#{$label} }
+	
+	@for $columnSize from 1 to $gridSize + 1 {
+		
+		$value: 100% * $columnSize / $gridSize;
+				
+		// offset
+		.grid-#{$gridSize} > .offset-#{$columnSize + $label} { margin-left: $value; }
+		// column
+		.grid-#{$gridSize} > .col-#{$columnSize + $label} { width: $value; }
+		
+	}
+}
+
+@each $width in $grids
+{
+/** 
+ * GRID
+ *
+ * @size : #{$gutters}px
+ */
+		
+	@include columns($width);
+	
+	@each $label, $size in $screens
+	{
+/** 
+ * RESPONSIVE GRID
+ *
+ * @name : #{$label}
+ * @min-width : #{$size}px
+ */
+		@media only screen and (min-width: #{$size}px)
+		{
+			@include columns($width, $label);
+		}
+	}
+}
