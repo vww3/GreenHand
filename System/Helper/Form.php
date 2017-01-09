@@ -49,10 +49,10 @@ class Form
      * __construct function.
      * 
      * @access public
-     * @param array $settings (default: [])
+     * @param $settings (default: [])
      * @return void
      */
-    public function __construct(array $settings = [])
+    public function __construct($settings = [])
     {
         self::$_iteration++; 
                
@@ -72,11 +72,11 @@ class Form
      * Use a test in order to verify if there is an error in the form
      *
      * @access public
-     * @param bool $test
-     * @param string $message
+     * @param $test
+     * @param $message
      * @return void
      */
-    public function verify(bool $test, string $message)
+    public function verify($test, $message)
     {                
         if ($test)
             $this->_errors[] = $message;
@@ -88,8 +88,8 @@ class Form
      * Say if the form doesn't have error
      *
      * @access public
-     * @param bool $test
-     * @param string $message
+     * @param $test
+     * @param $message
      * @return bool
      */
     public function noErrors() {
@@ -158,10 +158,10 @@ class Form
      * _id attribute generator function.
      * 
      * @access private
-     * @param string $name
+     * @param $name
      * @return string
      */
-    private function _id(string $name)
+    private function _id($name)
     {
         return $this->_name.'-'.str_replace(['[', ']', ' '], '', $name);        
     }
@@ -170,10 +170,10 @@ class Form
      * _attributes inline generator function.
      * 
      * @access private
-     * @param array $liste
+     * @param $liste
      * @return string
      */
-    private function _attributes(array $liste)
+    private function _attributes($liste)
     {
 	    $attributes = [];
 	                 
@@ -198,11 +198,11 @@ class Form
      * label function.
      * 
      * @access public
-     * @param string $id
-     * @param string $value
+     * @param $id
+     * @param $value
      * @return string
      */
-    public function label(string $id, string $value = '')
+    public function label($id, $value = '')
     {
         if ($value != '')
             return '<label for="'.$id.'">'.$value.'</label>';
@@ -212,12 +212,12 @@ class Form
      * field function.
      * 
      * @access public
-     * @param string $type
-     * @param string $name
-     * @param array $options (default: [])
+     * @param $type
+     * @param $name
+     * @param $options (default: [])
      * @return string
      */
-    public function field(string $type, string $name, array $options = [])
+    public function field($type, $name, $options = [])
     {
         $id = $this->_id($name);
         
@@ -247,11 +247,11 @@ class Form
      * text function.
      * 
      * @access public
-     * @param string $name
-     * @param array $options (default: [])
+     * @param $name
+     * @param $options (default: [])
      * @return string
      */
-    public function text(string $name, array $options = [])
+    public function text($name, $options = [])
     {
         return $this->field('text', $name, $options);        
     }
@@ -260,11 +260,11 @@ class Form
      * password function.
      * 
      * @access public
-     * @param string $name
-     * @param array $options (default: [])
+     * @param $name
+     * @param $options (default: [])
      * @return string
      */
-    public function password(string $name, array $options = [])
+    public function password($name, $options = [])
     {
         return $this->field('password', $name, $options);        
     }
@@ -273,11 +273,11 @@ class Form
      * number function.
      * 
      * @access public
-     * @param string $name
-     * @param array $options (default: [])
+     * @param $name
+     * @param $options (default: [])
      * @return string
      */
-    public function number(string $name, array $options = [])
+    public function number($name, $options = [])
     {
         return $this->field('number', $name, $options);        
     }
@@ -286,11 +286,11 @@ class Form
      * time function.
      * 
      * @access public
-     * @param string $name
-     * @param array $options (default: [])
+     * @param $name
+     * @param $options (default: [])
      * @return string
      */
-    public function time(string $name, array $options = [])
+    public function time($name, $options = [])
     {
         return $this->field('time', $name, $options);        
     }
@@ -299,11 +299,11 @@ class Form
      * email function.
      * 
      * @access public
-     * @param string $name
-     * @param array $options (default: [])
+     * @param $name
+     * @param $options (default: [])
      * @return string
      */
-    public function email(string $name, array $options = [])
+    public function email($name, $options = [])
     {
         return $this->field('email', $name, $options);        
     }
@@ -312,11 +312,11 @@ class Form
      * file function.
      * 
      * @access public
-     * @param string $name
-     * @param array $options (default: [])
+     * @param $name
+     * @param $options (default: [])
      * @return string
      */
-    public function file(string $name, array $options = [])
+    public function file($name, $options = [])
     {
         return $this->field('file', $name, $options);        
     }
@@ -325,12 +325,12 @@ class Form
      * sender function.
      * 
      * @access public
-     * @param string $value (default: 'Envoyer')
-     * @param string $name (default: null)
-     * @param array $options (default: [])
+     * @param $value (default: 'Envoyer')
+     * @param $name (default: null)
+     * @param $options (default: [])
      * @return string
      */
-    public function sender(string $value = 'Envoyer', string $name = '', array $options = [])
+    public function sender($value = 'Envoyer', $name = '', $options = [])
     {
         $options['value'] = $value;
         
@@ -341,12 +341,12 @@ class Form
      * eraser function.
      * 
      * @access public
-     * @param string $value (default: 'Effacer')
-     * @param string $name (default: null)
-     * @param array $options (default: [])
+     * @param $value (default: 'Effacer')
+     * @param $name (default: null)
+     * @param $options (default: [])
      * @return string
      */
-    public function eraser(string $value = 'Effacer', string $name = '', array $options = [])
+    public function eraser($value = 'Effacer', $name = '', $options = [])
     {
         $options['value'] = $value;
         
@@ -357,11 +357,11 @@ class Form
      * textarea function.
      * 
      * @access public
-     * @param string $name
-     * @param array $options (default: [])
+     * @param $name
+     * @param $options (default: [])
      * @return string
      */
-    public function textarea(string $name, array $options = [])
+    public function textarea($name, $options = [])
     {
         $id = $this->_id($name);
         $value = isset($this->_datas[$name]) ? $this->_datas[$name] : "";
@@ -387,12 +387,12 @@ class Form
      * selection function.
      * 
      * @access public
-     * @param string $name
-     * @param array $options
-     * @param array $options (default: [])
+     * @param $name
+     * @param $options
+     * @param $options (default: [])
      * @return string
      */
-    public function selection(string $name, array $values, array $options = [])
+    public function selection($name, $values, $options = [])
     {
         $id = $this->_id($name);
         
@@ -428,13 +428,13 @@ class Form
      * checkbox function.
      * 
      * @access public
-     * @param string $name
-     * @param string $label
-     * @param string $value (default: '')
-     * @param array $options (default: [])
+     * @param $name
+     * @param $label
+     * @param $value (default: '')
+     * @param $options (default: [])
      * @return string
      */
-    public function checkbox(string $name, string $label, string $value = '', array $options = [])
+    public function checkbox($name, $label, $value = '', $options = [])
     {
         $id = $this->_id($name.'_'.$value);
         
@@ -459,13 +459,13 @@ class Form
      * radio function.
      * 
      * @access public
-     * @param string $name
-     * @param string $label
-     * @param string $value (default: '')
-     * @param array $options (default: [])
+     * @param $name
+     * @param $label
+     * @param $value (default: '')
+     * @param $options (default: [])
      * @return void
      */
-    public function radio(string $name, string $label, string $value = '', array $options = [])
+    public function radio($name, $label, $value = '', $options = [])
     {
         if ($value == '')
         	$value = $label;
@@ -493,10 +493,10 @@ class Form
      * downloadable function.
      * 
      * @access public
-     * @param string $key
+     * @param $key
      * @return bool
      */
-    public function downloadable(string $key)
+    public function downloadable($key)
     {
         if (empty($_FILES))
             return false;
@@ -510,10 +510,10 @@ class Form
      * fileName function.
      * 
      * @access public
-     * @param string $key
+     * @param $key
      * @return string
      */
-    public function fileName(string $key)
+    public function fileName($key)
     {
         return $_FILES[$this->_name]['name'][$key];        
     }
@@ -522,10 +522,10 @@ class Form
      * fileSize function.
      * 
      * @access public
-     * @param string $key
+     * @param $key
      * @return int
      */
-    public function fileSize(string $key)
+    public function fileSize($key)
     {
         return $_FILES[$this->_name]['size'][$key];        
     }
@@ -534,10 +534,10 @@ class Form
      * fileType function.
      * 
      * @access public
-     * @param string $key
+     * @param $key
      * @return string
      */
-    public function fileType(string $key)
+    public function fileType($key)
     {
         return $_FILES[$this->_name]['type'][$key];        
     }
@@ -546,12 +546,12 @@ class Form
      * download function.
      * 
      * @access public
-     * @param string $key
-     * @param string $destination
-     * @param string $name (default: '')
+     * @param $key
+     * @param $destination
+     * @param $name (default: '')
      * @return void
      */
-    public function download(string $key, string $destination, string $name = '')
+    public function download($key, $destination, $name = '')
     {        
         if ($name == '')
             $name = $this->fileName($key);

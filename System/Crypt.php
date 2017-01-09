@@ -48,10 +48,10 @@ class Crypt
      * 
      * @access private
      * @static
-     * @param string $salt
+     * @param $salt
      * @return string
      */
-    private static function _keyGenerator(string $salt)
+    private static function _keyGenerator($salt)
     {
         return substr(
             $salt,
@@ -67,11 +67,11 @@ class Crypt
      * 
      * @access public
      * @static
-     * @param string $data
-     * @param string $salt (default: SALT)
+     * @param $data
+     * @param $salt (default: SALT)
      * @return string
      */
-    public static function encrypt(string $data, string $salt = SALT)
+    public static function encrypt($data, $salt = SALT)
     {
         return base64_encode(
             mcrypt_encrypt(
@@ -89,11 +89,11 @@ class Crypt
      * 
      * @access public
      * @static
-     * @param string $data
-     * @param string $salt (default: SALT)
+     * @param $data
+     * @param $salt (default: SALT)
      * @return string
      */
-    public static function decrypt(string $data, string $salt = SALT)
+    public static function decrypt($data, $salt = SALT)
     {
         return rtrim(
             mcrypt_decrypt(

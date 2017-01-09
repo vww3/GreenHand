@@ -13,10 +13,10 @@ class Str
      *
      * @access public
      * @static
-     * @param string $string
+     * @param $string
      * @return string
      */
-    public static function simplify(string $string)
+    public static function simplify($string)
     {
         return utf8_encode(
             // Replacement of specials caracters
@@ -54,11 +54,11 @@ class Str
      *
      * @access public
      * @static
-     * @param string $string
-     * @param bool $allowHTMLTags (default: true)
+     * @param $string
+     * @param $allowHTMLTags (default: true)
      * @return string
      */
-    public static function clean(string $string, bool $allowHTMLTags = true)
+    public static function clean($string, $allowHTMLTags = true)
     {
         if (!$allowHTMLTags)
             $string = strip_tags($string);
@@ -71,10 +71,10 @@ class Str
      *
      * @access public
      * @static
-     * @param string $string
+     * @param $string
      * @return string
      */
-    public static function length(string $string)
+    public static function length($string)
     {
 	    return strlen($string);
     }
@@ -84,11 +84,11 @@ class Str
      *
      * @access public
      * @static
-     * @param string $string1
-     * @param string $string2
+     * @param $string1
+     * @param $string2
      * @return string
      */
-    public static function isSame(string $string1, string $string2)
+    public static function isSame($string1, $string2)
     {
 	    return $string1 == $string2;
     }
@@ -99,11 +99,11 @@ class Str
      * 
      * @access public
      * @static
-     * @param string $string
-     * @param string $format (default: 'd-m-Y')
+     * @param $string
+     * @param $format (default: 'd-m-Y')
      * @return bool
      */
-    public static function is(string $string, string $format = 'd-m-Y')
+    public static function is($string, $format = 'd-m-Y')
     {
         $date = DateTime::createFromFormat($format, $string);
         
@@ -115,10 +115,10 @@ class Str
      *
      * @access public
      * @static
-     * @param string $string
+     * @param $string
      * @return bool
      */
-    public static function isEmail(string $string)
+    public static function isEmail($string)
     {
 	    return filter_var($string, FILTER_VALIDATE_EMAIL);
     }

@@ -58,19 +58,19 @@ class Mysql
      * __construct function.
      * 
      * @access public
-     * @param string $table
-     * @param string $database (default: MYSQL_BDD)
-     * @param string $host (default: MYSQL_HEBERGEUR)
-     * @param string $login (default: MYSQL_LOGIN)
-     * @param string $password (default: MYSQL_MDP)
+     * @param $table
+     * @param $database (default: MYSQL_BDD)
+     * @param $host (default: MYSQL_HEBERGEUR)
+     * @param $login (default: MYSQL_LOGIN)
+     * @param $password (default: MYSQL_MDP)
      * @return void
      */
     public function __construct(
-	    string $table,
-        string $database = MYSQL_DATABASE,
-        string $host = MYSQL_HOST,
-        string $login = MYSQL_LOGIN,
-        string $password = MYSQL_PASSWORD
+	    $table,
+        $database = MYSQL_DATABASE,
+        $host = MYSQL_HOST,
+        $login = MYSQL_LOGIN,
+        $password = MYSQL_PASSWORD
     ) {
 	    $this->_table = $table;
 	    $this->_actualDatabase = $host.'@'.$database;
@@ -113,11 +113,11 @@ class Mysql
      * query function.
      * 
      * @access protected
-     * @param string $sql
-     * @param array $preparation (default: [])
+     * @param $sql
+     * @param $preparation (default: [])
      * @return void
      */
-    protected function query(string $sql, array $preparation = [])
+    protected function query($sql, $preparation = [])
     {    
         $query = self::$_databases[$this->_actualDatabase]->prepare($sql);
         $query->execute($preparation);
@@ -127,7 +127,7 @@ class Mysql
         return $query;    
     }
     
-    public function select($selection = '*', $parameters = [], array $preparation = [])
+    public function select($selection = '*', $parameters = [], $preparation = [])
     {   
 	    $select = is_array($selection) ?
 	    	implode(', ', $selection) :
@@ -161,12 +161,12 @@ class Mysql
 	    return $this->query($sql, $preparation);
     }
 
-    public function all($selection = '*', $parameters = [], array $preparation = [])
+    public function all($selection = '*', $parameters = [], $preparation = [])
     {    
         return $this->select($selection, $parameters, $preparation)->fetchAll();    
     }
     
-    public function one($selection = '*', $parameters = [], array $preparation = [])
+    public function one($selection = '*', $parameters = [], $preparation = [])
     {    
         return $this->select($selection, $parameters, $preparation)->fetch();    
     }
@@ -175,10 +175,10 @@ class Mysql
      * first function.
      * 
      * @access public
-     * @param int $offset
+     * @param $offset
      * @return void
      */
-    public function first(int $offset, $selection = '*')
+    public function first($offset, $selection = '*')
     {
 	    $select = is_array($selection) ? implode(', ', $selection) : $selection;
 	    $parameters = ['order' => $this->_primaryKey.' ASC', 'limit' => $offset];
@@ -190,10 +190,10 @@ class Mysql
      * last function.
      * 
      * @access public
-     * @param int $offset
+     * @param $offset
      * @return void
      */
-    public function last(int $offset, $selection = '*')
+    public function last($offset, $selection = '*')
     {    
         $select = is_array($selection) ? implode(', ', $selection) : $selection;
 	    $parameters = ['order' => $this->_primaryKey.' DESC', 'limit' => $offset];
@@ -205,10 +205,10 @@ class Mysql
      * save function.
      * 
      * @access public
-     * @param array $data
+     * @param $data
      * @return void
      */
-    public function save(array $data)
+    public function save($data)
     {
         if (!empty($data[$this->_primaryKey])) {
 			
@@ -238,10 +238,10 @@ class Mysql
      * remove function.
      * 
      * @access public
-     * @param int $primaryKey
+     * @param $primaryKey
      * @return void
      */
-    public function remove(int $primaryKey)
+    public function remove($primaryKey)
     {
         return $this->query(
             "DELETE FROM $this->_table WHERE $this->_primaryKey=:$this->_primaryKey",
@@ -265,10 +265,10 @@ class Mysql
      * 
      * @access public
      * @param mixed $condition
-     * @param array $preparation
+     * @param $preparation
      * @return void
      */
-    public function exist($condition, array $preparation = [])
+    public function exist($condition, $preparation = [])
     {    
         $test = $this->all($this->_primaryKey, ['where' => $condition], $preparation);
         

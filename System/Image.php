@@ -92,10 +92,10 @@ class Image
      * __construct function.
      * 
      * @access public
-     * @param string $file
+     * @param $file
      * @return void
      */
-    public function __construct(string $file)
+    public function __construct($file)
     {
         $this->_file = $file;
         $this->_name = basename($file);
@@ -128,21 +128,21 @@ class Image
      * _generateImage function.
      * 
      * @access private
-     * @param int $width
-     * @param int $height
-     * @param int $originalWidth
-     * @param int $originalHeight
-     * @param int $shiftX
-     * @param int $shiftY
+     * @param $width
+     * @param $height
+     * @param $originalWidth
+     * @param $originalHeight
+     * @param $shiftX
+     * @param $shiftY
      * @return void
      */
     private function _generateImage(
-        int $width,
-        int $height,
-        int $originalWidth,
-        int $originalHeight,
-        int $shiftX,
-        int $shiftY
+        $width,
+        $height,
+        $originalWidth,
+        $originalHeight,
+        $shiftX,
+        $shiftY
     ) {
         $extension = substr(strrchr($this->outputFile, '.'), 1);
                 
@@ -180,17 +180,17 @@ class Image
      * trim function.
      * 
      * @access public
-     * @param int $width
-     * @param int $height
-     * @param int $shiftX (default: 0)
-     * @param int $shiftY (default: 0)
+     * @param $width
+     * @param $height
+     * @param $shiftX (default: 0)
+     * @param $shiftY (default: 0)
      * @return void
      */
     public function trim(
-        int $width,
-        int $height,
-        int $shiftX = 0,
-        int $shiftY = 0
+        $width,
+        $height,
+        $shiftX = 0,
+        $shiftY = 0
     ) {    
         return $this->_generateImage($width, $height, $width, $height, $shiftX, $shiftY);
     }
@@ -199,8 +199,8 @@ class Image
      * resize function.
      * 
      * @access public
-     * @param int $width (default: 0)
-     * @param int $height (default: 0)
+     * @param $width (default: 0)
+     * @param $height (default: 0)
      * @return void
      */
     public function resize($width = 0, $height = 0)
@@ -220,11 +220,11 @@ class Image
      * createThumb function.
      * 
      * @access public
-     * @param int $width
-     * @param int $height
+     * @param $width
+     * @param $height
      * @return void
      */
-    public function createThumb(int $width, int $height)
+    public function createThumb($width, $height)
     {    
         $ratio = $width / $height;
                 
