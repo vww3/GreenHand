@@ -2,11 +2,24 @@
 namespace System;
 
 /**
- * Debug class.
+ * Debug static class. This class can help you to develop your website but must be unused for the render.
+ *
+ * @package IRON
+ * @link ... nothing yet...
+ * @author Mickaël Boidin <mickael.boidin@icloud.com>
  */
 class Debug
 {	
-
+	/**
+     * Show datas.
+     * 
+     * @access public
+     * @static
+     * @param mixed $element The datas to debug
+     * @param string $title The title of the debug zone
+     * @param string $background The color of the debug zone
+     * @return void
+     */
 	public static function show($element, $title = null, $background = "#333")
 	{    
 		if ($title) {
@@ -29,19 +42,42 @@ class Debug
         echo "<pre style='background: $background; $style'>$title $print</pre>";
     }
 
+	/**
+     * Show multiple datas. This function can use any number of parameters
+     * 
+     * @access public
+     * @static
+     * @return void
+     */
     public static function multi()
     {
 	    foreach (func_get_args() as $var) {
-		    echo self::show($var);
+		    self::show($var);
 	    }
     }
-
+	
+	/**
+     * Show session datas.
+     * 
+     * @access public
+     * @static
+     * @param string $color The color of the debug zone
+     * @return void
+     */
     public static function session($color = '#C0392B')
     {
 	    $session = $_SESSION ? print_r($_SESSION, true) : 'Session non-initialisée';
 	    echo self::show($session, 'Session', $color);
     }
     
+    /**
+     * Show loaded class files (see \Core\Loader class).
+     * 
+     * @access public
+     * @static
+     * @param string $color The color of the debug zone
+     * @return void
+     */
     public static function loader($color = '#4183D7')
     {
 	    $loader = Core\Loader::whoIsLoaded();

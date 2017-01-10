@@ -8,10 +8,10 @@
 /* ██   ██   ██ ███  █   ███   ██   ███   ██ ███ █ ███ ██ ██   ██   ██ ███  █
 /* ██████████████████████████████████████████████████████████████████████████
 */
-//ERRORS
+// ERRORS
 ini_set('display_errors', true); error_reporting(E_ALL);
 
-//SESSION
+// SESSION
 session_start();
 
 // DEFAULT
@@ -56,8 +56,8 @@ define('TINYMCE'             ,    'tinyMCE/tinymce.min');
 define('TINYMCE_INIT'        ,    'tinyMCE/init');
 define('CHART'               ,    'chart/chart');
 
-//CONSTANTANTES DECLAREE PAR LE CONTROLLER
-// --> BASE = racine du site = RACINE/LANGUE
-// --> CONTROLLER = nom du controlleur appellée
-// --> ACTION = nom de l'action demandée
-// --> LANGUE = langue actuelle du site
+// CONSTANT CREATED DURING INITIALIZATION
+// --> BASE = root of the website + language = WEBROOT/LANGUAGE/
+// --> CONTROLLER = name of the current controller
+// --> ACTION = name of the current action
+// --> LANGUAGE = actual language of the site

@@ -4,42 +4,47 @@ namespace System\Core;
 use PDO;
 
 /**
- * Mysql class.
+ * MySQL main class. This class allows to manipulate SQL databases easily in an organize way.
+ * This class use PDO technology.
+ * If a model has to use database, it must extend this class.
+ *
+ * @package IRON
+ * @link ... nothing yet...
+ * @author Mickaël Boidin <mickael.boidin@icloud.com>
  */
 class Mysql
 {
 	
     /**
-     * _databases
+     * List of PDO instances. Each instance is connected to one database.
+     * It allows us to use multiple time a same PDO object without create
+     * an memory-eater new object.
      * 
-     * (default value: [])
-     * 
-     * @var mixed
+     * @var array
      * @access private
      * @static
      */
     private static $_databases = [];
        
     /**
-     * _actualDatabase
+     * The identifier of the PDO object used by the current Mysql object.
+     * the PDO object is self::$_databases[self::$_actualDatabase].
      * 
-     * @var mixed
+     * @var var
      * @access private
      */
     private $_actualDatabase;
     
     /**
-     * table
+     * The database table name that manage this Mysql object (one object for one table)
      * 
-     * @var mixed
+     * @var string
      * @access private
      */
     private $_table;
     
     /**
-     * primaryKey
-     * 
-     * (default value: 'id')
+     * the primaryKey of the table of the current Mysql object (please be "id").
      * 
      * @var string
      * @access private
@@ -47,22 +52,23 @@ class Mysql
     private $_primaryKey = 'id';
     
     /**
-     * queries
+     * List of executed SQL queries (for debug purpose).
      * 
-     * @var mixed
+     * @var array
      * @access private
      */
     private $_queries = [];
 
     /**
-     * __construct function.
+     * Constructor of the class. Initialize the PDO object if doesn't exist
+     * and use it.
      * 
      * @access public
-     * @param $table
-     * @param $database (default: MYSQL_BDD)
-     * @param $host (default: MYSQL_HEBERGEUR)
-     * @param $login (default: MYSQL_LOGIN)
-     * @param $password (default: MYSQL_MDP)
+     * @param string $table The name of the table that manage this object
+     * @param string $database The name of the database we connected
+     * @param string $host The host of the database
+     * @param string $login The login of the database
+     * @param string $password The password of the database
      * @return void
      */
     public function __construct(
@@ -73,9 +79,13 @@ class Mysql
         $password = MYSQL_PASSWORD
     ) {
 	    $this->_table = $table;
+	    //database identifier is always "host@database"
+	    //example: localhost@mySuperDB
 	    $this->_actualDatabase = $host.'@'.$database;
 	    
 	    if (empty(self::$_databases[$this->_actualDatabase])) {
+		    //we want a PDo object that return object from queries and use UTF-8
+		    //we also use Exception if errors
 		    self::$_databases[$this->_actualDatabase] = new PDO(
 	            "mysql:host=".$host.";dbname=".$database, $login, $password,
 	            [
@@ -88,7 +98,7 @@ class Mysql
     }
     
     /**
-     * table function.
+     * Get the name of the table of the current Mysql object
      * 
      * @access public
      * @return string
@@ -99,7 +109,7 @@ class Mysql
     }
     
     /**
-     * primary function.
+     * Get the primary key name of the current table of the Mysql object
      * 
      * @access public
      * @return string
@@ -110,12 +120,12 @@ class Mysql
     }
 
     /**
-     * query function.
+     * Excution of SQL query on the current database. Queries can be prepared or not.
      * 
      * @access protected
-     * @param $sql
-     * @param $preparation (default: [])
-     * @return void
+     * @param string $sql The query
+     * @param array $preparation the array of additional informations for preparing the query
+     * @return PDOQueryStatement
      */
     protected function query($sql, $preparation = [])
     {    
@@ -127,56 +137,97 @@ class Mysql
         return $query;    
     }
     
+    /**
+     * Select queries builder.
+     * 
+     * @access protected
+     * @param mixed $selection Array or String of selected column
+     * @param mixed $parameters It can be a :
+     *     - string -> where condition
+     *     - array -> multiple parameters like where, join, group by, order by or limit
+     * @param array $preparation the array of additional informations for preparing the query
+     * @return PDOQueryStatement
+     */
     public function select($selection = '*', $parameters = [], $preparation = [])
-    {   
+    {
+	    //if the select var is an array, we implode it with ", "
 	    $select = is_array($selection) ?
 	    	implode(', ', $selection) :
 	    	$selection;
 	    	
 	    $sql = 'SELECT '.$select.' FROM '.$this->_table;
 	    
+	    //if parameters is a string this is a where
 	    if(!is_array($parameters))
 	    	$sql .= ' WHERE '.$parameters;
 	    
+	    //JOIN
 	    if(!empty($parameters['join'])) {
 	    	$sql .= is_array($parameters['join']) ? 
 	    		', '.implode(', ', $parameters['join']) : 
 	    		', '.$parameters['join'];
 	    }
+	    //WHERE (array imploded with " AND ")
 	    if(!empty($parameters['where'])) {
 	    	$sql .= is_array($parameters['where']) ? 
 	    		' WHERE '.implode(' AND ', $parameters['where']) : 
 	    		' WHERE '.$parameters['where'];
 	    }
+	    //GROUP BY
 	    if(!empty($parameters['group'])) { 
 	    	$sql .= ' GROUP BY '.$parameters['group'];
 	    }
+	    //ORDER BY
 	    if(!empty($parameters['order'])) {
 	    	$sql .= ' ORDER BY '.$parameters['order'];
 	    }
+	    //LIMIT
 	    if(!empty($parameters['limit'])) {
 	    	$sql .= ' LIMIT '.$parameters['limit'];
 	    }
 
 	    return $this->query($sql, $preparation);
     }
-
+	
+	/**
+     * Select query executionner -> multiple results
+     * 
+     * @access protected
+     * @param mixed $selection Array or String of selected column
+     * @param mixed $parameters It can be a :
+     *     - string -> where condition
+     *     - array -> multiple parameters like where, join, group by, order by or limit
+     * @param array $preparation the array of additional informations for preparing the query
+     * @return array
+     */
     public function all($selection = '*', $parameters = [], $preparation = [])
     {    
         return $this->select($selection, $parameters, $preparation)->fetchAll();    
     }
     
+    /**
+     * Select query executionner -> one result
+     * 
+     * @access protected
+     * @param mixed $selection Array or String of selected column
+     * @param mixed $parameters It can be a :
+     *     - string -> where condition
+     *     - array -> multiple parameters like where, join, group by, order by or limit
+     * @param array $preparation the array of additional informations for preparing the query
+     * @return stdObject
+     */
     public function one($selection = '*', $parameters = [], $preparation = [])
     {    
         return $this->select($selection, $parameters, $preparation)->fetch();    
     }
 
     /**
-     * first function.
+     * Select query executionner -> the X first results
      * 
-     * @access public
-     * @param $offset
-     * @return void
+     * @access protected
+     * @param int $offset Number of needed results
+     * @param mixed $selection Array or String of selected column
+     * @return array
      */
     public function first($offset, $selection = '*')
     {
@@ -187,11 +238,12 @@ class Mysql
     }
 
     /**
-     * last function.
+     * Select query executionner -> the X last results
      * 
-     * @access public
-     * @param $offset
-     * @return void
+     * @access protected
+     * @param int $offset Number of needed results
+     * @param mixed $selection Array or String of selected column
+     * @return array
      */
     public function last($offset, $selection = '*')
     {    
@@ -202,16 +254,20 @@ class Mysql
     }
 
     /**
-     * save function.
+     * Save and Update informations in database. Can be an UPDATE or an INSERT query.
+     * The nature of the query depend on the presence of the primary key.
+     * If a primary key is entered this is an UPDATE.
      * 
      * @access public
-     * @param $data
+     * @param array $data Array of datas we need to store in database. the keys of the array
+     *                    must be same as columns of the table in database
      * @return void
      */
     public function save($data)
     {
+	    //here we have a primary key
         if (!empty($data[$this->_primaryKey])) {
-			
+			//we build the query with the key of the array, the data will be in the preparation
 			$keys = [];
 			foreach (array_keys($data) as $index => $key)
 				if ($key != $this->_primaryKey)
@@ -221,9 +277,10 @@ class Mysql
             $sql = "UPDATE $this->_table SET $updates WHERE $this->_primaryKey=:$this->_primaryKey";
 
             return $this->query($sql, $data);
-            
+        
+        //here we don't have a primary key  
         } else {
-            
+            //same logic than UPDATE (but easer)
             $keys = implode(', ', array_keys($data));
             $values = ':'.implode(', :', array_keys($data));
             
@@ -235,10 +292,10 @@ class Mysql
     }
 
     /**
-     * remove function.
+     * Delete query builder.
      * 
      * @access public
-     * @param $primaryKey
+     * @param mixed $primaryKey The primary key of the entry to remove
      * @return void
      */
     public function remove($primaryKey)
@@ -250,7 +307,7 @@ class Mysql
     }
     
     /**
-     * removeAll function.
+     * truncate query builder.
      * 
      * @access public
      * @return void
@@ -261,33 +318,37 @@ class Mysql
     }
 
     /**
-     * exist function.
+     * Verify if there are results that fit the condition.
      * 
      * @access public
-     * @param mixed $condition
+     * @param string $condition Where condition use for the test
      * @param $preparation
-     * @return void
+     * @return int
      */
     public function exist($condition, $preparation = [])
     {    
         $test = $this->all($this->_primaryKey, ['where' => $condition], $preparation);
         
-        return empty($test) ? false : true;
+        return empty($test) ? false : sizeof($test);
     }
     
     /**
-     * size function.
+     * Return the number for entries in the table of current Mysql object.
      * 
      * @access public
-     * @return void
+     * @return int
      */
     public function size()
     {    
-        $get = $this->one('COUNT(*) AS size');
-
-        return !empty($get) ? $get->size : false;    
+        return $this->one('COUNT(*) AS size')->size;    
     }
     
+    /**
+     * Verify if the table exist.
+     * 
+     * @access public
+     * @return bool
+     */	  
     public function didTableExist()
     {
 	    $test = $this->query("SHOW TABLES LIKE :table", ['table' => $this->_table])->fetch();
@@ -295,7 +356,7 @@ class Mysql
     }
 
     /**
-     * __destruct function.
+     * Destructor function. Remove the connexions.
      * 
      * @access public
      * @return void
