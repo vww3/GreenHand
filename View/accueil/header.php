@@ -24,3 +24,8 @@
 </div>
 
 
+<div class="img_accueil">
+	<h2>Il n'y a pas de petits gestes <br>quand on est 60 millions à le faire</h2>
+</div>
+
+

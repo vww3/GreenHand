@@ -68,7 +68,8 @@ header {
   header .header_notif {
     width: 70%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    align-items: flex-end;
     flex-direction: column; }
     header .header_notif .header_notif_top {
       display: flex;
@@ -85,6 +86,7 @@ header {
     header .header_notif .header_notif_search {
       width: 20%;
       height: 40px;
+      margin-top: 20px;
       border: 3px solid transparent;
       -moz-border-image: -moz-linear-gradient(top left, #96be1f 0%, #23b4b0 100%);
       -webkit-border-image: -webkit-linear-gradient(top left, #96be1f 0%, #23b4b0 100%);
@@ -162,3 +164,116 @@ header {
       border-bottom: 12px solid #23b4b0; }
       .main_menu nav a:nth-child(4):hover span {
         color: #23b4b0; }
+
+/****************************************
+**	2.3 - IMAGE ACCUEIL
+****************************************/
+.img_accueil {
+  background: url(../Image/accueil/bg_accueil.jpg) no-repeat center;
+  background-size: 100%;
+  background-position: center;
+  width: 100%;
+  height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .img_accueil h2 {
+    font-family: 'order_pizzaregular';
+    color: #fff;
+    font-size: 33px;
+    -ms-transform: rotate(-3deg);
+    /* IE 9 */
+    -webkit-transform: rotate(-3deg);
+    /* Chrome, Safari, Opera */
+    transform: rotate(-3deg);
+    text-align: center; }
+
+/****************************************
+**
+**	3- DASHBOARD
+**
+****************************************/
+#accueil_dashboard {
+  display: flex;
+  margin-top: 50px; }
+
+/****************************************
+**	3.1 - SIDEBAR
+****************************************/
+.sidebar_accueil {
+  background: #23b4b0;
+  width: 40%;
+  height: 1000px; }
+
+/****************************************
+**	3.2 - DEFI
+****************************************/
+.dashboard {
+  width: 60%;
+  height: 1000px;
+  padding-left: 20px; }
+  .dashboard h2 {
+    font-size: 48px;
+    color: #23b4b0;
+    text-align: center; }
+  .dashboard hr {
+    border: 0;
+    height: 2px;
+    width: 23%;
+    background-image: linear-gradient(to right, #23b4b0, #96be1f); }
+  .dashboard .content_dashboard {
+    margin-top: 50px; }
+    .dashboard .content_dashboard .single_defi {
+      border: 1px solid #c6c6c6;
+      padding: 20px;
+      background: #fff;
+      display: flex; }
+      .dashboard .content_dashboard .single_defi .single_defi_text {
+        padding-left: 20px; }
+        .dashboard .content_dashboard .single_defi .single_defi_text h3 {
+          text-transform: uppercase;
+          font-size: 20px;
+          color: #000;
+          font-weight: bold;
+          text-align: center; }
+        .dashboard .content_dashboard .single_defi .single_defi_text p {
+          font-style: italic; }
+        .dashboard .content_dashboard .single_defi .single_defi_text .single_defi_bottom {
+          display: flex;
+          margin-top: 20px; }
+          .dashboard .content_dashboard .single_defi .single_defi_text .single_defi_bottom .icon_partage {
+            display: flex; }
+            .dashboard .content_dashboard .single_defi .single_defi_text .single_defi_bottom .icon_partage .defi_ami {
+              width: 90px;
+              height: 70px; }
+              .dashboard .content_dashboard .single_defi .single_defi_text .single_defi_bottom .icon_partage .defi_ami a {
+                height: 100%;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                align-items: center; }
+                .dashboard .content_dashboard .single_defi .single_defi_text .single_defi_bottom .icon_partage .defi_ami a img {
+                  width: 50%; }
+                .dashboard .content_dashboard .single_defi .single_defi_text .single_defi_bottom .icon_partage .defi_ami a span {
+                  padding-top: 10px;
+                  color: #7d7d7d; }
+          .dashboard .content_dashboard .single_defi .single_defi_text .single_defi_bottom .icon_info_defi {
+            display: flex;
+            justify-content: flex-end;
+            width: 100%; }
+            .dashboard .content_dashboard .single_defi .single_defi_text .single_defi_bottom .icon_info_defi .info_defi {
+              width: 90px;
+              height: 80px; }
+              .dashboard .content_dashboard .single_defi .single_defi_text .single_defi_bottom .icon_info_defi .info_defi a {
+                height: 100%;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                align-items: center; }
+                .dashboard .content_dashboard .single_defi .single_defi_text .single_defi_bottom .icon_info_defi .info_defi a img {
+                  width: 50%; }
+                .dashboard .content_dashboard .single_defi .single_defi_text .single_defi_bottom .icon_info_defi .info_defi a span {
+                  padding-top: 10px;
+                  color: #7d7d7d; }
