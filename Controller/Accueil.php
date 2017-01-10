@@ -16,7 +16,10 @@ class Accueil extends Controller
      * @return void
      */
     protected function __construct()
-    {    
+    {  
+        $this->styles[] = 'base';  
+        $this->styles[] = 'accueil';
+
         /*if (
             empty($_SESSION['administrateur']) OR 
             $_SESSION['administrateur'] != true
