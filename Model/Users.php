@@ -15,7 +15,7 @@ class Users extends Mysql
 	
 	public function connexion($email, $password)
 	{
-		return $this->one(
+		$user = $this->one(
 			['id', 'email', 'isAdmin', 'name', 'valid'],
 			['where' => [
 				'email = :email',
@@ -24,6 +24,13 @@ class Users extends Mysql
 			],
 			['email' => $email, 'password' => $password]
 		);
+		
+		if(empty($user))
+			return null;
+		
+		$this->query('UPDATE users SET numConnection=numConnection+1 WHERE id=:id', ['id' => $user->id]);
+		
+		return $user;
 	}
 	
 	public function whoHasKey($key)
@@ -35,4 +42,9 @@ class Users extends Mysql
 	{
 		return $this->save(['id' => $userId, 'valid' => 1]);
 	}
+	
+	public function isAvailableEmail($email)
+	{
+		return !$this->exist('email=:email', ['email' => $email]);
+	}	
 }

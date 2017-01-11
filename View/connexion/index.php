@@ -2,14 +2,23 @@
 	
 	<h1>Bienvenue chez GreenHand</h1>
 	
-	<?php
-	if(!empty($errors)) {
-		echo '<div><ul class="bad">';
-		foreach($errors as $error)
-			echo "<li>$error</li>";
-		echo '</ul></div>';
-	}
-	?>
+	<?php if(!empty($errors)) { ?>
+		<div>
+			<ul class="bad">
+			
+			<?php foreach($errors as $error) { ?>
+				<li><?= $error ?></li>
+			<?php } ?>
+		
+			</ul>
+		</div>
+	<?php } ?>
+	
+	<?php if(!empty($confirmation)) { ?>
+		<div class="good">			
+			<?= $confirmation ?>
+		</div>
+	<?php } ?>
 	
 	<div class="col-3-m">
 		<form method="post">

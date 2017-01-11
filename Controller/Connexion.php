@@ -54,22 +54,28 @@ class Connexion extends Controller
 	    $formRegister = new Form(['name' => 'register']);
 		$formSignIn = new Form(['name' => 'signIn']);
 	    
+	    $confirmation = null;
+	    
 	    if($formRegister->posted()) {
 		    
 		    $datas = $formRegister->datas('name', 'email', 'password');
 		    $copyPassword = $formRegister->datas('verifyPassword');
-		    
+		    $emailIsAvailable = $this->model('Users')->isAvailableEmail($datas['email']);
+		    		    
 		    $formRegister->verify(empty($datas['name'])								, 'Veuillez renseigner votre nom pour vous enregistrer');
 		    $formRegister->verify(!Str::isEmail($datas['email'])					, 'Veuillez renseigner un email conforme');
-		    $formRegister->verify(!Str::length($datas['password']) > 5				, 'Veuillez renseigner votre mot de passe d\'au moins 6 caractères pour vous enregistrer');
+		    $formRegister->verify(!$emailIsAvailable								, 'Cette adresse e-mail est déjà prise');
+		    $formRegister->verify(Str::length($datas['password']) <= 5				, 'Veuillez renseigner votre mot de passe d\'au moins 6 caractères pour vous enregistrer');
 		    $formRegister->verify(!Str::isSame($datas['password'], $copyPassword)	, 'Veuillez copier correctement votre mot de passe');
-
+			
 		    if($formRegister->noErrors()) {
 			    $datas['password'] = Crypt::encrypt($datas['password']);
 			    $datas['validationKey'] = md5(uniqid());
 			    
 				$this->model('Users')->save($datas);
-				$this->sendValidationEmail($datas['name'], $datas['email'], $datas['validationKey']);				
+				$this->sendValidationEmail($datas['name'], $datas['email'], $datas['validationKey']);
+				
+				$confirmation = 'Bienvenue à toi cher '.$datas['name'].', afin de confirmer ton inscription, un e-mail avec un lien d\'activation viens de t\être envoyé.';			
 			}
 	    }
 	    
@@ -86,7 +92,7 @@ class Connexion extends Controller
 			    	Crypt::encrypt($datas['password'])
 			    );
 			    
-			    $formSignIn->verify(empty($user)			, 'Le email ou le mot de passe est erroné');
+			    $formSignIn->verify(empty($user)			, 'Identification impossible, essaie à nouveau.');
 			    
 			    if($formSignIn->noErrors())
 			    	$formSignIn->verify($user->valid == 0	, 'Votre compte doit être activé');
@@ -94,14 +100,14 @@ class Connexion extends Controller
 			    if($formSignIn->noErrors()) {
 					$_SESSION['user'] = $user;
 					
-					//$this->go(BASE.'accueil');
+					$this->go(BASE.'accueil');
 				}
 		    }
 	    }
 	    
 	    $errors = array_merge($formRegister->errors(), $formSignIn->errors());
 	    
-	    $this->datas = compact('formRegister', 'formSignIn', 'errors');
+	    $this->datas = compact('formRegister', 'formSignIn', 'errors', 'confirmation');
 	    
 	    $this->view();
 	    
