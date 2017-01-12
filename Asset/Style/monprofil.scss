@@ -87,3 +87,94 @@ header{
 	}
 }
 
+
+/****************************************
+**
+**	2- PHOTO - HEADER
+**
+****************************************/
+.photo_couv{
+	width: 100%;
+	height: 300px;
+
+	.fa-cog{
+		float: right;
+		color: #fff;
+		font-size: 33px;
+		margin: 35px 25px;
+		-webkit-transition: color 0.5s;
+		    -ms-transition: color 0.5s;
+		    -moz-transition: color 0.5s;
+		    -o-transition: color 0.5s;
+		    transition: color 0.5s;
+	}
+
+	.fa-cog:hover{
+		color:$green;
+	}
+	
+}
+/****************************************
+**
+**	3- INFO PROFIL TOP
+**
+****************************************/
+#profil{
+	
+	padding: 10px;
+}
+
+.info_profil_top{
+	display: flex;
+	align-items: center;
+	
+}
+
+
+.sidebar{
+	width:20%;
+	height:500px;
+	margin-top: -115px;
+	.img_profil{
+		width: 20%;
+		height: 200px;
+		overflow: hidden;
+
+		img{
+			width: 100%;
+			height: 100%;
+			border-radius: 5%;
+		}
+	}
+
+	h2{
+		color: #fff;
+		margin-left: 15px;
+	}
+
+	.info_stat{
+		width: 100%;
+		display: flex;
+		flex-wrap: wrap;
+
+		.defi_en_cours{
+			width: 50%;
+			background: red;
+			height: 100px;
+		}
+
+		.defi_poste{
+			width: 50%;
+			background: brown;
+			height: 100px;
+		}
+
+		.badge{
+			width: 100%;
+			height: 100px;
+			background: blueviolet;
+		}
+	}
+}
+
+
