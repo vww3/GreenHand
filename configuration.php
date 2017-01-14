@@ -44,7 +44,7 @@ define('RFM_THUMB'      	 ,    ASSET.'Thumbs/');
 define('MYSQL_HOST'          ,    DOMAIN == "localhost:8888" ? 'localhost' : '');
 define('MYSQL_DATABASE'      ,    DOMAIN == "localhost:8888" ? 'GreenHand' : '');
 define('MYSQL_LOGIN'         ,    DOMAIN == "localhost:8888" ? 'root' : '');
-define('MYSQL_PASSWORD'      ,    DOMAIN == "localhost:8888" ? 'root' : '');
+define('MYSQL_PASSWORD'      ,    DOMAIN == "localhost:8888" ? '' : '');
 
 // SHORTCUTS (no need for FOLDERS CONSTs)
 define('RFM_OPEN'       	 ,    RFM.'dialog.php');

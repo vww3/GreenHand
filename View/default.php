@@ -39,6 +39,8 @@
 		<link rel="icon" type="image/png" sizes="96x96" href="<?= IMAGE ?>favicon/favicon-96x96.png">
 		<link rel="icon" type="image/png" sizes="192x192"  href="<?= IMAGE ?>favicon/android-icon-192x192.png">
 		<link rel="manifest" href="<?= IMAGE ?>favicon/manifest.json">
+
+		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	</head>
 	<body>
 		
