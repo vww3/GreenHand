@@ -16,7 +16,7 @@ class Users extends Mysql
 	public function connexion($email, $password)
 	{
 		$user = $this->one(
-			['id', 'email', 'isAdmin', 'name', 'valid'],
+			['id', 'email', 'isAdmin', 'isProducer', 'name', 'valid'],
 			['where' => [
 				'email = :email',
 				'password = :password'

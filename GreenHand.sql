@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  localhost:8889
--- Généré le :  Mer 11 Janvier 2017 à 21:52
+-- Généré le :  Jeu 12 Janvier 2017 à 13:28
 -- Version du serveur :  5.6.28
 -- Version de PHP :  7.0.10
 
@@ -55,14 +55,14 @@ CREATE TABLE `challenge` (
   `dateCreation` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `dateEnd` timestamp NULL DEFAULT NULL,
   `category` int(11) NOT NULL,
-  `user` int(11) NOT NULL
+  `author` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Contenu de la table `challenge`
 --
 
-INSERT INTO `challenge` (`id`, `Title`, `Description`, `dateCreation`, `dateEnd`, `category`, `user`) VALUES
+INSERT INTO `challenge` (`id`, `Title`, `Description`, `dateCreation`, `dateEnd`, `category`, `author`) VALUES
 (1, 'Manger 5kilos de patates', 'C\'est un défi de test !', '2017-01-11 20:00:30', NULL, 1, 1),
 (2, 'Faire l\'amour au lieu d\'allumer le chauffage', 'C\'est un test marrant :).', '2017-01-11 20:33:03', NULL, 1, 1),
 (3, 'Sauver le monde', 'Pas facile... The princess is in an other castle !', '2017-01-11 20:34:57', NULL, 1, 1);
@@ -107,6 +107,28 @@ INSERT INTO `challengeObjective` (`id`, `instruction`, `challenge`) VALUES
 (2, 'Mangez 5kg de patate en un jour.', 1),
 (3, 'Faire l\'amour 5 fois dans la semaine', 2),
 (4, 'Couper le chauffage pendant l\'amour', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `message`
+--
+
+CREATE TABLE `message` (
+  `id` int(11) NOT NULL,
+  `content` text NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `author` int(11) NOT NULL,
+  `recipient` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `message`
+--
+
+INSERT INTO `message` (`id`, `content`, `date`, `author`, `recipient`) VALUES
+(1, 'Hello !', '2017-01-12 12:22:46', 1, 8),
+(2, 'Hi friend !', '2017-01-12 12:22:56', 8, 1);
 
 -- --------------------------------------------------------
 
@@ -176,6 +198,8 @@ CREATE TABLE `profils` (
   `firstName` varchar(255) NOT NULL,
   `lastName` varchar(255) NOT NULL,
   `description` text NOT NULL,
+  `birth` date NOT NULL,
+  `gender` tinyint(1) NOT NULL,
   `facebook` varchar(255) NOT NULL,
   `twitter` varchar(255) NOT NULL,
   `URL` varchar(255) NOT NULL,
@@ -186,8 +210,8 @@ CREATE TABLE `profils` (
 -- Contenu de la table `profils`
 --
 
-INSERT INTO `profils` (`id`, `firstName`, `lastName`, `description`, `facebook`, `twitter`, `URL`, `user`) VALUES
-(1, 'Mickaël', 'Boidin', 'Je suis l\'un des fondateurs de GreenHand', 'mickastark13', '', '', 1);
+INSERT INTO `profils` (`id`, `firstName`, `lastName`, `description`, `birth`, `gender`, `facebook`, `twitter`, `URL`, `user`) VALUES
+(1, 'Mickaël', 'Boidin', 'Je suis l\'un des fondateurs de GreenHand', '2017-01-12', 1, 'mickastark13', '', '', 1);
 
 -- --------------------------------------------------------
 
@@ -213,7 +237,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `password`, `isAdmin`, `isProducer`, `validationKey`, `valid`, `name`, `dateRegistration`, `numConnection`) VALUES
-(1, 'mickael@boidin.fr', 'v4Ww7kD2JOILAJCz1ulhsw==', 1, 0, 'd8926941f4df618530cf9ec181c3684a', 1, 'Mickaël', '2017-01-11 19:47:32', 0);
+(1, 'mickael@boidin.fr', 'v4Ww7kD2JOILAJCz1ulhsw==', 1, 0, 'd8926941f4df618530cf9ec181c3684a', 1, 'Mickaël', '2017-01-11 19:47:32', 0),
+(8, 'mickael@boidin2.fr', 'urHUxyeJf91U60oJTiPGtQ==', 0, 0, '2a4d7dc61d5e7968e4b71cdbeed8ecfe', 1, 'fqsdfqsd', '2017-01-11 21:26:01', 4);
 
 -- --------------------------------------------------------
 
@@ -234,6 +259,28 @@ CREATE TABLE `usersAchievementSuccess` (
 INSERT INTO `usersAchievementSuccess` (`id`, `user`, `achievement`) VALUES
 (1, 1, 3),
 (2, 1, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `usersChallengeParticipation`
+--
+
+CREATE TABLE `usersChallengeParticipation` (
+  `id` int(11) NOT NULL,
+  `user` int(11) NOT NULL,
+  `challenge` int(11) NOT NULL,
+  `dateParticipation` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `dateSuccess` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `usersChallengeParticipation`
+--
+
+INSERT INTO `usersChallengeParticipation` (`id`, `user`, `challenge`, `dateParticipation`, `dateSuccess`) VALUES
+(2, 1, 2, '2017-01-12 12:18:28', '2017-01-09 23:00:00'),
+(3, 1, 1, '2017-01-12 12:18:28', NULL);
 
 -- --------------------------------------------------------
 
@@ -270,7 +317,7 @@ ALTER TABLE `achievement`
 --
 ALTER TABLE `challenge`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `user` (`user`),
+  ADD KEY `user` (`author`),
   ADD KEY `category` (`category`);
 
 --
@@ -285,6 +332,14 @@ ALTER TABLE `challengeCategory`
 ALTER TABLE `challengeObjective`
   ADD PRIMARY KEY (`id`),
   ADD KEY `challenge` (`challenge`);
+
+--
+-- Index pour la table `message`
+--
+ALTER TABLE `message`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `author` (`author`),
+  ADD KEY `recipient` (`recipient`);
 
 --
 -- Index pour la table `page`
@@ -328,6 +383,14 @@ ALTER TABLE `usersAchievementSuccess`
   ADD KEY `achievement` (`achievement`);
 
 --
+-- Index pour la table `usersChallengeParticipation`
+--
+ALTER TABLE `usersChallengeParticipation`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user` (`user`),
+  ADD KEY `challenge` (`challenge`);
+
+--
 -- Index pour la table `usersObjectiveSuccess`
 --
 ALTER TABLE `usersObjectiveSuccess`
@@ -360,6 +423,11 @@ ALTER TABLE `challengeCategory`
 ALTER TABLE `challengeObjective`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
+-- AUTO_INCREMENT pour la table `message`
+--
+ALTER TABLE `message`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
 -- AUTO_INCREMENT pour la table `page`
 --
 ALTER TABLE `page`
@@ -383,12 +451,17 @@ ALTER TABLE `profils`
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT pour la table `usersAchievementSuccess`
 --
 ALTER TABLE `usersAchievementSuccess`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT pour la table `usersChallengeParticipation`
+--
+ALTER TABLE `usersChallengeParticipation`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT pour la table `usersObjectiveSuccess`
 --
@@ -403,13 +476,20 @@ ALTER TABLE `usersObjectiveSuccess`
 --
 ALTER TABLE `challenge`
   ADD CONSTRAINT `fk_category` FOREIGN KEY (`category`) REFERENCES `challengeCategory` (`id`),
-  ADD CONSTRAINT `fk_user` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_user` FOREIGN KEY (`author`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `challengeObjective`
 --
 ALTER TABLE `challengeObjective`
   ADD CONSTRAINT `fk_challenge_objective` FOREIGN KEY (`challenge`) REFERENCES `challenge` (`id`);
+
+--
+-- Contraintes pour la table `message`
+--
+ALTER TABLE `message`
+  ADD CONSTRAINT `fk_user_author` FOREIGN KEY (`author`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `fk_user_recipient` FOREIGN KEY (`recipient`) REFERENCES `users` (`id`);
 
 --
 -- Contraintes pour la table `product`
@@ -429,6 +509,13 @@ ALTER TABLE `profils`
 ALTER TABLE `usersAchievementSuccess`
   ADD CONSTRAINT `fk_achievement_user` FOREIGN KEY (`user`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `fk_user_achievement` FOREIGN KEY (`achievement`) REFERENCES `achievement` (`id`);
+
+--
+-- Contraintes pour la table `usersChallengeParticipation`
+--
+ALTER TABLE `usersChallengeParticipation`
+  ADD CONSTRAINT `fk_challenge_participation` FOREIGN KEY (`challenge`) REFERENCES `challenge` (`id`),
+  ADD CONSTRAINT `fk_user_participation` FOREIGN KEY (`user`) REFERENCES `users` (`id`);
 
 --
 -- Contraintes pour la table `usersObjectiveSuccess`

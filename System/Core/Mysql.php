@@ -128,12 +128,12 @@ class Mysql
      * @return PDOQueryStatement
      */
     protected function query($sql, $preparation = [])
-    {    
+    {   
         $query = self::$_databases[$this->_actualDatabase]->prepare($sql);
         $query->execute($preparation);
         
         $this->_queries[] = $query;
-        
+
         return $query;    
     }
     
@@ -163,15 +163,30 @@ class Mysql
 	    
 	    //JOIN
 	    if(!empty($parameters['join'])) {
+	    	$sql .= ', ';
 	    	$sql .= is_array($parameters['join']) ? 
-	    		', '.implode(', ', $parameters['join']) : 
-	    		', '.$parameters['join'];
+	    		implode(', ', $parameters['join']) : 
+	    		$parameters['join'];
 	    }
+	    
+	    if(!empty($parameters['left'])) {
+	    	foreach($parameters['left'] as $join => $on) {
+		    	$sql .= ' LEFT JOIN '.$join.' ON '.$on;
+	    	}
+	    }
+	    
+	    if(!empty($parameters['right'])) {
+	    	foreach($parameters['right'] as $join => $on) {
+		    	$sql .= ' RIGHT JOIN '.$join.' ON '.$on;
+	    	}
+	    }
+	    
 	    //WHERE (array imploded with " AND ")
 	    if(!empty($parameters['where'])) {
+		    $sql .= ' WHERE ';
 	    	$sql .= is_array($parameters['where']) ? 
-	    		' WHERE '.implode(' AND ', $parameters['where']) : 
-	    		' WHERE '.$parameters['where'];
+	    		implode(' AND ', $parameters['where']) : 
+	    		$parameters['where'];
 	    }
 	    //GROUP BY
 	    if(!empty($parameters['group'])) { 

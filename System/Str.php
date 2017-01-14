@@ -124,4 +124,21 @@ class Str
     {
 	    return filter_var($string, FILTER_VALIDATE_EMAIL);
     }
+    
+    /**
+     * date function.
+     *
+     * @access public
+     * @static
+     * @param $date Date to convert
+     * @param $format Format of the date, by default : 01 January 1997
+     * @return string
+     */
+    public static function date($date, $format = '%d %B %Y')
+    {
+	    if(empty($date))
+	    	return  '';
+	    
+	    return strftime($format, strtotime($date));
+    }
 }
