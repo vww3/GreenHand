@@ -3,7 +3,7 @@
 		
 		<?php if(!empty($_SESSION['user'])) { ?>
 		<form method="post">
-			<h2>Profil : <?= $_SESSION['user']->name ?></h2>
+			<h2>Profil : <?= $_SESSION['user']->name ?> <small><a href="<?= BASE ?>byebye" title="Me deconnecter de mon compte">me deconnecter</a></small></h2>
 			<hr>
 			<div>
 				<?= $profilForm->text('firstName', [
@@ -55,11 +55,21 @@
 				]) ?>
 			</div>
 			<?= $profilForm->sender('Mettre à jour') ?>
-		</form>
+			
+			<h2>Mes participations</h2>
+			<?php if(!empty($myChallengeParticipations)) { ?>
+				<?php foreach($myChallengeParticipations as $challenge) { ?>
+				<div><a href="<?= BASE ?>challenge/<?= $challenge->id ?>/<?= $challenge->slug ?>" title='Je participe au défi "<?= $challenge->title ?>"'><?= $challenge->title ?></a></div>
+				<?php } ?>
+			<?php } else { ?>
+			<div>Je ne participe à aucun défi pour le moment.</div>
+			<?php } ?>
 		<?php } else { ?>
 			<h2>Connecte-toi</h2>
-			<a href="<?= BASE ?>connexion">Connexion / Inscription</a>
+			<p>Pour pouvoir accéder au profil et participer aux défis, il faut que tu te connecte à ton compte. Si tu n'en n'as pas tu peux gratuitement t'inscrire dès maintenant.</p>
+			<p><a href="<?= BASE ?>connexion" title="Aller sur la page de connexion et d'inscription">Connexion / Inscription</a></p>
 		<?php } ?>
+		</form>
 	</div>
 
 	<div class="dashboard">

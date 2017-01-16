@@ -49,13 +49,14 @@ class Connexion extends Controller
      */
     public function index()
     {
+	    if(!empty($_SESSION['user']))
+	    	$this->go(BASE.'accueil');
+
 	    $this->title = "Rejoignez-nous et connectez-vous";
 	    
 	    $formRegister = new Form(['name' => 'register']);
 		$formSignIn = new Form(['name' => 'signIn']);
-	    
-	    $confirmation = null;
-	    
+	    	    
 	    if($formRegister->posted()) {
 		    
 		    $datas = $formRegister->datas('name', 'email', 'password');
@@ -87,10 +88,8 @@ class Connexion extends Controller
 		    $formSignIn->verify(empty($datas['password'])	, 'Veuillez renseigner votre mot de passe pour vous identifier');
 		    
 		    if($formSignIn->noErrors()) {
-				$user = $this->model('Users')->connexion(
-			    	$datas['email'],
-			    	Crypt::encrypt($datas['password'])
-			    );
+			    $cryptedPass = Crypt::encrypt($datas['password']);
+				$user = $this->model('Users')->connexion($datas['email'], $cryptedPass);
 			    
 			    $formSignIn->verify(empty($user)			, 'Identification impossible, essaie à nouveau.');
 			    
@@ -100,11 +99,14 @@ class Connexion extends Controller
 			    if($formSignIn->noErrors()) {
 					$_SESSION['user'] = $user;
 					
-					$this->go(BASE.'accueil');
+					$parameters = func_get_args();
+					$redirection = empty($parameters) ? BASE.'accueil' : BASE.implode('/', $parameters);
+					
+					$this->go($redirection);
 				}
 		    }
 	    }
-	    
+
 	    $errors = array_merge($formRegister->errors(), $formSignIn->errors());
 	    
 	    $this->datas = compact('formRegister', 'formSignIn', 'errors', 'confirmation');
@@ -121,18 +123,19 @@ class Connexion extends Controller
 	    	
 	    $user = $this->model('Users')->whoHasKey($key);
 	    
-	    if(!empty($user)) {
-		    $this->model('Users')->validate($user->id);
-		    
-		    $this->title = "Validation de votre compte $user->name";
-		    
-		    $this->view();
-	    }	    
+	    if(empty($user) OR $user->valid == 1)
+	    	$this->go(PREVIOUS);
+	    
+	    $this->model('Users')->validate($user->id);
+	    
+	    $this->title = "Validation de votre compte $user->name";
+	    
+	    $this->view();
     }
     
     public function byebye()
     {
 	    session_destroy();
-	    $this->go(PREVIOUS);
+	    $this->go(BASE);
     }
 }

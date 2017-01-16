@@ -54,6 +54,8 @@ class Accueil extends Controller
 			    $datas['user'] = $_SESSION['user']->id;
 			    $this->model('Profil')->save($datas);
 		    }
+		    
+		    $myChallengeParticipations = $this->model('Participation')->myChallenges();
 	    }
 	    
 	    if(!empty($profil)) {		    
@@ -73,7 +75,7 @@ class Accueil extends Controller
 		    	$challenges[$row]->avaiable = true;
 	    }
 	    
-	    $this->datas = compact('challenges', 'profil', 'notifications', 'profilForm');
+	    $this->datas = compact('challenges', 'profil', 'notifications', 'profilForm', 'myChallengeParticipations');
 	    
         $this->view();
         Debug::multi($this, $_SESSION);

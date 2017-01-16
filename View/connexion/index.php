@@ -2,6 +2,8 @@
 	
 	<h1>Bienvenue chez GreenHand</h1>
 	
+	<p>Tu peux <a href="<?= BASE ?>accueil" title="Visiter GreenHand sans se connecter">visiter le site</a> si tu le désires</p>
+	
 	<?php if(!empty($errors)) { ?>
 		<div>
 			<ul class="bad">

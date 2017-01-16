@@ -2,6 +2,7 @@
 namespace Model;
 
 use System\Core\Mysql;
+Use System\Str;
 
 class Challenge extends Mysql
 {
@@ -66,8 +67,9 @@ class Challenge extends Mysql
 			WHERE challengeLike.challenge = challenge.id
 		';
 		
-		return $this->one(
+		$challenge = $this->one(
 			[
+				'challenge.id',
 				'challenge.title',
 				'challenge.description',
 				'challenge.dateCreation',
@@ -85,5 +87,10 @@ class Challenge extends Mysql
 			],
 			['challenge' => $id]
 		);
+		
+		if(!empty($challenge))
+			$challenge->slug = Str::simplify($challenge->title); 
+		
+		return $challenge;
 	}
 }
