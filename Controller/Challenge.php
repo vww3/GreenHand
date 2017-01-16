@@ -13,7 +13,11 @@ class Challenge extends Controller
 {
 	protected function __construct()
 	{
-		$this->styles[] = 'mikastrap';		
+		$this->styles[] = 'mikastrap';
+		$this->styles[] = 'base';
+		$this->styles[] = 'reset';
+		$this->styles[] = 'accueil';
+		$this->styles[] = 'challenge';		
 	}
 	
 	public function index($id = null)
@@ -71,7 +75,7 @@ class Challenge extends Controller
 	    );
 	    
 	    $this->view();
-	    Debug::show($this, CONTROLLER); Debug::session();
+	  
     }
     
     public function join($id = null)

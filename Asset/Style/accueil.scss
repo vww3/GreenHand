@@ -201,7 +201,7 @@
 	****************************************/
 	.sidebar_accueil{
 		background:$blue;
-		width: 40%;
+		width: 20%;
 		height: 1000px;
 	}
 
@@ -211,9 +211,9 @@
 	****************************************/
 
 	.dashboard{
-		width: 60%;
+		width: 80%;
 		height: 1000px;
-		padding-left: 20px;
+		padding: 0px 100px;
 
 		h2{
 			font-size: 48px;
@@ -235,9 +235,11 @@
 				padding: 20px;
 				background: #fff;
 				display: flex;
+				margin: 20px 0;
 
 				.single_defi_text{
 					padding-left:20px;
+					width: 100%;
 
 					h3{
 						text-transform: uppercase;
