@@ -27,8 +27,19 @@
 			}
 		}
 
+		.baseline{
+			width: 40%;
+			text-align: center;
+			font-family: 'order_pizzaregular';
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 1.5em;
+			color: #96bd11;
+		}
+
 		.header_notif{
-			width:70%;
+			width:30%;
 			display: flex;
 			justify-content: center;
 			align-items: flex-end;
@@ -36,7 +47,7 @@
 
 			.header_notif_top{
 				display: flex;
-				width: 20%;
+				width: 30%;
 				justify-content: space-between;
 				
 				.notif_top{
@@ -45,15 +56,33 @@
 					height: 50px;
 					display: flex;
 					justify-content: center;
+					    align-items: center;
 
-					img{
-						max-width: 80%;
-					}
 				}
+				#notif_alert::after{
+					content: "\f100"; font-family: "Flaticon";font-size:2em; color:$green;
+					-webkit-transition : all .3s;
+					   -moz-transition : all .3s;
+					        transition : all .3s;
+				}
+				#notif_msg::after{
+					@extend #notif_alert::after;
+					content: "\f101";
+				}
+				#notif_profil::after{
+					@extend #notif_alert::after;
+					content: "\f105"; 
+				}
+				
+				#notif_alert:hover::after{color:#799e0b;}
+				#notif_msg:hover::after{color:#799e0b;}
+				#notif_profil:hover::after{color:#799e0b;}
 			}
 
+
+
 			.header_notif_search{
-				width: 20%;
+				width: 40%;
 				height: 40px;
 				margin-top: 20px;
 				border: 3px solid transparent;
@@ -104,6 +133,36 @@
 				    height: 100%;
 				    display: flex;
 				    justify-content: center;
+
+				}
+				#leaves::after {
+					content: "\f106";
+					font-family: "Flaticon";
+					font-size: 5em;
+					color:$d_grey;
+					-webkit-transition: all 0.3s;
+				-moz-transition: all 0.3s;
+				transition: all 0.3s;
+				}
+
+				#internet::after{
+					@extend #leaves::after;
+					content:"\f104";
+					font-size: 3.8em;
+				}
+
+
+				#salad::after{
+					@extend #leaves::after;
+					content:"\f109";
+					font-size: 3.8em;
+				}
+
+				#water::after{
+					@extend #leaves::after;
+					content:"\f102";
+					font-size: 3.8em; 
+
 				}
 
 				span{
@@ -135,27 +194,32 @@
 			}
 
 			a:hover{
+				height: 200px;
 				border-bottom : 12px solid #74c7d3;
 				-webkit-transform: translate(0px,-50px);
 				-ms-transform: translate(0px,-50px);
 				transform: translate(0px,-50px); 
-				height: 200px;
+				
 				span{color : #74c7d3;}
+				#leaves::after{font-size: 5em;color:$blue;}
 			}
 
 			a:nth-child(2):hover{
 				border-bottom : 12px solid #5bb130;
 				span{color : #5bb130;}
+				#internet::after{font-size: 5em;color:#5bb130;}
 			}
 
 			a:nth-child(3):hover{
 				border-bottom : 12px solid #38ab49;
 				span{color : #38ab49;}
+				#salad::after{font-size: 5em;color:#38ab49;}
 			}
 
 			a:nth-child(4):hover{
 				border-bottom : 12px solid #23b4b0;
 				span{color : #23b4b0;}
+				#water::after{font-size: 5em; color:#74c7d3;}
 			}
 	
 		}
