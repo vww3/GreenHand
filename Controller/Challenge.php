@@ -35,16 +35,18 @@ class Challenge extends Controller
 	    $objectives      = $this->model('Objective')->ofChallenge($id);
 	    $likes           = $this->model('Like')->ofChallenge($id);
 	    $participation   = $this->model('Participation')->ofChallenge($id);
+	    $nbParticipation = count($participation);
 	    	    
 	    if(!empty($_SESSION['user'])) {
 	    	
 	    	if(empty($participation->dateSuccess)) {
-			    $myParticipation = $this->model('Participation')->mineOfChallenge($id);
 			    $linkParticipation = [
 				    'title' => empty($myParticipation) ? 'Participer' : 'Abandonner',
 			    	'href' => empty($myParticipation) ? BASE.CONTROLLER.'/join/'.$id : BASE.CONTROLLER.'/giveup/'.$id
 			    ];
 			}
+			
+			$myParticipation = $this->model('Participation')->mineOfChallenge($id);
 		    
 		    $postForm = new Form(['name' => 'post']);
 			
@@ -71,7 +73,8 @@ class Challenge extends Controller
 	    	'linkParticipation',
 	    	'objectivesSucceed',
 	    	'postForm',
-	    	'posts'
+	    	'posts',
+	    	'nbParticipation'
 	    );
 	    
 	    $this->view();

@@ -1,9 +1,3 @@
-<?php 
-//calcul le nombre de participant au défi
-$result = count($participation);
-?>
-
-
 <?php include('header.php'); ?>
 
 <div class="img_defi">
@@ -16,6 +10,7 @@ $result = count($participation);
 		<!-- TITRE DU DEFI -->
 		<div class="defi_title">
 			<h3><?= $challenge->title ?></h3>
+			<p><small><?= $nbParticipation ?> participant<?= $nbParticipation > 1 ? 's' : '' ?></small></p>
 		</div>
 		<!-- POURCENTAGE -->
 		<div class="defi_pourcentage">
@@ -81,11 +76,7 @@ $result = count($participation);
 			<?php } else { ?>
 
 				<?php if(empty($myParticipation->dateSuccess)) { ?>
-				<form method="post" class="btn_participer">
-					
-					<?= $participationForm->sender($action, 'action') ?>
-					
-				</form>
+				<a href="<?= $linkParticipation['href'] ?>"><?= $linkParticipation['title'] ?></a>
 				<?php } else { ?>
 				<div>
 					<h2>Bravo <?= $_SESSION['user']->name ?></h2>
