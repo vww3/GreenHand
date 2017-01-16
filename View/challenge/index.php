@@ -5,16 +5,22 @@
 <?php } else { ?>
 
 	<?php if(empty($myParticipation->dateSuccess)) { ?>
-	<form method="post">
-		
-		<?= $participationForm->sender($action, 'action') ?>
-		
-	</form>
+	
+	<a href="<?= $linkParticipation['href'] ?>"><?= $linkParticipation['title'] ?></a>
+	
 	<?php } else { ?>
 	<div>
 		<h2>Bravo <?= $_SESSION['user']->name ?></h2>
 		<p>Tu as terminé avec succès ce défi le <?= $myParticipation->dateSuccess ?></p>
 	</div>
 	<?php } ?>
+	
+	
+	<form method="post">
+		
+		<div><?= $postForm->textarea('content') ?></div>
+		<?= $postForm->sender('Poster') ?>
+		
+	</form>
 
 <?php } ?>

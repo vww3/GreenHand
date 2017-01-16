@@ -75,6 +75,7 @@ class Challenge extends Mysql
 				'challenge.dateCreation',
 				'challenge.dateEnd',
 				'challenge.achievement',
+				'users.id as authorId',
 				'users.name as author',
 				'challengeCategory.title as category'
 			],
@@ -88,8 +89,10 @@ class Challenge extends Mysql
 			['challenge' => $id]
 		);
 		
-		if(!empty($challenge))
-			$challenge->slug = Str::simplify($challenge->title); 
+		if(!empty($challenge)) {
+			$challenge->slug = Str::simplify($challenge->title);
+			$challenge->linkAuthorProfil = BASE.'profil/'.$challenge->authorId.'/'.Str::simplify($challenge->author);
+		}
 		
 		return $challenge;
 	}

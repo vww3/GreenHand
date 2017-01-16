@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  localhost:8889
--- Généré le :  Lun 16 Janvier 2017 à 11:04
+-- Généré le :  Lun 16 Janvier 2017 à 16:39
 -- Version du serveur :  5.6.28
 -- Version de PHP :  7.0.10
 
@@ -64,8 +64,8 @@ CREATE TABLE `challenge` (
 --
 
 INSERT INTO `challenge` (`id`, `title`, `description`, `dateCreation`, `dateEnd`, `category`, `author`, `achievement`) VALUES
-(1, 'Manger 5kilos de patates', 'C\'est un défi de test !', '2017-01-11 20:00:30', '2016-12-31 23:00:00', 1, 1, 1),
-(2, 'Faire l\'amour au lieu d\'allumer le chauffage', 'C\'est un test marrant :).', '2017-01-11 20:33:03', '2017-06-29 22:00:00', 1, 1, 2),
+(1, 'Manger 5kilos de patates', 'C\'est un défi de test !', '2017-01-11 20:00:30', NULL, 1, 1, 1),
+(2, 'Faire l\'amour au lieu d\'allumer le chauffage', 'C\'est un test marrant :).', '2017-01-11 20:33:03', NULL, 1, 1, 2),
 (3, 'Sauver le monde', 'Pas facile... The princess is in an other castle !', '2017-01-11 20:34:57', NULL, 1, 1, 3);
 
 -- --------------------------------------------------------
@@ -131,6 +131,32 @@ INSERT INTO `challengeObjective` (`id`, `instruction`, `challenge`) VALUES
 (4, 'Couper le chauffage pendant l\'amour', 2),
 (5, 'Ne pas vomir', 1),
 (7, 'Ne pas faire caca', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `challengePost`
+--
+
+CREATE TABLE `challengePost` (
+  `id` int(11) NOT NULL,
+  `content` text NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `signaled` tinyint(1) NOT NULL DEFAULT '0',
+  `user` int(11) NOT NULL,
+  `challenge` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `challengePost`
+--
+
+INSERT INTO `challengePost` (`id`, `content`, `date`, `signaled`, `user`, `challenge`) VALUES
+(1, 'Bonjour tout le monde !', '2017-01-16 11:34:54', 0, 1, 2),
+(2, 'Hello toi !', '2017-01-16 11:35:19', 0, 1, 2),
+(3, 'Hello', '2017-01-16 11:45:23', 0, 8, 2),
+(4, 'Hello World!', '2017-01-16 11:59:20', 0, 1, 2),
+(5, 'dfgsdf', '2017-01-16 12:27:33', 0, 1, 3);
 
 -- --------------------------------------------------------
 
@@ -317,18 +343,16 @@ CREATE TABLE `usersChallengeParticipation` (
   `user` int(11) NOT NULL,
   `challenge` int(11) NOT NULL,
   `dateParticipation` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `dateSuccess` timestamp NULL DEFAULT NULL
+  `dateSuccess` timestamp NULL DEFAULT NULL,
+  `giveUp` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Contenu de la table `usersChallengeParticipation`
 --
 
-INSERT INTO `usersChallengeParticipation` (`id`, `user`, `challenge`, `dateParticipation`, `dateSuccess`) VALUES
-(4, 8, 1, '2017-01-12 12:40:25', NULL),
-(6, 8, 2, '2017-01-12 15:59:37', NULL),
-(21, 1, 1, '2017-01-14 19:55:14', '2017-01-13 23:00:00'),
-(25, 1, 2, '2017-01-14 21:12:25', NULL);
+INSERT INTO `usersChallengeParticipation` (`id`, `user`, `challenge`, `dateParticipation`, `dateSuccess`, `giveUp`) VALUES
+(1, 1, 1, '2017-01-16 15:38:34', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -348,10 +372,8 @@ CREATE TABLE `usersObjectiveSuccess` (
 
 INSERT INTO `usersObjectiveSuccess` (`id`, `user`, `objective`) VALUES
 (1, 1, 3),
-(3, 1, 1),
-(4, 1, 2),
-(5, 8, 7),
-(6, 8, 3);
+(2, 1, 4),
+(3, 1, 1);
 
 --
 -- Index pour les tables exportées
@@ -391,6 +413,14 @@ ALTER TABLE `challengeLike`
 --
 ALTER TABLE `challengeObjective`
   ADD PRIMARY KEY (`id`),
+  ADD KEY `challenge` (`challenge`);
+
+--
+-- Index pour la table `challengePost`
+--
+ALTER TABLE `challengePost`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user` (`user`),
   ADD KEY `challenge` (`challenge`);
 
 --
@@ -495,6 +525,11 @@ ALTER TABLE `challengeLike`
 ALTER TABLE `challengeObjective`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
+-- AUTO_INCREMENT pour la table `challengePost`
+--
+ALTER TABLE `challengePost`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
 -- AUTO_INCREMENT pour la table `message`
 --
 ALTER TABLE `message`
@@ -538,12 +573,12 @@ ALTER TABLE `usersAchievementSuccess`
 -- AUTO_INCREMENT pour la table `usersChallengeParticipation`
 --
 ALTER TABLE `usersChallengeParticipation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT pour la table `usersObjectiveSuccess`
 --
 ALTER TABLE `usersObjectiveSuccess`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- Contraintes pour les tables exportées
 --
@@ -568,6 +603,13 @@ ALTER TABLE `challengeLike`
 --
 ALTER TABLE `challengeObjective`
   ADD CONSTRAINT `fk_challenge_objective` FOREIGN KEY (`challenge`) REFERENCES `challenge` (`id`);
+
+--
+-- Contraintes pour la table `challengePost`
+--
+ALTER TABLE `challengePost`
+  ADD CONSTRAINT `fk_challenge_post` FOREIGN KEY (`challenge`) REFERENCES `challenge` (`id`),
+  ADD CONSTRAINT `fk_user_post` FOREIGN KEY (`user`) REFERENCES `users` (`id`);
 
 --
 -- Contraintes pour la table `message`
@@ -605,15 +647,15 @@ ALTER TABLE `usersAchievementSuccess`
 -- Contraintes pour la table `usersChallengeParticipation`
 --
 ALTER TABLE `usersChallengeParticipation`
-  ADD CONSTRAINT `fk_challenge_participation` FOREIGN KEY (`challenge`) REFERENCES `challenge` (`id`),
-  ADD CONSTRAINT `fk_user_participation` FOREIGN KEY (`user`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `fk_challenge_participation` FOREIGN KEY (`challenge`) REFERENCES `challenge` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_user_participation` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `usersObjectiveSuccess`
 --
 ALTER TABLE `usersObjectiveSuccess`
-  ADD CONSTRAINT `fk_objective_user` FOREIGN KEY (`objective`) REFERENCES `challengeObjective` (`id`),
-  ADD CONSTRAINT `fk_user_objective` FOREIGN KEY (`user`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `fk_objective_user` FOREIGN KEY (`objective`) REFERENCES `challengeObjective` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_user_objective` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

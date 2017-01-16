@@ -171,13 +171,17 @@ class Mysql
 	    
 	    if(!empty($parameters['left'])) {
 	    	foreach($parameters['left'] as $join => $on) {
-		    	$sql .= ' LEFT JOIN '.$join.' ON '.$on;
+		    	$sql .= is_array($on) ? 
+		    		' LEFT JOIN '.$join.' ON '.implode(' AND ', $on) :
+		    		' LEFT JOIN '.$join.' ON '.$on;
 	    	}
 	    }
 	    
 	    if(!empty($parameters['right'])) {
 	    	foreach($parameters['right'] as $join => $on) {
-		    	$sql .= ' RIGHT JOIN '.$join.' ON '.$on;
+		    	$sql .= is_array($on) ? 
+		    		' RIGHT JOIN '.$join.' ON '.implode(' AND ', $on) :
+		    		' RIGHT JOIN '.$join.' ON '.$on;
 	    	}
 	    }
 	    
@@ -327,7 +331,7 @@ class Mysql
      * @access public
      * @return void
      */
-    public function removeAll()
+    public function truncate()
     {    
         $this->query("TRUNCATE $this->_table");    
     }

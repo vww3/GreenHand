@@ -13,7 +13,7 @@ class Participation extends Mysql
 	
 	public function ofChallenge($id)
 	{		
-		return $this->all(
+		$users = $this->all(
 			[
 				$this->table().'.id',
 				$this->table().'.dateParticipation',
@@ -28,7 +28,13 @@ class Participation extends Mysql
 				'where' => $this->table().'.challenge = :id'
 			],
 			['id' => $id]
-		);		
+		);
+		
+		foreach($users as $row => $user) {
+			$users[$row]->linkUserprofil = BASE.'profil/'.$user->user.'/'.Str::simplify($user->name);
+		}
+		
+		return $users;		
 	}
 	
 	public function mineOfChallenge($id)
@@ -61,7 +67,8 @@ class Participation extends Mysql
 				],
 				'where' => [
 					$this->table().'.user = :user',
-					$this->table().'.dateSuccess IS NULL'
+					$this->table().'.dateSuccess IS NULL',
+					$this->table().'.giveup = 0'
 				]
 			],
 			['user' => $_SESSION['user']->id]
@@ -73,5 +80,15 @@ class Participation extends Mysql
 		    }
 	    
 	    return $challenges;
-	}	
+	}
+	
+	public function giveup($id)
+	{
+		$this->save(['id' => $id, 'giveup' => 1]);
+	}
+	
+	public function succeed($id)
+	{
+		$this->query('UPDATE '.$this->table().' SET dateSuccess = CURRENT_TIMESTAMP WHERE id = :id', ['id' => $id]);
+	}
 }
