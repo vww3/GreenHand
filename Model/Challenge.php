@@ -11,7 +11,7 @@ class Challenge extends Mysql
 		parent::__construct('challenge');
 	}
 	
-	public function list()
+	public function getAll()
 	{
 		$subNumParticipant = 'SELECT COUNT(*) 
 			FROM usersChallengeParticipation 

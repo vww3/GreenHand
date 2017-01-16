@@ -40,7 +40,7 @@ class Accueil extends Controller
      */
     public function index()
     {	    	    
-	    $challenges = $this->model('Challenge')->list();
+	    $challenges = $this->model('Challenge')->getAll();
 		$profil = $this->model('Profil')->ofCurrentUser();
 	    $notifications = $this->model('Notification')->ofCurrentUser();
 	    
