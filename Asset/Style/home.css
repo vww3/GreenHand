@@ -46,5 +46,47 @@ li {
 
 .main_container {
   max-width: 1920px;
-  margin: 0 auto;
-  position: relative; }
+  margin: 0 auto; }
+
+.inscription a {
+  border: 2px solid #23b4b0;
+  padding: 3px 32px;
+  color: #96be1f;
+  font-size: 1.4em;
+  font-weight: 100; }
+
+.header_co {
+  width: 30%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row; }
+
+header .baseline {
+  width: 60%; }
+header h1 {
+  width: 20%; }
+  header h1 img {
+    max-width: 70%; }
+header .header_co {
+  width: 20%; }
+
+.connexion h2 {
+  font-weight: 100;
+  text-align: center;
+  font-size: 1.4em;
+  color: #96be1f; }
+.connexion form {
+  display: flex;
+  flex-direction: column; }
+  .connexion form input {
+    border: 1px solid #23b4b0;
+    background: none;
+    padding: 5px 0;
+    margin: 5px 0; }
+  .connexion form input[type="submit"] {
+    border: 2px solid #96be1f;
+    color: #23b4b0;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer; }
