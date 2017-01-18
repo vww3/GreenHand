@@ -15,6 +15,7 @@ class Connexion extends Controller
 {
 	protected function __construct()
 	{
+		$this->styles[] = 'reset';	
 		$this->styles[] = 'mikastrap';		
 	}
 	

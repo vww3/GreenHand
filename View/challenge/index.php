@@ -148,8 +148,10 @@
 				</form>
 			</div>
 			<?php } ?>
+
 			
 			<?php foreach($posts as $post) { ?>
+
 			<div class="post">
 				<div class="content_post">
 					<div class="stream-item-header">

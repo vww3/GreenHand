@@ -21,7 +21,8 @@ body {
   background: #eeeeee;
   font-family: 'Oswald', sans-serif;
   font-size: 16px;
-  margin: 0; }
+  margin: 0;
+  overflow-x: hidden; }
 
 @font-face {
   font-family: 'order_pizzaregular';
@@ -260,14 +261,14 @@ header {
 .sidebar_accueil {
   background: #23b4b0;
   width: 20%;
-  height: 1000px; }
+  height: 100%; }
 
 /****************************************
 **	3.2 - DEFI
 ****************************************/
 .dashboard {
   width: 80%;
-  height: 1000px;
+  height: 100%;
   padding: 0px 100px; }
   .dashboard h2 {
     font-size: 48px;
@@ -336,3 +337,12 @@ header {
                 .dashboard .content_dashboard .single_defi .single_defi_text .single_defi_bottom .icon_info_defi .info_defi a span {
                   padding-top: 10px;
                   color: #7d7d7d; }
+
+.single_defi:hover {
+  -moz-box-shadow: 5px 5px 20px 0px #656565;
+  -webkit-box-shadow: 5px 5px 20px 0px #656565;
+  -o-box-shadow: 5px 5px 20px 0px #656565;
+  box-shadow: 5px 5px 20px 0px #656565;
+  filter: progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=134, Strength=20); }
+
+/*# sourceMappingURL=accueil.css.map */

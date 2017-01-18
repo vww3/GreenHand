@@ -172,56 +172,58 @@
 	
 				}
 			}
+			
 
-			a:not(:last-child){
-				border-right: 2px solid #b9b9b9;
-			}
+			// @media screen and (min-width: 500px) {
+				a:not(:last-child){
+					border-right: 2px solid #b9b9b9;
+				}
 
-			a:nth-child(1){
-				@include border-bottom(#74c7d3);
-			}
+				a:nth-child(1){
+					@include border-bottom(#74c7d3);
+				}
 
-			a:nth-child(2){
-				@include border-bottom(#5bb130);
-			}
+				a:nth-child(2){
+					@include border-bottom(#5bb130);
+				}
 
-			a:nth-child(3){
-				@include border-bottom(#38ab49);
-			}
+				a:nth-child(3){
+					@include border-bottom(#38ab49);
+				}
 
-			a:nth-child(4){
-				@include border-bottom(#23b4b0);
-			}
+				a:nth-child(4){
+					@include border-bottom(#23b4b0);
+				}
 
-			a:hover{
-				height: 200px;
-				border-bottom : 12px solid #74c7d3;
-				-webkit-transform: translate(0px,-50px);
-				-ms-transform: translate(0px,-50px);
-				transform: translate(0px,-50px); 
-				
-				span{color : #74c7d3;}
-				#leaves::after{font-size: 5em;color:$blue;}
-			}
+				a:hover{
+					height: 200px;
+					border-bottom : 12px solid #74c7d3;
+					-webkit-transform: translate(0px,-50px);
+					-ms-transform: translate(0px,-50px);
+					transform: translate(0px,-50px); 
+					
+					span{color : #74c7d3;}
+					#leaves::after{font-size: 5em;color:$blue;}
+				}
 
-			a:nth-child(2):hover{
-				border-bottom : 12px solid #5bb130;
-				span{color : #5bb130;}
-				#internet::after{font-size: 5em;color:#5bb130;}
-			}
+				a:nth-child(2):hover{
+					border-bottom : 12px solid #5bb130;
+					span{color : #5bb130;}
+					#internet::after{font-size: 5em;color:#5bb130;}
+				}
 
-			a:nth-child(3):hover{
-				border-bottom : 12px solid #38ab49;
-				span{color : #38ab49;}
-				#salad::after{font-size: 5em;color:#38ab49;}
-			}
+				a:nth-child(3):hover{
+					border-bottom : 12px solid #38ab49;
+					span{color : #38ab49;}
+					#salad::after{font-size: 5em;color:#38ab49;}
+				}
 
-			a:nth-child(4):hover{
-				border-bottom : 12px solid #23b4b0;
-				span{color : #23b4b0;}
-				#water::after{font-size: 5em; color:#74c7d3;}
-			}
-	
+				a:nth-child(4):hover{
+					border-bottom : 12px solid #23b4b0;
+					span{color : #23b4b0;}
+					#water::after{font-size: 5em; color:#74c7d3;}
+				}
+			
 		}
 	}
 
@@ -266,7 +268,7 @@
 	.sidebar_accueil{
 		background:$blue;
 		width: 20%;
-		height: 1000px;
+		height: 100%;
 	}
 
 
@@ -276,7 +278,7 @@
 
 	.dashboard{
 		width: 80%;
-		height: 1000px;
+		height: 100%;
 		padding: 0px 100px;
 
 		h2{
@@ -300,6 +302,7 @@
 				background: #fff;
 				display: flex;
 				margin: 20px 0;
+		
 
 				.single_defi_text{
 					padding-left:20px;
@@ -379,8 +382,21 @@
 					}
 				}
 			}
+
+
 		}
 	}
+
+.single_defi:hover{
+	-moz-box-shadow: 5px 5px 20px 0px #656565;
+	-webkit-box-shadow: 5px 5px 20px 0px #656565;
+	-o-box-shadow: 5px 5px 20px 0px #656565;
+	box-shadow: 5px 5px 20px 0px #656565;
+	filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=134, Strength=20);
+
+}
+
+	
 
 
 

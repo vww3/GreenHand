@@ -1,6 +1,26 @@
+
 /****************************************
 **
-**	HEADER
+**	MAX WIDTH 1607px
+**
+****************************************/
+@media screen and (max-width: 1607px) {
+	.sidebar_accueil{
+		width:30% !important;
+	}
+
+	.dashboard{
+		padding: 0 50px;
+	}
+
+}
+
+
+
+
+/****************************************
+**
+**	MAX WIDTH 1400px
 **
 ****************************************/
 
@@ -20,6 +40,11 @@
 
 }
 
+/****************************************
+**
+**	MAX WIDTH 960px
+**
+****************************************/
 
 @media screen and (max-width: 960px) {
 
@@ -33,9 +58,24 @@
 		}
 	}
 
+	#accueil_dashboard{
+		flex-direction: column;
+		.sidebar_accueil{
+			width: 100%;
+		}
+		.dashboard{
+			width: 100%;
+			padding:20px;
+		}
+	}
+
 }
 
-
+/****************************************
+**
+**	MAX WIDTH 730px
+**
+****************************************/
 @media screen and (max-width: 730px) {
 	header{
 		flex-direction: column;
@@ -62,4 +102,96 @@
 			margin : 10px 0;
 		}
 	}
+
+	/*****************************************
+			DASHBOARD
+	*****************************************/
+	#accueil_dashboard{
+		flex-direction:column !important;
+	}
+
+	.sidebar_accueil{
+		width:100%;
+	}
+
+	.dashboard{
+		width:100%;
+		padding: 10px;
+
+		.single_defi{
+			flex-direction: column;
+
+			.single_defi__img{
+				display: flex;
+				justify-content: center;
+				margin-bottom: 10px;
+			}
+
+			.single_defi_text{
+				padding: 0 !important;
+				.single_defi_bottom{
+					justify-content: center;
+
+					.icon_info_defi{
+						width: auto !important;
+					}
+				}
+			}
+		}
+	}
+}
+
+
+/****************************************
+**
+**	MAX WIDTH 500px
+**
+****************************************/
+@media screen and (max-width: 500px) {
+	header{
+		margin:0;
+		padding: 10px;
+	}
+	.main_menu{
+		position: inherit !important;
+	}
+
+	.main_menu nav .item_menu{
+		width:100% !important;
+		border-right:none !important;
+		border-bottom:none !important;
+		background:none;
+		height: 100%;
+		padding: 0;
+
+		span{
+			border-top: 1px solid #ccc;
+			border-bottom: 1px solid #ccc;
+			padding:5px;
+		}
+	}
+
+	.main_menu nav{
+		flex-direction:column;
+
+		.content_img_menu{display: none !important;}
+	}
+
+
+	.img_accueil{
+		height:100% !important;
+		h2{
+			-ms-transform: rotate(0);
+			    -webkit-transform: rotate(0);
+			    transform: rotate(0);
+			 font-size: 1em;
+			 padding: 40px 10px;
+		}
+	}
+
+	.single_defi_bottom{
+	    flex-direction: column;
+	    align-items: center;
+	}
+    
 }

@@ -21,7 +21,8 @@ body {
   background: #eeeeee;
   font-family: 'Oswald', sans-serif;
   font-size: 16px;
-  margin: 0; }
+  margin: 0;
+  overflow-x: hidden; }
 
 @font-face {
   font-family: 'order_pizzaregular';
@@ -46,14 +47,22 @@ li {
 
 .main_container {
   max-width: 1920px;
-  margin: 0 auto; }
+  margin: 0 auto;
+  position: relative; }
 
 .inscription a {
   border: 2px solid #23b4b0;
   padding: 3px 32px;
   color: #96be1f;
   font-size: 1.4em;
-  font-weight: 100; }
+  font-weight: 100;
+  -webkit-transition: all .3s;
+  -moz-transition: all .3s;
+  transition: all .3s; }
+
+.inscription a:hover {
+  background: #96be1f;
+  color: #fff; }
 
 .header_co {
   width: 30%;
@@ -68,8 +77,6 @@ header h1 {
   width: 20%; }
   header h1 img {
     max-width: 70%; }
-header .header_co {
-  width: 20%; }
 
 .connexion h2 {
   font-weight: 100;
@@ -90,3 +97,5 @@ header .header_co {
     text-transform: uppercase;
     font-weight: 600;
     cursor: pointer; }
+
+/*# sourceMappingURL=home.css.map */
