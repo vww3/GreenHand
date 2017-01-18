@@ -140,7 +140,18 @@
 		<div class="defi_mur">
 			<h2>On en discute... ?</h2>
 			
+			<?php if(!empty($postForm)) { ?>
+			<div class="poster_avis">
+				<form method="post">
+					<?= $postForm->textarea('content', ['placeholder' => 'Je m\'exprime...', 'class' => 'myMessage']) ?>
+					<?= $postForm->sender('Poster') ?>
+				</form>
+			</div>
+			<?php } ?>
+
+			
 			<?php foreach($posts as $post) { ?>
+
 			<div class="post">
 				<div class="content_post">
 					<div class="stream-item-header">

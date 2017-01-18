@@ -174,7 +174,7 @@
 			}
 			
 
-			@media screen and (min-width: 500px) {
+			// @media screen and (min-width: 500px) {
 				a:not(:last-child){
 					border-right: 2px solid #b9b9b9;
 				}
@@ -223,7 +223,7 @@
 					span{color : #23b4b0;}
 					#water::after{font-size: 5em; color:#74c7d3;}
 				}
-			}
+			
 		}
 	}
 
@@ -268,7 +268,7 @@
 	.sidebar_accueil{
 		background:$blue;
 		width: 20%;
-		height: 1000px;
+		height: 100%;
 	}
 
 
@@ -278,7 +278,7 @@
 
 	.dashboard{
 		width: 80%;
-		height: 1000px;
+		height: 100%;
 		padding: 0px 100px;
 
 		h2{
@@ -302,14 +302,7 @@
 				background: #fff;
 				display: flex;
 				margin: 20px 0;
-			.single_defi:hover{
-				-moz-box-shadow: 5px 5px 20px 0px #656565;
-				-webkit-box-shadow: 5px 5px 20px 0px #656565;
-				-o-box-shadow: 5px 5px 20px 0px #656565;
-				box-shadow: 5px 5px 20px 0px #656565;
-				filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=134, Strength=20);
-				background:red;
-			}
+		
 
 				.single_defi_text{
 					padding-left:20px;
@@ -389,8 +382,21 @@
 					}
 				}
 			}
+
+
 		}
 	}
+
+.single_defi:hover{
+	-moz-box-shadow: 5px 5px 20px 0px #656565;
+	-webkit-box-shadow: 5px 5px 20px 0px #656565;
+	-o-box-shadow: 5px 5px 20px 0px #656565;
+	box-shadow: 5px 5px 20px 0px #656565;
+	filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=134, Strength=20);
+
+}
+
+	
 
 
 

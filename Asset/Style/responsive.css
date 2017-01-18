@@ -1,5 +1,16 @@
 /****************************************
 **
+**	MAX WIDTH 1607px
+**
+****************************************/
+@media screen and (max-width: 1607px) {
+  .sidebar_accueil {
+    width: 30% !important; }
+
+  .dashboard {
+    padding: 0 50px; } }
+/****************************************
+**
 **	MAX WIDTH 1400px
 **
 ****************************************/
@@ -21,7 +32,15 @@
   header h1, header .baseline, header .header_notif {
     width: 33.333333%; }
   header .header_notif_top, header .header_notif_search {
-    width: 60% !important; } }
+    width: 60% !important; }
+
+  #accueil_dashboard {
+    flex-direction: column; }
+    #accueil_dashboard .sidebar_accueil {
+      width: 100%; }
+    #accueil_dashboard .dashboard {
+      width: 100%;
+      padding: 20px; } }
 /****************************************
 **
 **	MAX WIDTH 730px
@@ -43,20 +62,73 @@
       width: 100%;
       align-items: center; }
     header h1, header .baseline, header .header_notif {
-      margin: 10px 0; } }
+      margin: 10px 0; }
+
+  /*****************************************
+  		DASHBOARD
+  *****************************************/
+  #accueil_dashboard {
+    flex-direction: column !important; }
+
+  .sidebar_accueil {
+    width: 100%; }
+
+  .dashboard {
+    width: 100%;
+    padding: 10px; }
+    .dashboard .single_defi {
+      flex-direction: column; }
+      .dashboard .single_defi .single_defi__img {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px; }
+      .dashboard .single_defi .single_defi_text {
+        padding: 0 !important; }
+        .dashboard .single_defi .single_defi_text .single_defi_bottom {
+          justify-content: center; }
+          .dashboard .single_defi .single_defi_text .single_defi_bottom .icon_info_defi {
+            width: auto !important; } }
 /****************************************
 **
 **	MAX WIDTH 500px
 **
 ****************************************/
 @media screen and (max-width: 500px) {
+  header {
+    margin: 0;
+    padding: 10px; }
+
+  .main_menu {
+    position: inherit !important; }
+
+  .main_menu nav .item_menu {
+    width: 100% !important;
+    border-right: none !important;
+    border-bottom: none !important;
+    background: none;
+    height: 100%;
+    padding: 0; }
+    .main_menu nav .item_menu span {
+      border-top: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+      padding: 5px; }
+
   .main_menu nav {
     flex-direction: column; }
-    .main_menu nav .item_menu {
-      width: 100%;
-      height: 100%;
-      border: none; }
-      .main_menu nav .item_menu .content_img_menu {
-        display: none; } }
+    .main_menu nav .content_img_menu {
+      display: none !important; }
+
+  .img_accueil {
+    height: 100% !important; }
+    .img_accueil h2 {
+      -ms-transform: rotate(0);
+      -webkit-transform: rotate(0);
+      transform: rotate(0);
+      font-size: 1em;
+      padding: 40px 10px; }
+
+  .single_defi_bottom {
+    flex-direction: column;
+    align-items: center; } }
 
 /*# sourceMappingURL=responsive.css.map */

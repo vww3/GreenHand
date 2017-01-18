@@ -21,6 +21,7 @@ class Home extends Controller
         $this->styles[] = 'reset';
          $this->styles[] = 'accueil';
         $this->styles[] = 'home';
+        $this->styles[] = 'responsive';
 
         /*if (
             empty($_SESSION['administrateur']) OR 

@@ -79,6 +79,6 @@ class Accueil extends Controller
 	    $this->datas = compact('challenges', 'profil', 'notifications', 'profilForm', 'myChallengeParticipations');
 	    
         $this->view();
-        Debug::multi($this, $_SESSION);
+        // Debug::multi($this, $_SESSION);
     }
 }

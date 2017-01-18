@@ -6,6 +6,14 @@
 	color: $green;
 	font-size: 1.4em;
 	font-weight: 100;
+	-webkit-transition : all .3s;
+	   -moz-transition : all .3s;
+	        transition : all .3s;
+}
+
+.inscription a:hover{
+	background:$green;
+	color:#fff;
 }
 
 .header_co{
@@ -27,10 +35,6 @@ header{
 		img{
 			max-width: 70%;
 		}
-	}
-
-	.header_co{
-		width: 20%;
 	}
 }
 .connexion {

@@ -180,49 +180,48 @@ header {
         color: #7d7d7d;
         font-size: 18px;
         padding-top: 10px; }
-    @media screen and (min-width: 500px) {
-      .main_menu nav a:not(:last-child) {
-        border-right: 2px solid #b9b9b9; }
-      .main_menu nav a:nth-child(1) {
-        border-bottom: 4px solid #74c7d3; }
-      .main_menu nav a:nth-child(2) {
-        border-bottom: 4px solid #5bb130; }
-      .main_menu nav a:nth-child(3) {
-        border-bottom: 4px solid #38ab49; }
-      .main_menu nav a:nth-child(4) {
-        border-bottom: 4px solid #23b4b0; }
-      .main_menu nav a:hover {
-        height: 200px;
-        border-bottom: 12px solid #74c7d3;
-        -webkit-transform: translate(0px, -50px);
-        -ms-transform: translate(0px, -50px);
-        transform: translate(0px, -50px); }
-        .main_menu nav a:hover span {
-          color: #74c7d3; }
-        .main_menu nav a:hover #leaves::after, .main_menu nav a:hover .item_menu #internet::after, .main_menu nav .item_menu a:hover #internet::after, .main_menu nav a:hover .item_menu #salad::after, .main_menu nav .item_menu a:hover #salad::after, .main_menu nav a:hover .item_menu #water::after, .main_menu nav .item_menu a:hover #water::after {
-          font-size: 5em;
-          color: #23b4b0; }
-      .main_menu nav a:nth-child(2):hover {
-        border-bottom: 12px solid #5bb130; }
-        .main_menu nav a:nth-child(2):hover span {
-          color: #5bb130; }
-        .main_menu nav a:nth-child(2):hover #internet::after {
-          font-size: 5em;
-          color: #5bb130; }
-      .main_menu nav a:nth-child(3):hover {
-        border-bottom: 12px solid #38ab49; }
-        .main_menu nav a:nth-child(3):hover span {
-          color: #38ab49; }
-        .main_menu nav a:nth-child(3):hover #salad::after {
-          font-size: 5em;
-          color: #38ab49; }
-      .main_menu nav a:nth-child(4):hover {
-        border-bottom: 12px solid #23b4b0; }
-        .main_menu nav a:nth-child(4):hover span {
-          color: #23b4b0; }
-        .main_menu nav a:nth-child(4):hover #water::after {
-          font-size: 5em;
-          color: #74c7d3; } }
+    .main_menu nav a:not(:last-child) {
+      border-right: 2px solid #b9b9b9; }
+    .main_menu nav a:nth-child(1) {
+      border-bottom: 4px solid #74c7d3; }
+    .main_menu nav a:nth-child(2) {
+      border-bottom: 4px solid #5bb130; }
+    .main_menu nav a:nth-child(3) {
+      border-bottom: 4px solid #38ab49; }
+    .main_menu nav a:nth-child(4) {
+      border-bottom: 4px solid #23b4b0; }
+    .main_menu nav a:hover {
+      height: 200px;
+      border-bottom: 12px solid #74c7d3;
+      -webkit-transform: translate(0px, -50px);
+      -ms-transform: translate(0px, -50px);
+      transform: translate(0px, -50px); }
+      .main_menu nav a:hover span {
+        color: #74c7d3; }
+      .main_menu nav a:hover #leaves::after, .main_menu nav a:hover .item_menu #internet::after, .main_menu nav .item_menu a:hover #internet::after, .main_menu nav a:hover .item_menu #salad::after, .main_menu nav .item_menu a:hover #salad::after, .main_menu nav a:hover .item_menu #water::after, .main_menu nav .item_menu a:hover #water::after {
+        font-size: 5em;
+        color: #23b4b0; }
+    .main_menu nav a:nth-child(2):hover {
+      border-bottom: 12px solid #5bb130; }
+      .main_menu nav a:nth-child(2):hover span {
+        color: #5bb130; }
+      .main_menu nav a:nth-child(2):hover #internet::after {
+        font-size: 5em;
+        color: #5bb130; }
+    .main_menu nav a:nth-child(3):hover {
+      border-bottom: 12px solid #38ab49; }
+      .main_menu nav a:nth-child(3):hover span {
+        color: #38ab49; }
+      .main_menu nav a:nth-child(3):hover #salad::after {
+        font-size: 5em;
+        color: #38ab49; }
+    .main_menu nav a:nth-child(4):hover {
+      border-bottom: 12px solid #23b4b0; }
+      .main_menu nav a:nth-child(4):hover span {
+        color: #23b4b0; }
+      .main_menu nav a:nth-child(4):hover #water::after {
+        font-size: 5em;
+        color: #74c7d3; }
 
 /****************************************
 **	2.3 - IMAGE ACCUEIL
@@ -262,14 +261,14 @@ header {
 .sidebar_accueil {
   background: #23b4b0;
   width: 20%;
-  height: 1000px; }
+  height: 100%; }
 
 /****************************************
 **	3.2 - DEFI
 ****************************************/
 .dashboard {
   width: 80%;
-  height: 1000px;
+  height: 100%;
   padding: 0px 100px; }
   .dashboard h2 {
     font-size: 48px;
@@ -288,13 +287,6 @@ header {
       background: #fff;
       display: flex;
       margin: 20px 0; }
-      .dashboard .content_dashboard .single_defi .single_defi:hover {
-        -moz-box-shadow: 5px 5px 20px 0px #656565;
-        -webkit-box-shadow: 5px 5px 20px 0px #656565;
-        -o-box-shadow: 5px 5px 20px 0px #656565;
-        box-shadow: 5px 5px 20px 0px #656565;
-        filter: progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=134, Strength=20);
-        background: red; }
       .dashboard .content_dashboard .single_defi .single_defi_text {
         padding-left: 20px;
         width: 100%; }
@@ -345,5 +337,12 @@ header {
                 .dashboard .content_dashboard .single_defi .single_defi_text .single_defi_bottom .icon_info_defi .info_defi a span {
                   padding-top: 10px;
                   color: #7d7d7d; }
+
+.single_defi:hover {
+  -moz-box-shadow: 5px 5px 20px 0px #656565;
+  -webkit-box-shadow: 5px 5px 20px 0px #656565;
+  -o-box-shadow: 5px 5px 20px 0px #656565;
+  box-shadow: 5px 5px 20px 0px #656565;
+  filter: progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=134, Strength=20); }
 
 /*# sourceMappingURL=accueil.css.map */

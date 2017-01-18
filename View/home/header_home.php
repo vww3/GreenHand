@@ -7,7 +7,7 @@
 		</div>
 
 		<div class="header_co">
-			<div class="inscription"><a href="#">Inscription</a></div>
+			<div class="inscription"><a href="<?= BASE ?>default">Inscription</a></div>
 			<div class="connexion">
 				<h2>Connexion</h2>
 				<form method="post" class="col-3">
