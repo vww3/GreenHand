@@ -4,6 +4,8 @@ namespace Controller;
 use System\Core\Controller;
 use System\Helper\Form;
 use System\Debug;
+use System\Image;
+use System\Str;
 use DateTime;
 
 /**
@@ -48,7 +50,7 @@ class Challenge extends Controller
 			
 				$objectiveId = key($objectiveForm->datas());
 
-				$this->completeObjective($objectiveId);
+				$this->completeObjective($objectiveId, $objectiveForm);
 				
 				$myParticipation = $this->model('Participation')->mineOfChallenge($id);
 			
@@ -114,21 +116,26 @@ class Challenge extends Controller
 	    return $this->model('Participation')->mineOfChallenge($myParticipation->challenge);
     }
     
-    private function completeObjective($id)
+    private function completeObjective($id, $post)
     {
 	    $objective = $this->model('Objective')->toComplete($id);	
 	    
 	    if(!empty($objective)) {
 		    $this->model('ObjectiveSuccess')->complete($objective->id, $objective->user);
-		    		    
-		    $challengeIsCompleted = true;
+		    
+		    $isChallengeCompleted = $this->model('Objective')->isChallengeCompleted($objective->challenge);
 		   	
-			foreach($this->model('Objective')->ofChallenge($objective->challenge) as $obj) {
-				if($obj->completed == 0)
-					$challengeIsCompleted = false;
-			}
+		   	if($post->downloadable('evidence')) {
+			   	$evidenceFolder = IMAGE.'evidence/'.$objective->challenge.'/'.$id.'/'.$_SESSION['user']->id.'/';
+			   	$evidenceName = 'big.jpg';
+			   	$evidenceThumb = 'small.jpg';
+			   	
+			   	$post->download('evidence', $evidenceFolder, $evidenceName);
+			   	$image = new Image(ROOT.$evidenceFolder.$evidenceName);
+			   	$image->createThumb(200, 200, ROOT.$evidenceFolder.$evidenceThumb);
+		   	}		   	
 		   	
-		    if($challengeIsCompleted) {
+		    if($isChallengeCompleted) {
 				$this->model('Participation')->succeed($objective->participation);
 			}
 	    }

@@ -67,5 +67,14 @@ class Objective extends Mysql
 		}
 		
 		return $this->all($selected, 'challenge = :challenge', $preparation);		
-	}	
+	}
+	
+	public function isChallengeCompleted($id)
+	{			   	
+		foreach($this->ofChallenge($id) as $obj)
+			if($obj->completed == 0)
+				return false;
+		
+		return true;
+	}
 }

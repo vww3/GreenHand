@@ -69,15 +69,7 @@ class Image
      * @access private
      */
     private $_ratio;
-
-    /**
-     * outputFile
-     * 
-     * @var mixed
-     * @access public
-     */
-    public $outputFile;
-
+    
     /**
      * qualite
      * 
@@ -107,7 +99,6 @@ class Image
         $this->_type         = $infos['mime'];
         $this->_bits         = $infos['bits'];
         $this->_ratio         = $this->_width / $this->_height;
-        $this->outputFile     = $this->_file;
                 
         switch ($this->_type) {
             case 'image/gif':
@@ -142,9 +133,13 @@ class Image
         $originalWidth,
         $originalHeight,
         $shiftX,
-        $shiftY
+        $shiftY,
+        $output = null
     ) {
-        $extension = substr(strrchr($this->outputFile, '.'), 1);
+	    if(is_null($output))
+	    	$output = $this->_file;
+	    	
+        $extension = substr(strrchr($output, '.'), 1);
                 
         $image = imagecreatetruecolor($width, $height);
         
@@ -160,20 +155,20 @@ class Image
                 
         switch($extension) {
             case 'gif':
-                imagegif($image, $this->outputFile, $this->qualityOfOutput);
+                imagegif($image, $output, $this->qualityOfOutput);
                 break;
             case 'png':
-                imagepng($image, $this->outputFile, round( $this->qualityOfOutput * 9 / 100 ));
+                imagepng($image, $output, round( $this->qualityOfOutput * 9 / 100 ));
                 break;
             case 'jpg':            
             case 'jpeg':
-                imagejpeg($image, $this->outputFile, $this->qualityOfOutput);
+                imagejpeg($image, $output, $this->qualityOfOutput);
                 break;
             default:
-                die('Conversion impossible : "'.$this->outputFile.'" ne comporte pas une extension valide...');
+                die('Conversion impossible : "'.$output.'" ne comporte pas une extension valide...');
         }
         
-        return new Image($this->outputFile);
+        return new Image($output);
     }
 
     /**
@@ -190,30 +185,29 @@ class Image
         $width,
         $height,
         $shiftX = 0,
-        $shiftY = 0
+        $shiftY = 0,
+        $output = null
     ) {    
-        return $this->_generateImage($width, $height, $width, $height, $shiftX, $shiftY);
+        return $this->_generateImage($width, $height, $width, $height, $shiftX, $shiftY, $output);
     }
 
     /**
      * resize function.
      * 
      * @access public
-     * @param $width (default: 0)
-     * @param $height (default: 0)
+     * @param $width (default: null)
+     * @param $height (default: null)
      * @return void
      */
-    public function resize($width = 0, $height = 0)
-    {    
-        $width = $this->_width;
-        $height = $this->_height;
+    public function resize($width = null, $height = null, $output = null)
+    {           
+        if ($width AND is_null($height)) {
+	        $height = $width / $this->_ratio;
+        } elseif (is_null($width) AND $height) {
+        	$width = $height * $this->_ratio;
+        }
         
-        if ($width AND $height == 0)
-            $height = $width / $this->_ratio;
-        elseif ($width == 0 AND $height)
-            $width = $height * $this->_ratio;
-        
-        return $this->_generateImage($width, $height, $this->_width, $this->_height, 0, 0);
+        return $this->_generateImage($width, $height, $this->_width, $this->_height, 0, 0, $output);
     }
 
     /**
@@ -224,18 +218,28 @@ class Image
      * @param $height
      * @return void
      */
-    public function createThumb($width, $height)
+    public function createThumb($width, $height, $output = null)
     {    
         $ratio = $width / $height;
                 
         if ($this->_ratio > $ratio) {
-            $thumb = $this->resize(null, $height);
-            $thumb->trim($width, $height, $thumb->width/2 - $width/2, 0);            
+            $thumb = $this->resize(null, $height, $output);
+            $thumb->trim($width, $height, $thumb->width()/2 - $width/2, 0, $output);            
         } else {
             $thumb = $this->resize($width, null);
-            $thumb->trim($width, $height, 0, $thumb->height/2 - $height/2);
+            $thumb->trim($width, $height, 0, $thumb->height()/2 - $height/2, $output);
         }
         
         return $thumb;
+    }
+    
+    public function width()
+    {
+	    return $this->_width;
+    }
+    
+    public function height()
+    {
+	    return $this->_height;
     }
 }

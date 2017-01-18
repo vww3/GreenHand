@@ -557,11 +557,28 @@ class Form
             $name = $this->fileName($key);
         
         $temporaryFile = $_FILES[$this->_name]['tmp_name'][$key];
+        $folderDestination = ROOT.$destination;
+        
+        if(substr($folderDestination, -1) != '/')
+        	$folderDestination .= '/';  
+        
+        if(!is_dir($folderDestination)) {
+	        $folderDestination = ROOT.'/';
+	        
+		    foreach (explode('/', $destination) as $folder) {
+		        if(!empty($folder)) {
+			        $folderDestination .= $folder.'/';
+			        if(!is_dir($folderDestination)) {
+		        		mkdir($folderDestination);
+		        	}
+		        }
+	        }
+	    }        
         
         if (is_array($temporaryFile))
             foreach ($temporaryFile as $num => $file)
-                move_uploaded_file($temporaryFile[$num], ROOT.$destination.$name[$num]);
+                move_uploaded_file($temporaryFile[$num], $folderDestination.$name[$num]);
         else
-            move_uploaded_file($temporaryFile, ROOT.$destination.$name);
+            move_uploaded_file($temporaryFile, $folderDestination.$name);
     }
 }
