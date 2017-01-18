@@ -90,12 +90,15 @@
 		<!-- MUR DEFI -->
 		<div class="defi_mur">
 			<h2>On en discute... ?</h2>
+			<?php if(empty($_SESSION['user'])) { ?>
+			<?php } else { ?>
 			<div class="poster_avis">
 				<form action="POST">
 					<input type="textarea" placeholder="Je m'exprime..." class="myMessage">
 					<input type="submit" value="Poster">
 				</form>
 			</div>
+			<?php } ?>
 
 			<div class="post">
 				<div class="content_post">

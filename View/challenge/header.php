@@ -1,6 +1,6 @@
 <div class="main_container">
 	<header>
-		<h1><img src="<?= IMAGE ;?>/accueil/logo.svg" alt="Logo GreenHand"></h1>
+		<h1><a href="<?= BASE ?>accueil"><img src="<?= IMAGE ;?>/accueil/logo.svg" alt="Logo GreenHand"></</h1>
 
 		<div class="header_notif">
 			<div class="header_notif_top">
