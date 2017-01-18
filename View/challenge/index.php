@@ -10,12 +10,11 @@
 		<!-- TITRE DU DEFI -->
 		<div class="defi_title">
 			<h3><?= $challenge->title ?></h3>
-			<p><small><?= $nbParticipation ?> participant<?= $nbParticipation > 1 ? 's' : '' ?></small></p>
 		</div>
 		<!-- POURCENTAGE -->
 		<div class="defi_pourcentage">
-			<h4 class="defi_st">Défi terminé à : </h4>
-			<h4><?= $challenge->achievement ?> %</h4>
+			<h4 class="defi_st"><?= empty($_SESSION['user']) ? 'Nombre d\'objectifs' : 'Défi terminé à' ?></h4>
+			<h4><?= $challenge->objectives ?></h4>
 		</div>
 		<!-- BADGE -->
 		<div class="defi_badge">
@@ -27,16 +26,26 @@
 		<div class="defi_reussi">
 			<!-- FAIRE L'AFFICHAGE EN FONCTION DE LA DATE -->
 			<h4>Défi déjà réussi par : </h4>
-			<?php foreach($participation as $participations) { ?>
-			<span><a href=""><?= $participations->name ?></a></span>
+			<?php if(empty($winners)) { ?>
+				
+				<span>Personne pour le moment</span>
+				
+			<?php } else { ?>
+			
+				<?php foreach($winners as $winner) { ?>
+				<span><a href="<?= $winner->linkUserprofil ?>"><?= $winner->name ?></a>, le <?= $winner->dateSuccess ?></span>
+				<?php } ?>
+				
 			<?php } ?>
 		</div>
 		<!-- DEFI EN COURS PAR -->
 		<div class="defi_en_cours">
+			<h4><?= $nbParticipation ?> participant<?= $nbParticipation > 1 ? 's ' : '' ?> sur ce défi !</h4>
 			<?php foreach($participation as $participations) { ?>
-			<span><a href=""><?= $participations->name ?></a></span>
+				<div>
+					<a href="<?= $participations->linkUserprofil ?>" title="Voir le profil de <?= $participations->name ?>"><?= $participations->name ?></a> 
+				</div>
 			<?php } ?>
-			<h4> participent actuellement au défi.</h4>
 		</div>
 	</div>
 
@@ -44,6 +53,28 @@
 		<div class="defi_info">
 			<div class="defi_description">
 				<p><?= $challenge->description ?></p>
+				
+				<form method="post" enctype="multipart/form-data">
+					<?php foreach($objectives as $objective) { ?>
+					
+					<div>
+						<?php if(1==1) { ?>
+						<?= $objectiveForm->sender(
+							"J'ai réussi !", 
+							$objective->id, 
+							$objective->completed ? ['disabled' => 'disabled'] : []
+						) ?>
+						<?php } ?>
+						 <span><?= $objective->instruction ?></span>
+					</div>
+					
+					<?php } ?>
+					
+					<?php if(1==1) { ?>
+						<?= $objectiveForm->file('evidence', ['label' => 'Ma preuve de réussite de l\'objectif (facultatif) : ']); ?>
+					<?php } ?>
+				</form>
+				
 			</div>
 			<div class="defi_sous_info">
 				<p>
@@ -72,46 +103,59 @@
 		<!-- 	<p><a href="<?= BASE ?>accueil" title="Revenir au tableau de bord">tableau de bord</a></p> -->
 
 			<?php if(empty($_SESSION['user'])) { ?>
+				
 			<p>Pour participer à ce défi tu dois <a href="<?= BASE ?>connexion/challenge/<?= $challenge->id ?>/<?= $challenge->slug ?>" title='Se connecter pour participer au défi'>te connecter</a>.</p>
+				
+			<?php } elseif(empty($myParticipation)) { ?>
+			
+			<form method="post">
+				<?= $participationForm->sender('participer', 'action') ?>
+			</form>
+			
+			<?php } elseif(!empty($myParticipation->giveUp)) { ?>
+			
+			<div>
+				<h2>Dommage <?= $_SESSION['user']->name ?></h2>
+				<p>Vous avez abandonné ce défi...</p>
+			</div>
+			
+			<?php } elseif(empty($myParticipation->dateSuccess)) { ?>
+			
+			<form method="post">
+				<?= $participationForm->sender('abandonner', 'action') ?>
+			</form>
+			
 			<?php } else { ?>
-
-				<?php if(empty($myParticipation->dateSuccess)) { ?>
-				<a href="<?= $linkParticipation['href'] ?>"><?= $linkParticipation['title'] ?></a>
-				<?php } else { ?>
-				<div>
-					<h2>Bravo <?= $_SESSION['user']->name ?></h2>
-					<p>Tu as terminé avec succès ce défi le <?= $myParticipation->dateSuccess ?></p>
-				</div>
-				<?php } ?>
-
+			
+			<div>
+				<h2>Bravo <?= $_SESSION['user']->name ?></h2>
+				<p>Tu as terminé avec succès ce défi le <?= $myParticipation->dateSuccess ?></p>
+			</div>
+			
 			<?php } ?>
+			
 		</div>
 
 		<!-- MUR DEFI -->
 		<div class="defi_mur">
 			<h2>On en discute... ?</h2>
-			<?php if(empty($_SESSION['user'])) { ?>
-			<?php } else { ?>
-			<div class="poster_avis">
-				<form action="POST">
-					<input type="textarea" placeholder="Je m'exprime..." class="myMessage">
-					<input type="submit" value="Poster">
-				</form>
-			</div>
-			<?php } ?>
-
+			
+			<?php foreach($posts as $post) { ?>
 			<div class="post">
 				<div class="content_post">
 					<div class="stream-item-header">
-						<a href="#">
-							<img src="<?= IMAGE ;?>/accueil/img_defi.jpg" alt="">
-							<span>Mika LeBG</span>
-							<span class="time"> - 2 h</span>
+						<a href="<?= $post->linkUserProfil ?>" title="Voir le profil de <?= $post->author ?>">
+							<img src="<?= IMAGE ;?>accueil/img_defi.jpg" alt="">
+							<span><?= $post->author ?></span>
+							<span class="time"><?= $post->date ?></span>
 						</a>
 					</div>
-					<p class="text_post">Je trouve que ce défi est vraiment super cool. J'aimerais bien le refaire tellement c'est simple !!!</p>
+					<p><?= $post->content ?></p>
+					<p class="text_post"><small><a href="<?= $post->linkReportPost ?>" title="Signaler ce post de <?= $post->author ?>">Signaler le post</a></small></p>
+					<div></div>
 				</div>
 			</div>
+			<?php } ?>
 			
 		</div>
 	</div>

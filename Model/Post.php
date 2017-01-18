@@ -25,7 +25,7 @@ class Post extends Mysql
 				'where' => [
 					'challenge = :challenge'
 				],
-				'order' => 'date'
+				'order' => 'date DESC'
 			],
 			['challenge' => $id]
 		);
@@ -33,6 +33,7 @@ class Post extends Mysql
 		foreach($posts as $row => $post) {
 			$posts[$row]->linkUserProfil = BASE.'profil/'.$post->user.'/'.Str::simplify($post->author);
 			$posts[$row]->linkReportPost = BASE.'report/post/'.$post->id;
+			$posts[$row]->date = Str::date($posts[$row]->date, 'le %d %B %Y à %I:%M:%S %p');
 		}
 		
 		return $posts;

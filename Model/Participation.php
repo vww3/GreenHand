@@ -25,13 +25,46 @@ class Participation extends Mysql
 				'left' => [
 					'users' => 'users.id = '.$this->table().'.user'
 				],
-				'where' => $this->table().'.challenge = :id'
+				'where' => [
+					$this->table().'.challenge = :id',
+					$this->table().'.giveUp = 0',
+					$this->table().'.dateSuccess IS NULL',
+				]
 			],
 			['id' => $id]
 		);
 		
 		foreach($users as $row => $user) {
 			$users[$row]->linkUserprofil = BASE.'profil/'.$user->user.'/'.Str::simplify($user->name);
+		}
+		
+		return $users;		
+	}
+	
+	public function winnersOfChallenge($id)
+	{		
+		$users = $this->all(
+			[
+				$this->table().'.dateSuccess',
+				'users.id as user',
+				'users.name'
+			], 
+			[
+				'left' => [
+					'users' => 'users.id = '.$this->table().'.user'
+				],
+				'where' => [
+					$this->table().'.challenge = :id',
+					$this->table().'.giveUp = 0',
+					$this->table().'.dateSuccess IS NOT NULL',
+				]
+			],
+			['id' => $id]
+		);
+		
+		foreach($users as $row => $user) {
+			$users[$row]->linkUserprofil = BASE.'profil/'.$user->user.'/'.Str::simplify($user->name);
+			$users[$row]->dateSuccess = Str::date($users[$row]->dateSuccess);
 		}
 		
 		return $users;		
@@ -90,5 +123,5 @@ class Participation extends Mysql
 	public function succeed($id)
 	{
 		$this->query('UPDATE '.$this->table().' SET dateSuccess = CURRENT_TIMESTAMP WHERE id = :id', ['id' => $id]);
-	}
+	}	
 }
