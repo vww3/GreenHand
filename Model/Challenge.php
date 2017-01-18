@@ -2,13 +2,20 @@
 namespace Model;
 
 use System\Core\Mysql;
-Use System\Str;
+use System\Str;
+use DateTime;
 
 class Challenge extends Mysql
 {
 	public function __construct()
 	{
 		parent::__construct('challenge');
+	}
+	
+	public function doesExist($id) {
+		
+		return $this->exist('id = :id', ['id' => $id]);
+		
 	}
 	
 	public function getAll()
@@ -62,36 +69,59 @@ class Challenge extends Mysql
 	
 	public function getById($id)
 	{		
+		$subTotalObjective = 'SELECT COUNT(*) 
+			FROM challengeObjective 
+			WHERE challengeObjective.challenge = challenge.id
+		';
+		
 		$subNumLikes = 'SELECT COUNT(*) 
 			FROM challengeLike 
 			WHERE challengeLike.challenge = challenge.id
 		';
 		
-		$challenge = $this->one(
-			[
-				'challenge.id',
-				'challenge.title',
-				'challenge.description',
-				'challenge.dateCreation',
-				'challenge.dateEnd',
-				'challenge.achievement',
-				'users.id as authorId',
-				'users.name as author',
-				'challengeCategory.title as category'
+		$selected = [
+			'challenge.id',
+			'challenge.title',
+			'challenge.description',
+			'challenge.dateCreation',
+			'challenge.dateEnd',
+			'challenge.achievement',
+			'users.id as authorId',
+			'users.name as author',
+			'challengeCategory.title as category',
+			'IF(challenge.dateEnd IS NULL OR challenge.dateEnd < NOW(), 1, 0) as avaiable'
+		];
+		
+		$preparation = ['challenge' => $id];
+		
+		$options = [
+			'left' => [
+				'users'				=> 'users.id = challenge.author',
+				'challengeCategory' => 'challengeCategory.id = challenge.category'
 			],
-			[
-				'left' => [
-					'users'				=> 'users.id = challenge.author',
-					'challengeCategory' => 'challengeCategory.id = challenge.category'
-				],
-				'where' => 'challenge.id = :challenge'
-			],
-			['challenge' => $id]
-		);
+			'where' => 'challenge.id = :challenge'
+		];
+		
+		if(!empty($_SESSION['user'])) {
+			$subYouSuccess = 'SELECT COUNT(*) 
+				FROM usersObjectiveSuccess, challengeObjective 
+				WHERE usersObjectiveSuccess.objective = challengeObjective.id 
+					AND challengeObjective.challenge = challenge.id 
+					AND usersObjectiveSuccess.user = :id
+				';
+			$selected[] = 'CONCAT(CAST( ('.$subYouSuccess.') / ('.$subTotalObjective.') * 100 as UNSIGNED INTEGER ),\'%\') as objectives';
+			$preparation['id'] = $_SESSION['user']->id;
+		} else {
+			$selected[] = '('.$subTotalObjective.') as objectives';
+		}
+		
+		$challenge = $this->one($selected, $options, $preparation);
 		
 		if(!empty($challenge)) {
 			$challenge->slug = Str::simplify($challenge->title);
-			$challenge->linkAuthorProfil = BASE.'profil/'.$challenge->authorId.'/'.Str::simplify($challenge->author);
+			$challenge->dateCreation = Str::date($challenge->dateCreation);
+			$challenge->dateEnd = Str::date($challenge->dateEnd);
+			$challenge->linkAuthorProfil = BASE.'profil/'.$challenge->authorId.'/'.Str::simplify($challenge->author);			
 		}
 		
 		return $challenge;

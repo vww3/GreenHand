@@ -22,35 +22,38 @@ class Challenge extends Controller
 	
 	public function index($id = null)
     {
-	    if(empty($id))
+	    if(empty($id) OR !$this->model('Challenge')->doesExist($id))
 	    	$this->go(PREVIOUS);
 	    
-	    $challenge = $this->model('Challenge')->getById($id);
-	    
-	    if(empty($challenge))
-	    	$this->go(PREVIOUS);
-	    	
-	    $this->title = 'Le défi "'.$challenge->title.'" de '.$challenge->author;
-	    	    
-	    $objectives      = $this->model('Objective')->ofChallenge($id);
-	    $likes           = $this->model('Like')->ofChallenge($id);
-	    $participation   = $this->model('Participation')->ofChallenge($id);
-	    $nbParticipation = count($participation);
-	    	    
 	    if(!empty($_SESSION['user'])) {
-	    	
-	    	if(empty($participation->dateSuccess)) {
-			    $linkParticipation = [
-				    'title' => empty($myParticipation) ? 'Participer' : 'Abandonner',
-			    	'href' => empty($myParticipation) ? BASE.CONTROLLER.'/join/'.$id : BASE.CONTROLLER.'/giveup/'.$id
-			    ];
-			}
+	    	$myParticipation = $this->model('Participation')->mineOfChallenge($id);
+	    		
+			$participationForm = new Form(['name' => 'participation']);
+			$objectiveForm = new Form(['name' => 'objective']);
+			$postForm = new Form(['name' => 'post']);
 			
-			$myParticipation = $this->model('Participation')->mineOfChallenge($id);
-		    
-		    $postForm = new Form(['name' => 'post']);
+			if($participationForm->posted()){
+				
+				$action = $participationForm->datas('action');
+				
+				if(empty($myParticipation) && $action == 'participer') {
+					$myParticipation = $this->join($id);
+				}
+
+				if(!empty($myParticipation) && $myParticipation->giveUp == 0 && $action == 'abandonner') {
+					$myParticipation = $this->giveup($myParticipation);
+				}
 			
-			if($postForm->posted()) {
+			} elseif($objectiveForm->posted()) {
+			
+				$objectiveId = key($objectiveForm->datas());
+
+				$this->completeObjective($objectiveId);
+				
+				$myParticipation = $this->model('Participation')->mineOfChallenge($id);
+			
+			} elseif($postForm->posted()) {
+				
 				$post = $postForm->datas();
 			    $postForm->verify(empty($post['content']), 'Ton post est vide.');
 			    
@@ -59,11 +62,22 @@ class Challenge extends Controller
 				    $post['challenge'] = $id;
 				    $this->model('Post')->save($post);
 			    }
+			    
 		    }
 		}
-		
-		$posts = $this->model('Post')->ofChallenge($id);
-	    	    
+	    
+	    $challenge		 = $this->model('Challenge')->getById($id);	    		    	    
+	    $objectives      = $this->model('Objective')->ofChallenge($id);
+	    $likes           = $this->model('Like')->ofChallenge($id);
+	    $posts			 = $this->model('Post')->ofChallenge($id);
+		$participation   = $this->model('Participation')->ofChallenge($id);
+		$winners         = $this->model('Participation')->winnersOfChallenge($id);
+	    $nbParticipation = count($participation);
+	    
+	    $challengeIsAvaiable = empty($_SESSION['user']) OR $myParticipation->giveUp OR !empty($myParticipation->dateSuccess) OR !$challenge->avaiable;
+	    $challengeIsWon = !empty($_SESSION['user']) AND !empty($myParticipation->dateSuccess) AND !$myParticipation->giveUp;
+	    
+	    $this->title = 'Le défi "'.$challenge->title.'" de '.$challenge->author;
 	    $this->datas = compact(
 	    	'challenge',
 	    	'objectives',
@@ -74,43 +88,33 @@ class Challenge extends Controller
 	    	'objectivesSucceed',
 	    	'postForm',
 	    	'posts',
-	    	'nbParticipation'
+	    	'nbParticipation',
+	    	'participationForm',
+	    	'objectiveForm',
+	    	'challengeIsAvaiable',
+	    	'challengeIsWon',
+	    	'winners'
 	    );
 	    
 	    $this->view();
-	  
     }
     
-    public function join($id = null)
+    private function join($id)
     {
-	    $challenge = $this->verifyChallenge($id);
-
-	    $myParticipation = $this->model('Participation')->mineOfChallenge($id);
-	    	    
-	    if(!empty($myParticipation))
-	    	$this->go(PREVIOUS);
-	    	
-	    $newParticipation = ['user' => $_SESSION['user']->id, 'challenge' => $id];
+		$newParticipation = ['user' => $_SESSION['user']->id, 'challenge' => $id];
 	    $this->model('Participation')->save($newParticipation);
-	    	
-	    $this->go(BASE.CONTROLLER.'/'.$id.'/'.$challenge->slug);
+		    				    	
+	    return $this->model('Participation')->mineOfChallenge($id);
     }
     
-    public function giveup($id = null)
+    private function giveup($myParticipation)
     {
-	    $challenge = $this->verifyChallenge($id);
-	    	
-	    $myParticipation = $this->model('Participation')->mineOfChallenge($id);
-	    	    
-	    if(empty($myParticipation))
-	    	$this->go(PREVIOUS);
-	    	
 	    $this->model('Participation')->giveup($myParticipation->id);
 	    	
-	    $this->go(BASE.CONTROLLER.'/'.$id.'/'.$challenge->slug);
+	    return $this->model('Participation')->mineOfChallenge($myParticipation->challenge);
     }
     
-    public function complete($id = null)
+    private function completeObjective($id)
     {
 	    $objective = $this->model('Objective')->toComplete($id);	
 	    
@@ -128,26 +132,5 @@ class Challenge extends Controller
 				$this->model('Participation')->succeed($objective->participation);
 			}
 	    }
-
-	    $this->go(PREVIOUS);
-    }
-    
-    private function verifyChallenge($id)
-    {
-	    if(empty($id) OR empty($_SESSION['user']))
-	    	$this->go(PREVIOUS);
-	    	
-	    $challenge = $this->model('Challenge')->getById($id);
-	    
-	    if(empty($challenge))
-	    	$this->go(PREVIOUS);
-	    	
-	    $now = new DateTime();
-		$end = new DateTime($challenge->dateEnd);
-		
-		if($now > $end)
-	    	$this->go(PREVIOUS);
-	    	
-	    return $challenge;
     }
 }
