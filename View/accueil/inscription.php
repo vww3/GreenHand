@@ -8,11 +8,11 @@
 	
 	<!-- <p>Tu peux <a href="<?= BASE ?>accueil" title="Visiter GreenHand sans se connecter">visiter le site</a> si tu le désires</p> -->
 	
-	<?php if(!empty($errors)) { ?>
+	<?php if(!empty($formErrors)) { ?>
 		<div>
 			<ul class="bad">
 			
-			<?php foreach($errors as $error) { ?>
+			<?php foreach($formErrors as $error) { ?>
 				<li><?= $error ?></li>
 			<?php } ?>
 		
@@ -58,26 +58,5 @@
 
 		<p><a href="#">Vous avez déjà un compte ? Connectez vous !</a> </p>
 	</div>
-	
-	<div class="col-3-m">
-		<form method="post" class="col-3">
-			<h2>Connexion</h2>
-			<div>
-				<?= $formSignIn->email('email', [
-					'label' => 'E-mail', 
-					'required',
-					'placeholder' => 'Votre adresse e-mail'
-				]) ?>
-			</div>
-			<div>
-				<?= $formSignIn->password('password', [
-					'label' => 'Mot de Passe', 
-					'required',
-					'placeholder' => 'Votre mot de passe'
-				]) ?>
-			</div>
-			<?= $formSignIn->sender('Se connecter') ?>
-		</form>
-	</div>
-	
+		
 </section>
