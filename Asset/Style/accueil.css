@@ -46,7 +46,8 @@ li {
 
 .main_container {
   max-width: 1920px;
-  margin: 0 auto; }
+  margin: 0 auto;
+  position: relative; }
 
 /****************************************
 **
@@ -251,7 +252,7 @@ header {
 ****************************************/
 #accueil_dashboard {
   display: flex;
-  margin-top: 50px; }
+  margin: 50px 10px; }
 
 /****************************************
 **	3.1 - SIDEBAR

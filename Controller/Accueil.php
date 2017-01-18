@@ -23,7 +23,8 @@ class Accueil extends Controller
     {  
 	    parent::__construct();
 	    
-        $this->styles[] = 'accueil';        
+        $this->styles[] = 'accueil';
+         $this->styles[] = 'responsive';          
 		$this->title = 'Tableau de bord - Liste des défis';
         /*if (
             empty($_SESSION['administrateur']) OR 
