@@ -307,7 +307,6 @@
 ****************************************/
 	#accueil_dashboard{
 		display: flex;
-		margin: 50px 10px;
 	}
 
 	/****************************************
@@ -327,7 +326,7 @@
 	.dashboard{
 		width: 80%;
 		height: 100%;
-		padding: 0px 100px;
+		padding-left: 50px;
 
 		h2{
 			font-size: 48px;
