@@ -123,7 +123,7 @@ class Accueil extends Controller
 				    $profilForm->download('photo', $profilImageFolder, $profilImageName);
 				    
 				    $photo = new Image(ROOT.$profilImageFolder.$profilImageName);
-				    $photo->createThumb(200, 200);
+				    $photo->createThumb(350, 350);
 				    
 				    $profil->photo = $profilImageFolder.$profilImageName;
 			    }

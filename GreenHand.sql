@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  localhost:8889
--- Généré le :  Lun 16 Janvier 2017 à 16:39
+-- Généré le :  Ven 20 Janvier 2017 à 18:40
 -- Version du serveur :  5.6.28
 -- Version de PHP :  7.0.10
 
@@ -38,7 +38,7 @@ CREATE TABLE `achievement` (
 --
 
 INSERT INTO `achievement` (`id`, `title`, `description`, `badge`) VALUES
-(1, 'Mangeur de patate', 'Tu as réussi le défi "Manger 5kg de patate"', 'default'),
+(1, 'Mangeur de patate', 'Tu as réussi le défi "Manger 5kg de patate"', 'badge'),
 (2, 'Coquin chauffant', 'Tu aimes faire l\'amour', 'love'),
 (3, 'Héros', 'Tu as sauvé le monde au moins une fois', 'star');
 
@@ -67,6 +67,26 @@ INSERT INTO `challenge` (`id`, `title`, `description`, `dateCreation`, `dateEnd`
 (1, 'Manger 5kilos de patates', 'C\'est un défi de test !', '2017-01-11 20:00:30', NULL, 1, 1, 1),
 (2, 'Faire l\'amour au lieu d\'allumer le chauffage', 'C\'est un test marrant :).', '2017-01-11 20:33:03', NULL, 1, 1, 2),
 (3, 'Sauver le monde', 'Pas facile... The princess is in an other castle !', '2017-01-11 20:34:57', NULL, 1, 1, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `challengeachievement`
+--
+
+CREATE TABLE `challengeachievement` (
+  `id` int(11) NOT NULL,
+  `challenge` int(11) NOT NULL,
+  `achievement` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `challengeachievement`
+--
+
+INSERT INTO `challengeachievement` (`id`, `challenge`, `achievement`) VALUES
+(1, 1, 1),
+(2, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -143,7 +163,7 @@ CREATE TABLE `challengePost` (
   `content` text NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `signaled` tinyint(1) NOT NULL DEFAULT '0',
-  `user` int(11) NOT NULL,
+  `user` int(11) DEFAULT NULL,
   `challenge` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -152,11 +172,41 @@ CREATE TABLE `challengePost` (
 --
 
 INSERT INTO `challengePost` (`id`, `content`, `date`, `signaled`, `user`, `challenge`) VALUES
-(1, 'Bonjour tout le monde !', '2017-01-16 11:34:54', 0, 1, 2),
-(2, 'Hello toi !', '2017-01-16 11:35:19', 0, 1, 2),
-(3, 'Hello', '2017-01-16 11:45:23', 0, 8, 2),
-(4, 'Hello World!', '2017-01-16 11:59:20', 0, 1, 2),
-(5, 'dfgsdf', '2017-01-16 12:27:33', 0, 1, 3);
+(1, 'MickaStark a terminé l\'objectif "Faire l\'amour 5 fois dans la semaine" ! D\'ailleurs, en voici <a href=\'/GreenHand/Asset/Image/evidence/2/3/1/big.jpg\' class=\'evidence fancybox\'>une preuve</a>.', '2017-01-20 15:17:08', 0, NULL, 2),
+(2, 'MickaStark a terminé l\'objectif "Couper le chauffage pendant l\'amour" !', '2017-01-20 15:17:10', 0, NULL, 2),
+(3, 'MickaStark a terminé l\'objectif "Mangez 5kg de patate en un jour." !', '2017-01-20 15:17:30', 0, NULL, 1),
+(4, 'MickaStark a terminé l\'objectif "Ne pas vomir" !', '2017-01-20 15:17:31', 0, NULL, 1),
+(5, 'MickaStark a terminé l\'objectif "Ne pas faire caca" !', '2017-01-20 15:17:32', 0, NULL, 1),
+(6, 'MickaStark a terminé l\'objectif "Mangez 5kg de patate en un jour." !', '2017-01-20 15:19:37', 0, NULL, 1),
+(7, 'MickaStark a terminé l\'objectif "Ne pas vomir" !', '2017-01-20 15:19:38', 0, NULL, 1),
+(8, 'MickaStark a terminé l\'objectif "Ne pas faire caca" !', '2017-01-20 15:19:39', 0, NULL, 1),
+(9, 'MickaStark a terminé l\'objectif "Mangez 5kg de patate en un jour." !', '2017-01-20 15:20:28', 0, NULL, 1),
+(10, 'MickaStark a terminé l\'objectif "Ne pas vomir" !', '2017-01-20 15:20:29', 0, NULL, 1),
+(11, 'MickaStark a terminé l\'objectif "Ne pas faire caca" !', '2017-01-20 15:20:38', 0, NULL, 1),
+(12, 'MickaStark a terminé l\'objectif "Mangez 5kg de patate en un jour." !', '2017-01-20 15:21:08', 0, NULL, 1),
+(13, 'MickaStark a terminé l\'objectif "Ne pas vomir" !', '2017-01-20 15:21:08', 0, NULL, 1),
+(14, 'MickaStark a terminé l\'objectif "Ne pas faire caca" !', '2017-01-20 15:21:09', 0, NULL, 1),
+(15, 'MickaStark a terminé l\'objectif "Mangez 5kg de patate en un jour." !', '2017-01-20 15:22:38', 0, NULL, 1),
+(16, 'MickaStark a terminé l\'objectif "Ne pas vomir" !', '2017-01-20 15:22:40', 0, NULL, 1),
+(17, 'MickaStark a terminé l\'objectif "Ne pas faire caca" !', '2017-01-20 15:22:41', 0, NULL, 1),
+(18, 'MickaStark a terminé l\'objectif "Mangez 5kg de patate en un jour." !', '2017-01-20 15:23:17', 0, NULL, 1),
+(19, 'MickaStark a terminé l\'objectif "Ne pas vomir" !', '2017-01-20 15:23:17', 0, NULL, 1),
+(20, 'MickaStark a terminé l\'objectif "Ne pas faire caca" !', '2017-01-20 15:23:18', 0, NULL, 1),
+(21, 'MickaStark a terminé l\'objectif "Mangez 5kg de patate en un jour." !', '2017-01-20 15:27:13', 0, NULL, 1),
+(22, 'MickaStark a terminé l\'objectif "Ne pas vomir" !', '2017-01-20 15:27:13', 0, NULL, 1),
+(23, 'MickaStark a terminé l\'objectif "Ne pas faire caca" !', '2017-01-20 15:27:14', 0, NULL, 1),
+(24, 'MickaStark a terminé l\'objectif "Mangez 5kg de patate en un jour." !', '2017-01-20 15:27:50', 0, NULL, 1),
+(25, 'MickaStark a terminé l\'objectif "Ne pas vomir" !', '2017-01-20 15:27:50', 0, NULL, 1),
+(26, 'MickaStark a terminé l\'objectif "Ne pas faire caca" !', '2017-01-20 15:27:51', 0, NULL, 1),
+(27, 'MickaStark a terminé l\'objectif "Mangez 5kg de patate en un jour." !', '2017-01-20 15:28:32', 0, NULL, 1),
+(28, 'MickaStark a terminé l\'objectif "Ne pas vomir" !', '2017-01-20 15:28:34', 0, NULL, 1),
+(29, 'MickaStark a terminé l\'objectif "Ne pas faire caca" !', '2017-01-20 15:28:34', 0, NULL, 1),
+(30, 'MickaStark a terminé l\'objectif "Mangez 5kg de patate en un jour." !', '2017-01-20 15:29:58', 0, NULL, 1),
+(31, 'MickaStark a terminé l\'objectif "Ne pas vomir" !', '2017-01-20 15:29:59', 0, NULL, 1),
+(32, 'MickaStark a terminé l\'objectif "Ne pas faire caca" !', '2017-01-20 15:30:00', 0, NULL, 1),
+(33, 'MickaStark a terminé l\'objectif "Mangez 5kg de patate en un jour." !', '2017-01-20 15:30:22', 0, NULL, 1),
+(34, 'MickaStark a terminé l\'objectif "Ne pas vomir" !', '2017-01-20 15:30:22', 0, NULL, 1),
+(35, 'MickaStark a terminé l\'objectif "Ne pas faire caca" !', '2017-01-20 15:30:23', 0, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -309,7 +359,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `password`, `isAdmin`, `isProducer`, `validationKey`, `valid`, `name`, `dateRegistration`, `numConnection`) VALUES
-(1, 'mickael@boidin.fr', 'v4Ww7kD2JOILAJCz1ulhsw==', 1, 0, 'd8926941f4df618530cf9ec181c3684a', 1, 'MickaStark', '2017-01-11 19:47:32', 11),
+(1, 'mickael@boidin.fr', 'v4Ww7kD2JOILAJCz1ulhsw==', 1, 0, 'd8926941f4df618530cf9ec181c3684a', 1, 'MickaStark', '2017-01-11 19:47:32', 17),
 (8, 'mickael@boidin2.fr', 'urHUxyeJf91U60oJTiPGtQ==', 0, 0, '2a4d7dc61d5e7968e4b71cdbeed8ecfe', 1, 'fqsdfqsd', '2017-01-11 21:26:01', 7);
 
 -- --------------------------------------------------------
@@ -329,8 +379,7 @@ CREATE TABLE `usersAchievementSuccess` (
 --
 
 INSERT INTO `usersAchievementSuccess` (`id`, `user`, `achievement`) VALUES
-(1, 1, 3),
-(2, 1, 2);
+(1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -352,7 +401,7 @@ CREATE TABLE `usersChallengeParticipation` (
 --
 
 INSERT INTO `usersChallengeParticipation` (`id`, `user`, `challenge`, `dateParticipation`, `dateSuccess`, `giveUp`) VALUES
-(1, 1, 1, '2017-01-16 15:38:34', NULL, 1);
+(1, 1, 1, '2017-01-20 15:30:21', '2017-01-20 15:30:23', 0);
 
 -- --------------------------------------------------------
 
@@ -371,9 +420,9 @@ CREATE TABLE `usersObjectiveSuccess` (
 --
 
 INSERT INTO `usersObjectiveSuccess` (`id`, `user`, `objective`) VALUES
-(1, 1, 3),
-(2, 1, 4),
-(3, 1, 1);
+(1, 1, 2),
+(2, 1, 5),
+(3, 1, 7);
 
 --
 -- Index pour les tables exportées
@@ -393,6 +442,14 @@ ALTER TABLE `challenge`
   ADD KEY `user` (`author`),
   ADD KEY `category` (`category`),
   ADD KEY `achievement` (`achievement`);
+
+--
+-- Index pour la table `challengeachievement`
+--
+ALTER TABLE `challengeachievement`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `challenge` (`challenge`),
+  ADD KEY `achivement` (`achievement`);
 
 --
 -- Index pour la table `challengeCategory`
@@ -510,6 +567,11 @@ ALTER TABLE `achievement`
 ALTER TABLE `challenge`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
+-- AUTO_INCREMENT pour la table `challengeachievement`
+--
+ALTER TABLE `challengeachievement`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
 -- AUTO_INCREMENT pour la table `challengeCategory`
 --
 ALTER TABLE `challengeCategory`
@@ -528,7 +590,7 @@ ALTER TABLE `challengeObjective`
 -- AUTO_INCREMENT pour la table `challengePost`
 --
 ALTER TABLE `challengePost`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 --
 -- AUTO_INCREMENT pour la table `message`
 --
@@ -568,7 +630,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pour la table `usersAchievementSuccess`
 --
 ALTER TABLE `usersAchievementSuccess`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT pour la table `usersChallengeParticipation`
 --
@@ -590,6 +652,13 @@ ALTER TABLE `challenge`
   ADD CONSTRAINT `fk_achievement` FOREIGN KEY (`achievement`) REFERENCES `achievement` (`id`),
   ADD CONSTRAINT `fk_category` FOREIGN KEY (`category`) REFERENCES `challengeCategory` (`id`),
   ADD CONSTRAINT `fk_user` FOREIGN KEY (`author`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `challengeachievement`
+--
+ALTER TABLE `challengeachievement`
+  ADD CONSTRAINT `fk_achiv_challenge` FOREIGN KEY (`achievement`) REFERENCES `achievement` (`id`),
+  ADD CONSTRAINT `fk_challenge_achiv` FOREIGN KEY (`challenge`) REFERENCES `challenge` (`id`);
 
 --
 -- Contraintes pour la table `challengeLike`
