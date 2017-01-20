@@ -19,7 +19,6 @@ class Eco_service extends Controller
     {  
          $this->styles[] = 'base';
         $this->styles[] = 'reset';
-        $this->styles[] = 'accueil';
         $this->styles[] = 'eco_service';
         $this->styles[] = 'responsive';
 

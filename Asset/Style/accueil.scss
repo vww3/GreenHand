@@ -18,6 +18,7 @@
 		display: flex;
 		max-height: 200px;
 		margin: 20px 10px 61px 10px;
+	
 		h1{
 			width: 30%;
 
@@ -96,136 +97,8 @@
 		}
 	}
 
-	/****************************************
-	**	2.2 - MENU
-	****************************************/
-
-	.main_menu{
-		position: absolute;
-		width: 100%;
-		nav{
-			display: flex;
-			justify-content: space-between;
-
-			.item_menu{
-				width: 25%;
-				height: 150px;
-				display: flex;
-				flex-direction: column;
-				justify-content: center;
-				padding : 20px;
-				
-				text-align: center;
-				/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+87,dadada+100 */
-				background: #ffffff; /* Old browsers */
-				background: -moz-linear-gradient(top,  #ffffff 87%, #dadada 100%); /* FF3.6-15 */
-				background: -webkit-linear-gradient(top,  #ffffff 87%,#dadada 100%); /* Chrome10-25,Safari5.1-6 */
-				background: linear-gradient(to bottom,  #ffffff 87%,#dadada 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#dadada',GradientType=0 ); /* IE6-9 */
-
-				-webkit-transition: all 0.3s;
-				-moz-transition: all 0.3s;
-				transition: all 0.3s;
 
 
-				.content_img_menu{
-					width: 100%;
-				    height: 100%;
-				    display: flex;
-				    justify-content: center;
-
-				}
-				#leaves::after {
-					content: "\f106";
-					font-family: "Flaticon";
-					font-size: 5em;
-					color:$d_grey;
-					-webkit-transition: all 0.3s;
-				-moz-transition: all 0.3s;
-				transition: all 0.3s;
-				}
-
-				#internet::after{
-					@extend #leaves::after;
-					content:"\f104";
-					font-size: 3.8em;
-				}
-
-
-				#salad::after{
-					@extend #leaves::after;
-					content:"\f109";
-					font-size: 3.8em;
-				}
-
-				#water::after{
-					@extend #leaves::after;
-					content:"\f102";
-					font-size: 3.8em; 
-
-				}
-
-				span{
-					color: $d_grey;
-					font-size: 18px;
-					padding-top: 10px;
-	
-				}
-			}
-			
-
-			// @media screen and (min-width: 500px) {
-				a:not(:last-child){
-					border-right: 2px solid #b9b9b9;
-				}
-
-				a:nth-child(1){
-					@include border-bottom(#74c7d3);
-				}
-
-				a:nth-child(2){
-					@include border-bottom(#5bb130);
-				}
-
-				a:nth-child(3){
-					@include border-bottom(#38ab49);
-				}
-
-				a:nth-child(4){
-					@include border-bottom(#23b4b0);
-				}
-
-				a:hover{
-					height: 200px;
-					border-bottom : 12px solid #74c7d3;
-					-webkit-transform: translate(0px,-50px);
-					-ms-transform: translate(0px,-50px);
-					transform: translate(0px,-50px); 
-					
-					span{color : #74c7d3;}
-					#leaves::after{font-size: 5em;color:$blue;}
-				}
-
-				a:nth-child(2):hover{
-					border-bottom : 12px solid #5bb130;
-					span{color : #5bb130;}
-					#internet::after{font-size: 5em;color:#5bb130;}
-				}
-
-				a:nth-child(3):hover{
-					border-bottom : 12px solid #38ab49;
-					span{color : #38ab49;}
-					#salad::after{font-size: 5em;color:#38ab49;}
-				}
-
-				a:nth-child(4):hover{
-					border-bottom : 12px solid #23b4b0;
-					span{color : #23b4b0;}
-					#water::after{font-size: 5em; color:#74c7d3;}
-				}
-			
-		}
-	}
 
 	/****************************************
 	**	2.3 - IMAGE ACCUEIL
@@ -235,20 +108,27 @@
 		background-size: 100%;
 		background-position: center;
 		width: 100%;
-		height: 600px;
+		height: 450px;
 		display: flex;
 		justify-content: center;
 		align-items:center;
+		flex-direction: column;
+
+		h1{
+			width: 21%;
+		}
 
 		h2{
 			font-family: 'order_pizzaregular';
+			color: $blue;
+
+			-ms-transform: rotate(-1deg); /* IE 9 */
+			    -webkit-transform: rotate(-1deg); 
+			    transform: rotate(-1deg);
 			color: #fff;
-			font-size: 33px;
-			-ms-transform: rotate(-3deg); /* IE 9 */
-			    -webkit-transform: rotate(-3deg); /* Chrome, Safari, Opera */
-			    transform: rotate(-3deg);
-			 text-align: center;
-			margin-top: 120px;
+			font-size: 23px;
+			text-align: center;
+			margin-top: 30px;
 		}
 	}
 

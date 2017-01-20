@@ -148,7 +148,7 @@
 			<?php if(!empty($postForm)) { ?>
 			<div class="poster_avis">
 				<form method="post">
-					<?= $postForm->textarea('content', ['placeholder' => 'Je m\'exprime...', 'class' => 'myMessage']) ?>
+					<?= $postForm->text('content', ['placeholder' => 'Je m\'exprime...', 'class' => 'myMessage']) ?>
 					<?= $postForm->sender('Poster') ?>
 				</form>
 			</div>

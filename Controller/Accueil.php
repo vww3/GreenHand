@@ -28,7 +28,6 @@ class Accueil extends Controller
         $this->styles[] = 'base';
         $this->styles[] = 'reset';
         $this->styles[] = 'accueil';
-        $this->styles[] = 'home';
         $this->styles[] = 'responsive';       
 		$this->title = 'Tableau de bord - Liste des défis';
         /*if (

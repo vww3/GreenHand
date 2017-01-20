@@ -1,31 +1,50 @@
-<div class="main_container">
-	<header>
-		<h1><a href="<?= BASE ?>accueil"><img src="<?= IMAGE ;?>/accueil/logo.svg" alt="Logo GreenHand"></a></h1>
+<div class="topbar_index">
+	<div class="main_container" id="top_bar">
 
-		<div class="header_notif">
-			<div class="header_notif_top">
-				<div class="notif_top" id="notif_alert">
-					<img src="<?= IMAGE ;?>/accueil/notif_alert.svg" alt="notif GreenHand">
-				</div>
-				<div class="notif_top" id="notif_msg">
-					<img src="<?= IMAGE ;?>/accueil/notif_msg.svg" alt="message GreenHand">
-				</div>
-				<div class="notif_top" id="notif_profil">
-					<img src="<?= IMAGE ;?>/accueil/notif_profil.svg" alt="profil GreenHand">
-				</div>
+		<?php if(empty($_SESSION['user'])) { ?>
+		
+			<?php if(!empty($formErrors)) { ?>
+			<div>
+				<ul class="bad">
+				
+				<?php foreach($formErrors as $error) { ?>
+					<li><?= $error ?></li>
+				<?php } ?>
+			
+				</ul>
 			</div>
+			<?php } ?>
+			<div class="inscription"><a href="<?= BASE ?>inscription">Inscription</a></div>
 
-			<input type="search" name="main_search" class="header_notif_search" placeholder="rechercher du vert...">
-		</div>
-	</header>
+			<h1><a href="<?= BASE ?>accueil"><img src="<?= IMAGE ;?>/accueil/logo_blanc.svg" alt="Logo GreenHand"></a></h1>
 
+			<form method="post" class="col-3">
+				<?= $formSignIn->email('email', [
+					'required',
+					'placeholder' => 'Votre adresse e-mail'
+				]) ?>
+				<?= $formSignIn->password('password', [
+					'required',
+					'placeholder' => 'Votre mot de passe'
+				]) ?>
+				<?= $formSignIn->sender('Se connecter') ?>
+			</form>
+
+		<?php } else { ?>
+			<h1 style="width:100%;"><a href="<?= BASE ?>accueil"><img src="<?= IMAGE ;?>/accueil/logo_blanc.svg" alt="Logo GreenHand"></a></h1>
+		<?php } ?>
+
+	</div>
+</div>
+
+<div class="main_container">
 	<?php include('menu.php'); ?>
-
 </div>
 
 
-<div class="img_accueil">
-	<h2>Il n'y a pas de petits gestes <br>quand on est 60 millions à le faire</h2>
-</div>
+
+
+
+
 
 
