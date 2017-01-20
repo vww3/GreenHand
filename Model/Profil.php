@@ -10,12 +10,9 @@ class Profil extends Mysql
 		parent::__construct('profils');
 	}
 	
-	public function ofCurrentUser()
+	public function ofUser($id)
 	{		
-		if(empty($_SESSION['user']))
-			return [];
-
-		return $this->one(
+		$profil = $this->one(
 			['profils.*'], 
 			[
 				'left' => [
@@ -23,7 +20,16 @@ class Profil extends Mysql
 				],
 				'where' => 'users.id = :id'
 			], 
-			['id' => $_SESSION['user']->id]
-		);		
+			['id' => $id]
+		);
+		
+		if(!empty($profil)) {
+			$photo = IMAGE.'profil/'.$profil->id.'.jpg';
+			$default = IMAGE.'profil/user.jpg';
+			
+			$profil->photo = is_file(ROOT.$photo) ? $photo : $default;
+		}
+		
+		return $profil;	
 	}	
 }

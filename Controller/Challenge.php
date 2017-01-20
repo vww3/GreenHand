@@ -21,7 +21,8 @@ class Challenge extends Controller
 		$this->styles[] = 'challenge';	
 		$this->styles[] = FANCYBOX_CSS;		
 		
-		$this->javascript = [JQUERY, FANCYBOX, FANCYBOX_INIT];
+		$this->javascript[] = FANCYBOX;
+		$this->javascript[] = FANCYBOX_INIT;
 	}
 	
 	public function index($id = null)
@@ -76,6 +77,7 @@ class Challenge extends Controller
 	    $posts			 = $this->model('Post')->ofChallenge($id);
 		$participation   = $this->model('Participation')->ofChallenge($id);
 		$winners         = $this->model('Participation')->winnersOfChallenge($id);
+		$badge           = $this->model('Achievement')->ofChallenge($id);
 	    $nbParticipation = count($participation);
 	    		
 	    $challengeIsAvaiable = !empty($myParticipation) AND empty($myParticipation->giveUp) AND empty($myParticipation->dateSuccess) AND !empty($challenge->avaiable);
@@ -96,6 +98,7 @@ class Challenge extends Controller
 	    	'objectiveForm',
 	    	'challengeIsAvaiable',
 	    	'challengeIsWon',
+	    	'badge',
 	    	'winners'
 	    );
 	    
@@ -121,7 +124,7 @@ class Challenge extends Controller
     {
 	    $objective = $this->model('Objective')->toComplete($id);	
 	    
-	    if(!empty($objective)) {
+	    if(!empty($_SESSION['user']) AND !empty($objective)) {
 		    		    
 		    $this->model('ObjectiveSuccess')->complete($objective->id, $objective->user);
 		    
@@ -149,7 +152,15 @@ class Challenge extends Controller
 		   	
 		    if($isChallengeCompleted) {
 				$this->model('Participation')->succeed($objective->participation);
+				$achievement = $this->model('ChallengeAchievement')->getAchievement($objective->challenge, $_SESSION['user']->id);
+				
+				if(!empty($achievement)) {
+					$this->model('UserAchievement')->save(['achievement' => $achievement->id, 'user' => $_SESSION['user']->id]);
+					$post['content'] .= ' Le badge "'.$achievement->title.'" a été obtenu !';
+				}
 			}
+			
+			$this->model('Post')->save($post);
 	    }
     }
 }

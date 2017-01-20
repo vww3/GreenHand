@@ -61,7 +61,7 @@ class Controller
 	 * @var array
 	 * @access protected
 	 */
-    protected $javascript = [];
+    protected $javascript = [JQUERY];
     
 	/**
 	 * List of datas/vars that will be transmitted to the view

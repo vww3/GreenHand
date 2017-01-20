@@ -2,7 +2,8 @@
 	<div class="sidebar_accueil">
 		
 		<?php if(!empty($_SESSION['user'])) { ?>
-		<form method="post">
+		<form method="post" enctype="multipart/form-data">
+			<img src="<?= $profil->photo ?>" alt="Photo de profil de <?= $_SESSION['user']->name ?>">
 			<h2>Profil : <?= $_SESSION['user']->name ?> <small><a href="<?= BASE ?>byebye" title="Me deconnecter de mon compte">me deconnecter</a></small></h2>
 			<hr>
 			<div>
@@ -54,6 +55,13 @@
 					'placeholder' => 'http://__________________________'
 				]) ?>
 			</div>
+			<hr>
+			<div>
+				<?= $profilForm->file('photo', [
+					'label' => 'Nouvelle Photo'
+				]) ?>
+			</div>
+			<hr>
 			<?= $profilForm->sender('Mettre à jour') ?>
 			
 			<h2>Mes participations</h2>

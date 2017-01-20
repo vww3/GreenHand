@@ -6,6 +6,7 @@ use System\Helper\Form;
 Use System\Str;
 Use System\Crypt;
 Use System\Debug;
+Use System\Image;
 
 use DateTime;
 
@@ -41,7 +42,8 @@ class Accueil extends Controller
 	{
 		$mail = new Mail(
 			'Email de test',
-			'<html><head>
+			'<html>
+				<head>
 					<title>Bienvenue '.$name.' chez GreenHand</title>
 				</head>
 				<body>
@@ -100,10 +102,11 @@ class Accueil extends Controller
 	    $formErrors = $formSignIn->errors();
 	     	    
 	    $challenges = $this->model('Challenge')->getAll();
-		$profil = $this->model('Profil')->ofCurrentUser();
+		$profil = null;
 	    $notifications = $this->model('Notification')->ofCurrentUser();
 	    
 	    if(!empty($_SESSION['user'])) {
+		    $profil = $this->model('Profil')->ofUser($_SESSION['user']->id);
 		    $profilForm = new Form(['name' => 'profil', 'datas' => (array)$profil]);
 			    
 		    if($profilForm->posted()) {
@@ -112,6 +115,18 @@ class Accueil extends Controller
 			    	$datas['id'] = $profil->id;
 			    $datas['user'] = $_SESSION['user']->id;
 			    $this->model('Profil')->save($datas);
+			    
+			    if($profilForm->downloadable('photo')) {
+				    $profilImageFolder = IMAGE.'profil/';
+				    $profilImageName = $_SESSION['user']->id.'.jpg';
+				    
+				    $profilForm->download('photo', $profilImageFolder, $profilImageName);
+				    
+				    $photo = new Image(ROOT.$profilImageFolder.$profilImageName);
+				    $photo->createThumb(200, 200);
+				    
+				    $profil->photo = $profilImageFolder.$profilImageName;
+			    }
 		    }
 		    
 		    $myChallengeParticipations = $this->model('Participation')->myChallenges();
@@ -141,6 +156,9 @@ class Accueil extends Controller
     
     public function inscription()
     {
+	    if(!empty($_SESSION['user']))
+	    	$this->go(BASE.'accueil');
+	    
 	    $formRegister = new Form(['name' => 'register']);
 	    	    
 	    if($formRegister->posted()) {

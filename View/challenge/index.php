@@ -16,12 +16,17 @@
 			<h4 class="defi_st"><?= empty($_SESSION['user']) ? 'Nombre d\'objectifs' : 'Défi terminé à' ?></h4>
 			<h4><?= $challenge->objectives ?></h4>
 		</div>
+		
+		<?php if (!empty($badge)) { ?>
 		<!-- BADGE -->
 		<div class="defi_badge">
-			<h4>Badge à gagner :</h4>
-			<div><img src="<?= IMAGE ;?>/challenge/badge.svg" alt=""></div>
-			<p>Badge de la patate</p>
+			<h4><?= $badge->isWon == 1 ? 'Vous avez gagné le badge' : 'Badge à obtenir' ?></h4>
+			<div><img src="<?= IMAGE ?>/challenge/<?= $badge->badge ?>.svg" alt=""></div>
+			<p><b><?= $badge->title ?></b></p>
+			<p><?= $badge->description ?></p>
 		</div>
+		<?php } ?>
+		
 		<!-- DEFI REUSSI PAR -->
 		<div class="defi_reussi">
 			<!-- FAIRE L'AFFICHAGE EN FONCTION DE LA DATE -->
