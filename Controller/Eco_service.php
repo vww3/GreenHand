@@ -23,6 +23,8 @@ class Eco_service extends Controller
         $this->styles[] = 'eco_service';
         $this->styles[] = 'responsive';
 
+        $this->javascript[] = "main_script";
+
         /*if (
             empty($_SESSION['administrateur']) OR 
             $_SESSION['administrateur'] != true

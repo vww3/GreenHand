@@ -41,10 +41,10 @@ define('RFM_FILE'      		 ,    ASSET.'Source/');
 define('RFM_THUMB'      	 ,    ASSET.'Thumbs/');
 
 // MYSQL
-define('MYSQL_HOST'          ,    DOMAIN == "localhost:8888" ? 'localhost' : '');
-define('MYSQL_DATABASE'      ,    DOMAIN == "localhost:8888" ? 'greenhand' : '');
-define('MYSQL_LOGIN'         ,    DOMAIN == "localhost:8888" ? 'root' : '');
-define('MYSQL_PASSWORD'      ,    DOMAIN == "localhost:8888" ? 'root' : '');
+define('MYSQL_HOST'          ,    DOMAIN == "localhost" ? 'localhost' : '');
+define('MYSQL_DATABASE'      ,    DOMAIN == "localhost" ? 'greenhand' : '');
+define('MYSQL_LOGIN'         ,    DOMAIN == "localhost" ? 'root' : '');
+define('MYSQL_PASSWORD'      ,    DOMAIN == "localhost" ? '' : '');
 
 // SHORTCUTS (no need for FOLDERS CONSTs)
 define('RFM_OPEN'       	 ,    RFM.'dialog.php');

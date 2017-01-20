@@ -2,13 +2,17 @@
 
 
 #eco_service{
-	height: 800px;
-
+	h2{
+		text-align: center;
+		margin: 40px 0;
+		font-size: 2em;
+	}
 	nav{
-
+		margin-bottom: 20px;
 		display: flex;
 		width: 100%;
 		justify-content: space-between;
+		font-size: 1.4em;
 		a:before{
 		font-family: "Flaticon";font-size:2em; color:$green;
 		-webkit-transition : all .3s;
@@ -31,7 +35,45 @@
 		text-transform: uppercase;
 		font-weight: 100;
 		color:$green;
+		margin:20px 0;
 	}
 	
+	.content_article{
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+	}
+
+	.col3{
+		margin-top: 10px;
+		width: 30%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		background: #fff;
+		border: 1px solid #ccc;
+		padding: 10px;
+		h4{
+			font-size: 1.2em;
+			    color: #23b4bd;
+		}
+		>img{
+			max-width:50%;
+		}
+
+		p{color:$d_grey;}
+		
+		span{
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+		span:before{
+			font-family: "Flaticon";
+			content: "\f109";
+			font-size: 2em;
+			color:$green;
+		}
+	}
 
 }
