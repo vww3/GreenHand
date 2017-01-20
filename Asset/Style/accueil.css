@@ -29,6 +29,12 @@ body {
   src: url("../Font/order_pizza.woff2") format("woff2"), url("../Font/order_pizza.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
+@font-face {
+  font-family: "Flaticon";
+  src: url("../Font/Flaticon.eot");
+  src: url("../Font/Flaticon.eot?#iefix") format("embedded-opentype"), url("../Font/Flaticon.woff") format("woff"), url("../Font/Flaticon.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal; }
 a {
   text-decoration: none !important;
   color: #23b4b0; }
@@ -46,7 +52,7 @@ li {
   box-sizing: border-box; }
 
 .main_container {
-  max-width: 1920px;
+  max-width: 1600px;
   margin: 0 auto;
   position: relative; }
 
@@ -244,7 +250,40 @@ header {
     -webkit-transform: rotate(-3deg);
     /* Chrome, Safari, Opera */
     transform: rotate(-3deg);
-    text-align: center; }
+    text-align: center;
+    margin-top: 120px; }
+
+/****************************************
+**	2.4 - INTRO ACCUEIL
+****************************************/
+#intro_accueil {
+  padding: 10px; }
+  #intro_accueil h2 {
+    text-align: center;
+    font-family: 'order_pizzaregular';
+    color: #23b4b0;
+    margin: 50px  0; }
+  #intro_accueil .presentation {
+    display: flex;
+    justify-content: space-between; }
+    #intro_accueil .presentation .col6 {
+      width: 45%;
+      display: flex;
+      flex-direction: column; }
+      #intro_accueil .presentation .col6 p:before {
+        content: "\f106          ";
+        font-family: "Flaticon";
+        color: #96be1f;
+        font-weight: 800;
+        font-size: 1.5em; }
+  #intro_accueil img {
+    max-width: 20%;
+    display: flex;
+    margin: 0 auto; }
+  #intro_accueil > p {
+    max-width: 50%;
+    margin: 0 auto;
+    margin-top: 20px; }
 
 /****************************************
 **
@@ -252,8 +291,7 @@ header {
 **
 ****************************************/
 #accueil_dashboard {
-  display: flex;
-  margin: 50px 10px; }
+  display: flex; }
 
 /****************************************
 **	3.1 - SIDEBAR
@@ -269,7 +307,7 @@ header {
 .dashboard {
   width: 80%;
   height: 100%;
-  padding: 0px 100px; }
+  padding-left: 50px; }
   .dashboard h2 {
     font-size: 48px;
     color: #23b4b0;
@@ -344,5 +382,3 @@ header {
   -o-box-shadow: 5px 5px 20px 0px #656565;
   box-shadow: 5px 5px 20px 0px #656565;
   filter: progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=134, Strength=20); }
-
-/*# sourceMappingURL=accueil.css.map */
