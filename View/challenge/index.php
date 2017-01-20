@@ -58,7 +58,7 @@
 					<?php foreach($objectives as $objective) { ?>
 					
 					<div>
-						<?php if(1==1) { ?>
+						<?php if($challengeIsAvaiable) { ?>
 						<?= $objectiveForm->sender(
 							"J'ai réussi !", 
 							$objective->id, 
@@ -70,7 +70,7 @@
 					
 					<?php } ?>
 					
-					<?php if(1==1) { ?>
+					<?php if($challengeIsAvaiable) { ?>
 						<?= $objectiveForm->file('evidence', ['label' => 'Ma preuve de réussite de l\'objectif (facultatif) : ']); ?>
 					<?php } ?>
 				</form>

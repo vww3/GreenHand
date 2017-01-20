@@ -16,10 +16,12 @@ class Challenge extends Controller
 	protected function __construct()
 	{
 		$this->styles[] = 'mikastrap';
-		$this->styles[] = 'base';
 		$this->styles[] = 'reset';
 		$this->styles[] = 'accueil';
-		$this->styles[] = 'challenge';		
+		$this->styles[] = 'challenge';	
+		$this->styles[] = FANCYBOX_CSS;		
+		
+		$this->javascript = [JQUERY, FANCYBOX, FANCYBOX_INIT];
 	}
 	
 	public function index($id = null)
@@ -75,10 +77,9 @@ class Challenge extends Controller
 		$participation   = $this->model('Participation')->ofChallenge($id);
 		$winners         = $this->model('Participation')->winnersOfChallenge($id);
 	    $nbParticipation = count($participation);
-	    
-	    $challengeIsAvaiable = empty($_SESSION['user']) OR $myParticipation->giveUp OR !empty($myParticipation->dateSuccess) OR !$challenge->avaiable;
-	    $challengeIsWon = !empty($_SESSION['user']) AND !empty($myParticipation->dateSuccess) AND !$myParticipation->giveUp;
-	    
+	    		
+	    $challengeIsAvaiable = !empty($myParticipation) AND empty($myParticipation->giveUp) AND empty($myParticipation->dateSuccess) AND !empty($challenge->avaiable);
+	    	    
 	    $this->title = 'Le défi "'.$challenge->title.'" de '.$challenge->author;
 	    $this->datas = compact(
 	    	'challenge',
@@ -116,24 +117,35 @@ class Challenge extends Controller
 	    return $this->model('Participation')->mineOfChallenge($myParticipation->challenge);
     }
     
-    private function completeObjective($id, $post)
+    private function completeObjective($id, $form)
     {
 	    $objective = $this->model('Objective')->toComplete($id);	
 	    
 	    if(!empty($objective)) {
+		    		    
 		    $this->model('ObjectiveSuccess')->complete($objective->id, $objective->user);
 		    
 		    $isChallengeCompleted = $this->model('Objective')->isChallengeCompleted($objective->challenge);
 		   	
-		   	if($post->downloadable('evidence')) {
+		   	$post = [];
+		    $post['challenge'] = $objective->challenge;
+		    $post['content'] = $_SESSION['user']->name.' a terminé l\'objectif "'.$objective->instruction.'" !';
+		   	
+		   	if($form->downloadable('evidence')) {
+			   	
 			   	$evidenceFolder = IMAGE.'evidence/'.$objective->challenge.'/'.$id.'/'.$_SESSION['user']->id.'/';
 			   	$evidenceName = 'big.jpg';
 			   	$evidenceThumb = 'small.jpg';
 			   	
-			   	$post->download('evidence', $evidenceFolder, $evidenceName);
+			   	$form->download('evidence', $evidenceFolder, $evidenceName);
 			   	$image = new Image(ROOT.$evidenceFolder.$evidenceName);
+			   	$image->resize(null, 800);
 			   	$image->createThumb(200, 200, ROOT.$evidenceFolder.$evidenceThumb);
-		   	}		   	
+			   	
+			   	$post['content'] .= " D'ailleurs, en voici <a href='".$evidenceFolder.$evidenceName."' class='evidence fancybox'>une preuve</a>.";
+		   	}
+		   	
+		   	$this->model('Post')->save($post);
 		   	
 		    if($isChallengeCompleted) {
 				$this->model('Participation')->succeed($objective->participation);

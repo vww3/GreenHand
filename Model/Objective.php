@@ -28,7 +28,7 @@ class Objective extends Mysql
 				
 		return $this->one(
 			[
-				$this->table().'.id',
+				$this->table().'.*',
 				'usersChallengeParticipation.user',
 				'usersChallengeParticipation.id AS participation',
 				'usersChallengeParticipation.challenge AS challenge'
