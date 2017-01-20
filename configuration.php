@@ -15,7 +15,7 @@ ini_set('display_errors', true); error_reporting(E_ALL);
 session_start();
 
 // DEFAULT
-define('DEFAULT_CONTROLLER'  ,    'Connexion');
+define('DEFAULT_CONTROLLER'  ,    'Accueil');
 define('DEFAULT_ACTION'      ,    'index');
 define('DEFAULT_LANGUAGE'    ,    'fr');
 define('MULTILINGUAL'        ,    false);
@@ -41,10 +41,10 @@ define('RFM_FILE'      		 ,    ASSET.'Source/');
 define('RFM_THUMB'      	 ,    ASSET.'Thumbs/');
 
 // MYSQL
-define('MYSQL_HOST'          ,    DOMAIN == "localhost" ? 'localhost' : '');
-define('MYSQL_DATABASE'      ,    DOMAIN == "localhost" ? 'greenhand' : '');
-define('MYSQL_LOGIN'         ,    DOMAIN == "localhost" ? 'root' : '');
-define('MYSQL_PASSWORD'      ,    DOMAIN == "localhost" ? '' : '');
+define('MYSQL_HOST'          ,    DOMAIN == "localhost:8888" ? 'localhost' : '');
+define('MYSQL_DATABASE'      ,    DOMAIN == "localhost:8888" ? 'greenhand' : '');
+define('MYSQL_LOGIN'         ,    DOMAIN == "localhost:8888" ? 'root' : '');
+define('MYSQL_PASSWORD'      ,    DOMAIN == "localhost:8888" ? 'root' : '');
 
 // SHORTCUTS (no need for FOLDERS CONSTs)
 define('RFM_OPEN'       	 ,    RFM.'dialog.php');
