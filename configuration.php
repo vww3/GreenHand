@@ -15,7 +15,7 @@ ini_set('display_errors', true); error_reporting(E_ALL);
 session_start();
 
 // DEFAULT
-define('DEFAULT_CONTROLLER'  ,    'Connexion');
+define('DEFAULT_CONTROLLER'  ,    'Accueil');
 define('DEFAULT_ACTION'      ,    'index');
 define('DEFAULT_LANGUAGE'    ,    'fr');
 define('MULTILINGUAL'        ,    false);

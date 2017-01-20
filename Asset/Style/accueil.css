@@ -244,7 +244,40 @@ header {
     -webkit-transform: rotate(-3deg);
     /* Chrome, Safari, Opera */
     transform: rotate(-3deg);
-    text-align: center; }
+    text-align: center;
+    margin-top: 120px; }
+
+/****************************************
+**	2.4 - INTRO ACCUEIL
+****************************************/
+#intro_accueil {
+  padding: 10px; }
+  #intro_accueil h2 {
+    text-align: center;
+    font-family: 'order_pizzaregular';
+    color: #23b4b0;
+    margin: 50px  0; }
+  #intro_accueil .presentation {
+    display: flex;
+    justify-content: space-between; }
+    #intro_accueil .presentation .col6 {
+      width: 45%;
+      display: flex;
+      flex-direction: column; }
+      #intro_accueil .presentation .col6 p:before {
+        content: "\f106          ";
+        font-family: "Flaticon";
+        color: #96be1f;
+        font-weight: 800;
+        font-size: 1.5em; }
+  #intro_accueil img {
+    max-width: 20%;
+    display: flex;
+    margin: 0 auto; }
+  #intro_accueil > p {
+    max-width: 50%;
+    margin: 0 auto;
+    margin-top: 20px; }
 
 /****************************************
 **
@@ -344,5 +377,3 @@ header {
   -o-box-shadow: 5px 5px 20px 0px #656565;
   box-shadow: 5px 5px 20px 0px #656565;
   filter: progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=134, Strength=20); }
-
-/*# sourceMappingURL=accueil.css.map */
