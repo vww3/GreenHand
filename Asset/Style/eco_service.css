@@ -56,32 +56,66 @@ li {
   margin: 0 auto;
   position: relative; }
 
-#eco_service {
-  height: 800px; }
-  #eco_service nav {
-    display: flex;
-    width: 100%;
-    justify-content: space-between; }
-    #eco_service nav a:before {
-      font-family: "Flaticon";
-      font-size: 2em;
-      color: #96be1f;
-      -webkit-transition: all .3s;
-      -moz-transition: all .3s;
-      transition: all .3s; }
-  #eco_service #nourrir:before {
-    content: "\f102"; }
-  #eco_service #jardin:before {
-    content: "\f10b"; }
-  #eco_service #soigner:before {
-    content: "\f105"; }
-  #eco_service #others:before {
-    content: "\f10c"; }
-  #eco_service a:hover:before {
-    color: #23b4b0;
-    font-size: 2.5em; }
-  #eco_service h3 {
+#eco_service h2 {
+  text-align: center;
+  margin: 40px 0;
+  font-size: 2em; }
+#eco_service nav {
+  margin-bottom: 20px;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  font-size: 1.4em; }
+  #eco_service nav a:before {
+    font-family: "Flaticon";
     font-size: 2em;
-    text-transform: uppercase;
-    font-weight: 100;
+    color: #96be1f;
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    transition: all .3s; }
+#eco_service #nourrir:before {
+  content: "\f102"; }
+#eco_service #jardin:before {
+  content: "\f10b"; }
+#eco_service #soigner:before {
+  content: "\f105"; }
+#eco_service #others:before {
+  content: "\f10c"; }
+#eco_service a:hover:before {
+  color: #23b4b0;
+  font-size: 2.5em; }
+#eco_service h3 {
+  font-size: 2em;
+  text-transform: uppercase;
+  font-weight: 100;
+  color: #96be1f;
+  margin: 20px 0; }
+#eco_service .content_article {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap; }
+#eco_service .col3 {
+  margin-top: 10px;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 10px; }
+  #eco_service .col3 h4 {
+    font-size: 1.2em;
+    color: #23b4bd; }
+  #eco_service .col3 > img {
+    max-width: 50%; }
+  #eco_service .col3 p {
+    color: #7d7d7d; }
+  #eco_service .col3 span {
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
+  #eco_service .col3 span:before {
+    font-family: "Flaticon";
+    content: "\f109";
+    font-size: 2em;
     color: #96be1f; }

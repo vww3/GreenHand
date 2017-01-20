@@ -53,7 +53,7 @@
 <?php foreach ($this->javascript as $script) { ?>
         <script src="<?= JAVASCRIPT.$script ?>.js"></script>
 <?php } ?>
-            		
+           	
 	</body>
 
 </html>
