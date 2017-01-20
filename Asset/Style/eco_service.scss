@@ -1,0 +1,37 @@
+@import "reset";
+
+
+#eco_service{
+	height: 800px;
+
+	nav{
+
+		display: flex;
+		width: 100%;
+		justify-content: space-between;
+		a:before{
+		font-family: "Flaticon";font-size:2em; color:$green;
+		-webkit-transition : all .3s;
+		   -moz-transition : all .3s;
+		        transition : all .3s;
+
+		}
+	}
+
+	#nourrir:before{content: "\f102";}
+	#jardin:before{content: "\f10b"; }
+	#soigner:before{content: "\f105"; }
+	#others:before{content: "\f10c"; }
+
+	a:hover:before{color:$blue;font-size: 2.5em;}
+
+
+	h3{
+		font-size: 2em;
+		text-transform: uppercase;
+		font-weight: 100;
+		color:$green;
+	}
+	
+
+}
