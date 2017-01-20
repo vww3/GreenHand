@@ -12,6 +12,17 @@ include('header.php');
 		<a href="#others1" id="others">    Autres</a>
 	</nav>
 
+	<p id="new_service">Proposez un nouveau service ? Pas de problème</p>
+
+
+	<form action="POST" id="form_service">
+		<input type="text" placeholder="Titre du service" >
+		<input type="text" placeholder="Lien">
+		<input type="textarea" placeholder="Description">
+		<input type="file">
+		<input type="submit" value="Envoyer la proposition">
+	</form>
+
 	<h3 id="nourrir1">Mieux se nourrir</h3>
 
 	<div class="content_article">

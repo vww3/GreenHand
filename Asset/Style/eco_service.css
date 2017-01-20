@@ -4,6 +4,7 @@
 **
 ****************************************/
 @import url("https://fonts.googleapis.com/css?family=Oswald:300,400,700");
+@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css");
 .hide {
   display: none; }
 
@@ -84,6 +85,11 @@ li {
 #eco_service a:hover:before {
   color: #23b4b0;
   font-size: 2.5em; }
+#eco_service #new_service:after {
+  font-family: "FontAwesome";
+  content: "       \f0d7";
+  font-size: 1.2em;
+  color: #96be1f; }
 #eco_service h3 {
   font-size: 2em;
   text-transform: uppercase;
@@ -119,3 +125,51 @@ li {
     content: "\f109";
     font-size: 2em;
     color: #96be1f; }
+#eco_service .col3:hover {
+  border: 2px solid #96be1f; }
+#eco_service #form_service {
+  display: none;
+  width: 300px; }
+#eco_service form input[type="text"] {
+  border: 1px solid #96be1f;
+  height: 30px;
+  width: 100%;
+  background: none;
+  padding: 5px;
+  color: #23b4b0;
+  margin: 5px 5px 5px 0; }
+#eco_service form input[type="textarea"] {
+  border: 1px solid #96be1f;
+  height: 30px;
+  width: 200px;
+  background: none;
+  padding: 5px;
+  color: #23b4b0;
+  width: 100%;
+  margin: 5px 0; }
+#eco_service form input[type="file"] {
+  width: 100%;
+  margin: 5px 0; }
+#eco_service form input[type="submit"] {
+  border: 1px solid #96be1f;
+  background: none;
+  width: 60%;
+  height: 40px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  background: #96be1f;
+  color: #fff;
+  -webkit-transition: all .3s;
+  -moz-transition: all .3s;
+  transition: all .3s;
+  cursor: pointer;
+  font-family: "Oswald";
+  font-size: 1.2em;
+  font-weight: 100; }
+#eco_service form input[type="submit"]:hover {
+  background: none;
+  color: #96be1f; }

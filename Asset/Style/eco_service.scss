@@ -28,7 +28,13 @@
 	#others:before{content: "\f10c"; }
 
 	a:hover:before{color:$blue;font-size: 2.5em;}
-
+	
+	#new_service:after{
+		font-family: "FontAwesome";
+		content: "       \f0d7";
+		font-size: 1.2em;
+		color:$green;
+	}
 
 	h3{
 		font-size: 2em;
@@ -74,6 +80,69 @@
 			font-size: 2em;
 			color:$green;
 		}
+	}
+
+	.col3:hover{
+		border:2px solid $green;
+	}
+
+	#form_service{
+		display: none;
+		width: 300px;
+
+	}
+	form input[type="text"]{
+		border:1px solid $green;
+		height: 30px;
+		width: 100%;
+		background: none;
+		padding: 5px;
+		color:$blue;
+		margin:5px 5px 5px 0;
+	}
+
+	form input[type="textarea"]{
+		border:1px solid $green;
+		height: 30px;
+		width: 200px;
+		background: none;
+		padding: 5px;
+		color:$blue;
+		width: 100%;
+		margin:5px 0;
+
+	}
+
+	form input[type="file"]{
+		width: 100%;
+		margin:5px 0;
+	}
+
+	form input[type="submit"]{
+		border: 1px solid $green;
+		background: none;
+		width: 60%;
+		height: 40px;
+		margin: 0 auto;
+		text-align: center;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-top: 10px;
+		background:$green;
+		color:#fff;
+		-webkit-transition : all .3s;
+		   -moz-transition : all .3s;
+		        transition : all .3s;
+		cursor: pointer;
+		font-family: "Oswald";
+		font-size: 1.2em;
+		font-weight: 100;
+	}
+
+	form input[type="submit"]:hover{
+		background:none;
+		color:$green;
 	}
 
 }
