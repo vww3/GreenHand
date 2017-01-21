@@ -1,64 +1,188 @@
 @import "reset";
 
+$color: $blue;
 
 #eco_service{
+	
 	h2{
 		text-align: center;
-		margin: 40px 0;
-		font-size: 2em;
+		padding: 30px 15px;
+		margin: 0;
+		font-size: 3em;
+		background: $color;
+		color: white;
 	}
+	
 	nav{
-		margin-bottom: 20px;
 		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: center;
+		align-content: center;
 		width: 100%;
-		justify-content: space-between;
-		font-size: 1.4em;
-		a:before{
-		font-family: "Flaticon";font-size:2em; color:$green;
-		-webkit-transition : all .3s;
-		   -moz-transition : all .3s;
-		        transition : all .3s;
-
+		font-size: 1.2em;
+		background: rgba($color, .2);
+		
+		a {
+			padding: 15px 15px 15px 3em;
+			position: relative;
+			display: block;
+			text-align: center;
+			
+			&:hover {
+				color: white;
+				
+				&:before {
+					transform: translateY(-50%) translateX(-1.1em) scale(1.2);
+				}
+			}
+			
+			&:before{
+				position: absolute;
+				font-family: "Flaticon";
+				font-size: 2em;
+				color:$green;
+				top: 50%;
+				transform: translateY(-50%) translateX(-1.1em);
+				-webkit-transition : all .3s;
+				   -moz-transition : all .3s;
+				        transition : all .3s;
+			}
+		}		
+				
+		#nourrir:before{content: "\f102";}
+		#jardin:before{content: "\f10b"; }
+		#soigner:before{content: "\f105"; }
+		#others:before{content: "\f10c"; }
+	}	
+	
+	#new_service {
+		position: relative;
+		text-align: center;
+		background: #979797;
+		color: white;
+		padding: 10px 15px;
+		margin: 0;
+		font-size: .8em;
+		
+		&:after{
+			font-family: "FontAwesome";
+			content: "\f0d7";
+			font-size: 1em;
+			color:$green;
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%) translateX(.5em);
+		}
+	}
+	
+	#form_service{
+		display: none;
+		background: rgba($blue, .2);
+		
+		section {
+			display: flex;
+			flex-wrap: wrap;
+			margin: 0;
+			padding: 0;
+			
+			.half {
+				width: #{100%/2};
+				padding: 10px 15px;
+			}
+			
+			input, select, textarea{
+				width: 100%;
+				font-size: 1em;
+				border-radius: 0;
+				border: none;
+				padding: 10px;
+				margin: 5px 0;
+				-webkit-appearance: none;
+				        appearance: none;
+				color: $blue;
+			}
+			
+			select {
+				color: white;
+				background: rgba($blue, .5);
+			}
+			
+			input[type="text"]{
+			}
+		
+			textarea{
+				resize: none;
+				height: 132px;
+			}
+		
+			input[type="file"]{
+				background: rgba($blue, .5);
+				color: white;
+			}
+		
+			input[type="submit"]{
+				color: white;
+				background: $blue;
+				cursor: pointer;
+			}
+		
+			input[type="submit"]:hover{
+				background: rgba($blue, .5);
+			}
+			
 		}
 	}
 
-	#nourrir:before{content: "\f102";}
-	#jardin:before{content: "\f10b"; }
-	#soigner:before{content: "\f105"; }
-	#others:before{content: "\f10c"; }
-
-	a:hover:before{color:$blue;font-size: 2.5em;}
-	
-	#new_service:after{
-		font-family: "FontAwesome";
-		content: "       \f0d7";
-		font-size: 1.2em;
-		color:$green;
-	}
-
 	h3{
-		font-size: 2em;
+		font-size: 2.5em;
 		text-transform: uppercase;
-		font-weight: 100;
-		color:$green;
-		margin:20px 0;
+		font-weight: lighter;
+		color: $green;
+		margin: 0;
+		padding: 30px 15px;
 	}
 	
 	.content_article{
 		display: flex;
-		justify-content: space-between;
 		flex-wrap: wrap;
-	}
+		padding: #{15px/2};
 
-	.col3{
-		margin-top: 10px;
-		width: 30%;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		background: #fff;
-		border: 1px solid #ccc;
-		padding: 10px;
+		.service{
+			width: #{100%/2};
+			padding: #{15px/2};
+			display: flex;
+			flex-wrap: wrap;
+			
+			.card {
+				background: white;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				align-content: center;
+				flex-wrap: wrap;
+				width: 100%;
+				
+				.link {
+					color: rgba($blue, .75);
+				}
+				
+				> * {
+					padding: 15px;
+				}
+				
+				> img {
+					width: #{100%/3};
+				}
+				
+				> div {
+					width: #{100% * 2/3};
+				}
+			}
+						
+		}
+	}
+	
 		h4{
 			font-size: 1.2em;
 			    color: #23b4bd;
@@ -80,69 +204,8 @@
 			font-size: 2em;
 			color:$green;
 		}
-	}
 
 	.col3:hover{
 		border:2px solid $green;
 	}
-
-	#form_service{
-		display: none;
-		width: 300px;
-
-	}
-	form input[type="text"]{
-		border:1px solid $green;
-		height: 30px;
-		width: 100%;
-		background: none;
-		padding: 5px;
-		color:$blue;
-		margin:5px 5px 5px 0;
-	}
-
-	form input[type="textarea"]{
-		border:1px solid $green;
-		height: 30px;
-		width: 200px;
-		background: none;
-		padding: 5px;
-		color:$blue;
-		width: 100%;
-		margin:5px 0;
-
-	}
-
-	form input[type="file"]{
-		width: 100%;
-		margin:5px 0;
-	}
-
-	form input[type="submit"]{
-		border: 1px solid $green;
-		background: none;
-		width: 60%;
-		height: 40px;
-		margin: 0 auto;
-		text-align: center;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		margin-top: 10px;
-		background:$green;
-		color:#fff;
-		-webkit-transition : all .3s;
-		   -moz-transition : all .3s;
-		        transition : all .3s;
-		cursor: pointer;
-		font-family: "Oswald";
-		font-size: 1.2em;
-		font-weight: 100;
-	}
-
-	form input[type="submit"]:hover{
-		background:none;
-		color:$green;
-	}
-
 }
