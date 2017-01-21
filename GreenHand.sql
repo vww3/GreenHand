@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  localhost:8889
--- Généré le :  Ven 20 Janvier 2017 à 18:40
+-- Généré le :  Sam 21 Janvier 2017 à 16:30
 -- Version du serveur :  5.6.28
 -- Version de PHP :  7.0.10
 
@@ -206,7 +206,8 @@ INSERT INTO `challengePost` (`id`, `content`, `date`, `signaled`, `user`, `chall
 (32, 'MickaStark a terminé l\'objectif "Ne pas faire caca" !', '2017-01-20 15:30:00', 0, NULL, 1),
 (33, 'MickaStark a terminé l\'objectif "Mangez 5kg de patate en un jour." !', '2017-01-20 15:30:22', 0, NULL, 1),
 (34, 'MickaStark a terminé l\'objectif "Ne pas vomir" !', '2017-01-20 15:30:22', 0, NULL, 1),
-(35, 'MickaStark a terminé l\'objectif "Ne pas faire caca" !', '2017-01-20 15:30:23', 0, NULL, 1);
+(35, 'MickaStark a terminé l\'objectif "Ne pas faire caca" !', '2017-01-20 15:30:23', 0, NULL, 1),
+(36, 'sdfgsdfg', '2017-01-21 14:26:57', 0, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -338,6 +339,54 @@ INSERT INTO `profils` (`id`, `firstName`, `lastName`, `description`, `birth`, `g
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `service`
+--
+
+CREATE TABLE `service` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `link` varchar(255) NOT NULL,
+  `category` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `service`
+--
+
+INSERT INTO `service` (`id`, `title`, `description`, `link`, `category`) VALUES
+(1, 'La ruche qui dit oui', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, recusandae, dolorum eveniet rerum ex quidem nam. Reprehenderit tenetur, soluta rerum nobis iusto qui. Consectetur quis soluta cumque laboriosam tempora quasi.', 'https://laruchequiditoui.fr/fr', 1),
+(2, 'Hello Google', 'C\'est google !', 'http://www.google.fr/', 1),
+(3, 'Hello Google', 'C\'est google !', 'http://www.google.fr/', 1),
+(4, 'Hello Google', 'C\'est google !', 'http://www.google.fr/', 3),
+(5, 'QSD', 'qdsfqsd', 'que', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `serviceCategory`
+--
+
+CREATE TABLE `serviceCategory` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `idAttr` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `serviceCategory`
+--
+
+INSERT INTO `serviceCategory` (`id`, `title`, `description`, `idAttr`) VALUES
+(1, 'Mieux se nourrir', '', 'nourrir'),
+(2, 'Jardinage écolo', '', 'jardin'),
+(3, 'Se soigner naturellement', '', 'soigner'),
+(4, 'Autres', '', 'others');
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `users`
 --
 
@@ -359,7 +408,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `password`, `isAdmin`, `isProducer`, `validationKey`, `valid`, `name`, `dateRegistration`, `numConnection`) VALUES
-(1, 'mickael@boidin.fr', 'v4Ww7kD2JOILAJCz1ulhsw==', 1, 0, 'd8926941f4df618530cf9ec181c3684a', 1, 'MickaStark', '2017-01-11 19:47:32', 17),
+(1, 'mickael@boidin.fr', 'v4Ww7kD2JOILAJCz1ulhsw==', 1, 0, 'd8926941f4df618530cf9ec181c3684a', 1, 'MickaStark', '2017-01-11 19:47:32', 18),
 (8, 'mickael@boidin2.fr', 'urHUxyeJf91U60oJTiPGtQ==', 0, 0, '2a4d7dc61d5e7968e4b71cdbeed8ecfe', 1, 'fqsdfqsd', '2017-01-11 21:26:01', 7);
 
 -- --------------------------------------------------------
@@ -523,6 +572,19 @@ ALTER TABLE `profils`
   ADD KEY `user` (`user`);
 
 --
+-- Index pour la table `service`
+--
+ALTER TABLE `service`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `category` (`category`);
+
+--
+-- Index pour la table `serviceCategory`
+--
+ALTER TABLE `serviceCategory`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Index pour la table `users`
 --
 ALTER TABLE `users`
@@ -590,7 +652,7 @@ ALTER TABLE `challengeObjective`
 -- AUTO_INCREMENT pour la table `challengePost`
 --
 ALTER TABLE `challengePost`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 --
 -- AUTO_INCREMENT pour la table `message`
 --
@@ -621,6 +683,16 @@ ALTER TABLE `productCategory`
 --
 ALTER TABLE `profils`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+--
+-- AUTO_INCREMENT pour la table `service`
+--
+ALTER TABLE `service`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT pour la table `serviceCategory`
+--
+ALTER TABLE `serviceCategory`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT pour la table `users`
 --
@@ -704,6 +776,12 @@ ALTER TABLE `product`
 --
 ALTER TABLE `profils`
   ADD CONSTRAINT `fk_users` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `service`
+--
+ALTER TABLE `service`
+  ADD CONSTRAINT `fk_service_category` FOREIGN KEY (`category`) REFERENCES `serviceCategory` (`id`);
 
 --
 -- Contraintes pour la table `usersAchievementSuccess`
