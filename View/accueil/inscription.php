@@ -1,10 +1,10 @@
 <div class="topbar">
-	<a href="<?= BASE ?>accueil"><img src="<?= IMAGE ;?>/accueil/logo_blanc.svg" alt="Logo GreenHand"></a>
+	<img src="<?= IMAGE ;?>/accueil/logo_blanc.svg" alt="Logo GreenHand">
 </div>
 
 <section class="container">
 	
-	<h1 id="joinus">Rejoins GreenHand aujourd'hui</h1>
+	<h1>Rejoins GreenHand aujourd'hui</h1>
 	
 	<!-- <p>Tu peux <a href="<?= BASE ?>accueil" title="Visiter GreenHand sans se connecter">visiter le site</a> si tu le désires</p> -->
 	

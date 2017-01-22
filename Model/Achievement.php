@@ -27,7 +27,7 @@ class Achievement extends Mysql
 					'challengeachievement.challenge = :challenge'
 				]
 			],
-			['challenge' => $id, 'user' => $_SESSION['user']->id]
+			['challenge' => $id, 'user' => empty($_SESSION['user']) ? 0 : $_SESSION['user']->id]
 		);
 	}
 }

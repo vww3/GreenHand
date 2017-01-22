@@ -40,11 +40,3 @@
 <div class="main_container">
 	<?php include('menu.php'); ?>
 </div>
-
-
-
-
-
-
-
-

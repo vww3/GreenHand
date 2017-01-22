@@ -66,8 +66,6 @@
 			</div>
 			<hr>
 			<?= $profilForm->sender('Mettre à jour') ?>
-
-			<h4>Mes badges</h4>
 			
 			<h2>Mes participations</h2>
 			<?php if(!empty($myChallengeParticipations)) { ?>
