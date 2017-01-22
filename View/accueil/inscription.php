@@ -1,5 +1,5 @@
 <div class="topbar">
-	<img src="<?= IMAGE ;?>/accueil/logo_blanc.svg" alt="Logo GreenHand">
+	<a href="<?= BASE ?>accueil"><img src="<?= IMAGE ;?>/accueil/logo_blanc.svg" alt="Logo GreenHand"></a>
 </div>
 
 <section class="container">
