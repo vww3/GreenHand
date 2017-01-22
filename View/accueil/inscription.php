@@ -4,7 +4,7 @@
 
 <section class="container">
 	
-	<h1>Rejoins GreenHand aujourd'hui</h1>
+	<h1 id="joinus">Rejoins GreenHand aujourd'hui</h1>
 	
 	<!-- <p>Tu peux <a href="<?= BASE ?>accueil" title="Visiter GreenHand sans se connecter">visiter le site</a> si tu le désires</p> -->
 	
