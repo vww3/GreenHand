@@ -62,6 +62,7 @@ class Challenge extends Mysql
 			'left' => [
 				'challengeCategory' => 'challengeCategory.id = challenge.category'
 			],
+			'order' => 'challenge.dateCreation DESC'
 		];		
 		
 		return $this->all($selected, $left, $preparation);

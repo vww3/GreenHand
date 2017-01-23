@@ -212,4 +212,8 @@ class Accueil extends Controller
 	    session_destroy();
 	    $this->go(BASE);
     }
+
+    public function presentation(){
+    	$this->view();
+    }
 }

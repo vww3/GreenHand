@@ -2,7 +2,7 @@
 	
 	<div class="sidebar_accueil">
 
-	Bonjour
+	<h4>Bienvenue sur GreenHand !</h4>
 		
 		<?php if(!empty($_SESSION['user'])) { ?>
 		<form method="post" enctype="multipart/form-data">
@@ -76,16 +76,15 @@
 			<div>Je ne participe à aucun défi pour le moment.</div>
 			<?php } ?>
 		<?php } else { ?>
-			<h2>Connecte-toi</h2>
 			<p>Pour pouvoir accéder au profil et participer aux défis, il faut que tu te connectes à ton compte. Si tu n'en n'as pas tu peux gratuitement <a href="<?= BASE ?>inscription">t'inscrire</a> dès maintenant.</p>
-			<p><a href="<?= BASE ?>connexion" title="Aller sur la page de connexion et d'inscription">Connexion / Inscription</a></p>
+			<p>Sinon, <a href="<?= BASE ?>connexion" title="Aller sur la page de connexion et d'inscription">connecte</a> toi en haut à droite de cette page !</p>
 		<?php } ?>
 		</form>
 	</div>
 
 	<div class="dashboard">
-		<h2>Tableau de bord</h2>
-		<hr>
+		<!-- <h2>Tableau de bord</h2>
+		<hr> -->
 		
 		<div class="content_dashboard">
 			
@@ -98,7 +97,7 @@
 
 				<div class="single_defi_text">
 					<h3><a href="<?= BASE ?>challenge/<?= $challenge->id ?>/<?= $challenge->slug ?>" title='Le défi "<?= $challenge->title ?>"'><?= $challenge->title ?></a></h3>
-					<p><?= $challenge->description ?></p>
+					<p><?= substr($challenge->description, 0, 150) ?>...</p>
 
 					<div class="single_defi_bottom">
 						<div class="icon_partage">

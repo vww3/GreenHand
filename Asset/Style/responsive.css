@@ -5,7 +5,7 @@
 ****************************************/
 @media screen and (max-width: 1607px) {
   .sidebar_accueil {
-    width: 30% !important; }
+    width: 30%; }
 
   .dashboard {
     padding: 0 50px; } }
@@ -35,12 +35,37 @@
     width: 60% !important; }
 
   #accueil_dashboard {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
     flex-direction: column; }
     #accueil_dashboard .sidebar_accueil {
-      width: 100%; }
+      width: 100%;
+      margin: 10px; }
     #accueil_dashboard .dashboard {
       width: 100%;
-      padding: 20px; } }
+      padding: 20px;
+      margin: 10px; }
+
+  .topbar_index {
+    height: auto;
+    padding: 20px; }
+    .topbar_index #top_bar {
+      -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+      flex-direction: column; }
+      .topbar_index #top_bar .inscription {
+        width: 100%;
+        text-align: center; }
+      .topbar_index #top_bar form {
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        width: 40%;
+        margin: 0 auto;
+        text-align: center; }
+        .topbar_index #top_bar form input {
+          width: 100%;
+          margin-top: 5px; } }
 /****************************************
 **
 **	MAX WIDTH 730px
@@ -48,18 +73,26 @@
 ****************************************/
 @media screen and (max-width: 730px) {
   header {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
     flex-direction: column;
     max-height: 100%; }
     header h1 {
       width: 100%; }
       header h1 a {
+        display: -webkit-flex;
+        display: -ms-flexbox;
         display: flex;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
         justify-content: center; }
     header .baseline {
       width: 100%;
       color: #ccc; }
     header .header_notif {
       width: 100%;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
       align-items: center; }
     header h1, header .baseline, header .header_notif {
       margin: 10px 0; }
@@ -68,6 +101,8 @@
   		DASHBOARD
   *****************************************/
   #accueil_dashboard {
+    -webkit-flex-direction: column !important;
+    -ms-flex-direction: column !important;
     flex-direction: column !important; }
 
   .sidebar_accueil {
@@ -77,14 +112,22 @@
     width: 100%;
     padding: 10px; }
     .dashboard .single_defi {
+      -webkit-flex-direction: column;
+      -ms-flex-direction: column;
       flex-direction: column; }
       .dashboard .single_defi .single_defi__img {
+        display: -webkit-flex;
+        display: -ms-flexbox;
         display: flex;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
         justify-content: center;
         margin-bottom: 10px; }
       .dashboard .single_defi .single_defi_text {
         padding: 0 !important; }
         .dashboard .single_defi .single_defi_text .single_defi_bottom {
+          -webkit-justify-content: center;
+          -ms-flex-pack: center;
           justify-content: center; }
           .dashboard .single_defi .single_defi_text .single_defi_bottom .icon_info_defi {
             width: auto !important; } }
@@ -114,6 +157,8 @@
       padding: 5px; }
 
   .main_menu nav {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
     flex-direction: column; }
     .main_menu nav .content_img_menu {
       display: none !important; }
@@ -128,7 +173,9 @@
       padding: 40px 10px; }
 
   .single_defi_bottom {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
     align-items: center; } }
-
-/*# sourceMappingURL=responsive.css.map */

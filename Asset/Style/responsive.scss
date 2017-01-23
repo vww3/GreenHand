@@ -6,7 +6,7 @@
 ****************************************/
 @media screen and (max-width: 1607px) {
 	.sidebar_accueil{
-		width:30% !important;
+		width:30%;
 	}
 
 	.dashboard{
@@ -59,13 +59,46 @@
 	}
 
 	#accueil_dashboard{
-		flex-direction: column;
+		-webkit-flex-direction: column;
+		    -ms-flex-direction: column;
+		        flex-direction: column;
 		.sidebar_accueil{
 			width: 100%;
+			margin: 10px;
 		}
 		.dashboard{
 			width: 100%;
 			padding:20px;
+			margin: 10px;
+		}
+	}
+
+	.topbar_index{
+		height: auto;
+		padding: 20px;
+		#top_bar{
+			-webkit-flex-direction: column;
+			    -ms-flex-direction: column;
+			        flex-direction: column;
+
+			.inscription{
+				width: 100%;
+				text-align: center;
+			}
+
+			form{
+				-webkit-flex-direction: column;
+				    -ms-flex-direction: column;
+				        flex-direction: column;
+				width: 40%;
+				margin: 0 auto;
+				text-align: center;
+
+				input{
+					width: 100%;
+					margin-top: 5px;
+				}
+			}
 		}
 	}
 
@@ -78,13 +111,19 @@
 ****************************************/
 @media screen and (max-width: 730px) {
 	header{
-		flex-direction: column;
+		-webkit-flex-direction: column;
+		    -ms-flex-direction: column;
+		        flex-direction: column;
 		max-height: 100%;
 		h1{
 			width: 100%;
 			a{
+				display: -webkit-flex;
+				display: -ms-flexbox;
 				display: flex;
-				justify-content: center;
+				-webkit-justify-content: center;
+				    -ms-flex-pack: center;
+				        justify-content: center;
 			}
 		}
 
@@ -95,7 +134,9 @@
 
 		.header_notif{
 			width: 100%;
-			align-items: center;
+			-webkit-align-items: center;
+			    -ms-flex-align: center;
+			        align-items: center;
 		}
 
 		h1, .baseline, .header_notif{
@@ -107,7 +148,9 @@
 			DASHBOARD
 	*****************************************/
 	#accueil_dashboard{
-		flex-direction:column !important;
+		-webkit-flex-direction:column !important;
+		    -ms-flex-direction:column !important;
+		        flex-direction:column !important;
 	}
 
 	.sidebar_accueil{
@@ -119,18 +162,26 @@
 		padding: 10px;
 
 		.single_defi{
-			flex-direction: column;
+			-webkit-flex-direction: column;
+			    -ms-flex-direction: column;
+			        flex-direction: column;
 
 			.single_defi__img{
+				display: -webkit-flex;
+				display: -ms-flexbox;
 				display: flex;
-				justify-content: center;
+				-webkit-justify-content: center;
+				    -ms-flex-pack: center;
+				        justify-content: center;
 				margin-bottom: 10px;
 			}
 
 			.single_defi_text{
 				padding: 0 !important;
 				.single_defi_bottom{
-					justify-content: center;
+					-webkit-justify-content: center;
+					    -ms-flex-pack: center;
+					        justify-content: center;
 
 					.icon_info_defi{
 						width: auto !important;
@@ -172,7 +223,9 @@
 	}
 
 	.main_menu nav{
-		flex-direction:column;
+		-webkit-flex-direction:column;
+		    -ms-flex-direction:column;
+		        flex-direction:column;
 
 		.content_img_menu{display: none !important;}
 	}
@@ -190,8 +243,12 @@
 	}
 
 	.single_defi_bottom{
-	    flex-direction: column;
-	    align-items: center;
+	    -webkit-flex-direction: column;
+	        -ms-flex-direction: column;
+	            flex-direction: column;
+	    -webkit-align-items: center;
+	        -ms-flex-align: center;
+	            align-items: center;
 	}
     
 }

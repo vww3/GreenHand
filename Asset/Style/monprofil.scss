@@ -10,6 +10,8 @@
 header{
 	width: 100%;
 	height:100px;
+	display:-webkit-flex;
+	display:-ms-flexbox;
 	display:flex;
 	background:$blue;
 	padding: 10px;
@@ -19,8 +21,12 @@ header{
 
 		h1{
 			height: 100%;
+			display: -webkit-flex;
+			display: -ms-flexbox;
 			display: flex;
-			justify-content: center;
+			-webkit-justify-content: center;
+			    -ms-flex-pack: center;
+			        justify-content: center;
 			img{
 				height: 100%;
 			}
@@ -30,15 +36,25 @@ header{
 
 	.main_menu{
 		width:40%;
+		display: -webkit-flex;
+		display: -ms-flexbox;
 		display: flex;
-		justify-content: center;
+		-webkit-justify-content: center;
+		    -ms-flex-pack: center;
+		        justify-content: center;
 
 		nav{
 			height: 100%;
 			width: 60%;
+			display: -webkit-flex;
+			display: -ms-flexbox;
 			display: flex;
-			align-items: center;
-			justify-content: space-between;
+			-webkit-align-items: center;
+			    -ms-flex-align: center;
+			        align-items: center;
+			-webkit-justify-content: space-between;
+			    -ms-flex-pack: justify;
+			        justify-content: space-between;
 
 			a{
 				color:#fff;
@@ -50,9 +66,15 @@ header{
 
 	.search{
 		width: 40%;
+		display: -webkit-flex;
+		display: -ms-flexbox;
 		display: flex;
-		justify-content: center;
-		align-items: center;
+		-webkit-justify-content: center;
+		    -ms-flex-pack: center;
+		        justify-content: center;
+		-webkit-align-items: center;
+		    -ms-flex-align: center;
+		        align-items: center;
 
 		input{
 			height: 40px;
@@ -74,8 +96,12 @@ header{
 
 	.notif_menu{
 		width: 10%;
+		display: -webkit-flex;
+		display: -ms-flexbox;
 		display: flex;
-		align-items: center;
+		-webkit-align-items: center;
+		    -ms-flex-align: center;
+		        align-items: center;
 		.notif_top{
 			width: 33.333333%;
 
@@ -102,11 +128,7 @@ header{
 		color: #fff;
 		font-size: 33px;
 		margin: 35px 25px;
-		-webkit-transition: color 0.5s;
-		    -ms-transition: color 0.5s;
-		    -moz-transition: color 0.5s;
-		    -o-transition: color 0.5s;
-		    transition: color 0.5s;
+		transition: color 0.5s;
 	}
 
 	.fa-cog:hover{
@@ -125,8 +147,12 @@ header{
 }
 
 .info_profil_top{
+	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
-	align-items: center;
+	-webkit-align-items: center;
+	    -ms-flex-align: center;
+	        align-items: center;
 	
 }
 
@@ -154,8 +180,12 @@ header{
 
 	.info_stat{
 		width: 100%;
+		display: -webkit-flex;
+		display: -ms-flexbox;
 		display: flex;
-		flex-wrap: wrap;
+		-webkit-flex-wrap: wrap;
+		    -ms-flex-wrap: wrap;
+		        flex-wrap: wrap;
 
 		.defi_en_cours{
 			width: 50%;

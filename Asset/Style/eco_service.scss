@@ -1,6 +1,5 @@
 @import "reset";
 
-$color: $blue;
 
 #eco_service{
 	
@@ -9,19 +8,28 @@ $color: $blue;
 		padding: 30px 15px;
 		margin: 0;
 		font-size: 3em;
-		background: $color;
-		color: white;
+		color: $blue;
 	}
 	
 	nav{
+		display: -webkit-flex;
+		display: -ms-flexbox;
 		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
-		align-items: center;
-		align-content: center;
+		-webkit-flex-wrap: wrap;
+		    -ms-flex-wrap: wrap;
+		        flex-wrap: wrap;
+		-webkit-justify-content: center;
+		    -ms-flex-pack: center;
+		        justify-content: center;
+		-webkit-align-items: center;
+		    -ms-flex-align: center;
+		        align-items: center;
+		-ms-flex-line-pack: center;
+		    -webkit-align-content: center;
+		        align-content: center;
 		width: 100%;
 		font-size: 1.2em;
-		background: rgba($color, .2);
+		background: rgba($blue, .2);
 		
 		a {
 			padding: 15px 15px 15px 3em;
@@ -33,7 +41,9 @@ $color: $blue;
 				color: white;
 				
 				&:before {
-					transform: translateY(-50%) translateX(-1.1em) scale(1.2);
+					-webkit-transform: translateY(-50%) translateX(-1.1em) scale(1.2);
+					    -ms-transform: translateY(-50%) translateX(-1.1em) scale(1.2);
+					        transform: translateY(-50%) translateX(-1.1em) scale(1.2);
 				}
 			}
 			
@@ -43,10 +53,10 @@ $color: $blue;
 				font-size: 2em;
 				color:$green;
 				top: 50%;
-				transform: translateY(-50%) translateX(-1.1em);
-				-webkit-transition : all .3s;
-				   -moz-transition : all .3s;
-				        transition : all .3s;
+				-webkit-transform: translateY(-50%) translateX(-1.1em);
+				    -ms-transform: translateY(-50%) translateX(-1.1em);
+				        transform: translateY(-50%) translateX(-1.1em);
+				transition : all .3s;
 			}
 		}		
 				
@@ -72,17 +82,24 @@ $color: $blue;
 			color:$green;
 			position: absolute;
 			top: 50%;
-			transform: translateY(-50%) translateX(.5em);
+			-webkit-transform: translateY(-50%) translateX(.5em);
+			    -ms-transform: translateY(-50%) translateX(.5em);
+			        transform: translateY(-50%) translateX(.5em);
 		}
 	}
 	
 	#form_service{
 		display: none;
-		background: rgba($blue, .2);
+		background: #fff;
+		border : 1px solid #ccc;
 		
 		section {
+			display: -webkit-flex;
+			display: -ms-flexbox;
 			display: flex;
-			flex-wrap: wrap;
+			-webkit-flex-wrap: wrap;
+			    -ms-flex-wrap: wrap;
+			        flex-wrap: wrap;
 			margin: 0;
 			padding: 0;
 			
@@ -99,7 +116,8 @@ $color: $blue;
 				padding: 10px;
 				margin: 5px 0;
 				-webkit-appearance: none;
-				        appearance: none;
+				        -moz-appearance: none;
+				     appearance: none;
 				color: $blue;
 			}
 			
@@ -144,23 +162,41 @@ $color: $blue;
 	}
 	
 	.content_article{
+		display: -webkit-flex;
+		display: -ms-flexbox;
 		display: flex;
-		flex-wrap: wrap;
-		padding: #{15px/2};
+		-webkit-flex-wrap: wrap;
+		    -ms-flex-wrap: wrap;
+		        flex-wrap: wrap;
+		padding: 7.5px;
 
 		.service{
-			width: #{100%/2};
-			padding: #{15px/2};
+			width: 50%;
+			padding: 7.5px;
+			display: -webkit-flex;
+			display: -ms-flexbox;
 			display: flex;
-			flex-wrap: wrap;
+			-webkit-flex-wrap: wrap;
+			    -ms-flex-wrap: wrap;
+			        flex-wrap: wrap;
 			
 			.card {
 				background: white;
+				display: -webkit-flex;
+				display: -ms-flexbox;
 				display: flex;
-				justify-content: center;
-				align-items: center;
-				align-content: center;
-				flex-wrap: wrap;
+				-webkit-justify-content: center;
+				    -ms-flex-pack: center;
+				        justify-content: center;
+				-webkit-align-items: center;
+				    -ms-flex-align: center;
+				        align-items: center;
+				-ms-flex-line-pack: center;
+				    -webkit-align-content: center;
+				        align-content: center;
+				-webkit-flex-wrap: wrap;
+				    -ms-flex-wrap: wrap;
+				        flex-wrap: wrap;
 				width: 100%;
 				
 				.link {
@@ -172,11 +208,11 @@ $color: $blue;
 				}
 				
 				> img {
-					width: #{100%/3};
+					width: 33.333%;
 				}
 				
 				> div {
-					width: #{100% * 2/3};
+					width: 66.666%;
 				}
 			}
 						
@@ -194,9 +230,15 @@ $color: $blue;
 		p{color:$d_grey;}
 		
 		span{
+			display: -webkit-flex;
+			display: -ms-flexbox;
 			display: flex;
-			flex-direction: column;
-			align-items: center;
+			-webkit-flex-direction: column;
+			    -ms-flex-direction: column;
+			        flex-direction: column;
+			-webkit-align-items: center;
+			    -ms-flex-align: center;
+			        align-items: center;
 		}
 		span:before{
 			font-family: "Flaticon";

@@ -233,6 +233,8 @@ li {
 ****************************************/
 header {
   max-width: 100%;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   max-height: 200px;
   margin: 20px 10px 61px 10px; }
@@ -244,35 +246,57 @@ header {
     width: 40%;
     text-align: center;
     font-family: 'order_pizzaregular';
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
     align-items: center;
     font-size: 1.5em;
     color: #96bd11; }
   header .header_notif {
     width: 30%;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-align-items: flex-end;
+    -ms-flex-align: end;
     align-items: flex-end;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
     flex-direction: column; }
     header .header_notif .header_notif_top {
+      display: -webkit-flex;
+      display: -ms-flexbox;
       display: flex;
       width: 30%;
+      -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
       justify-content: space-between; }
       header .header_notif .header_notif_top .notif_top {
         border: 2px solid #23b4b0;
         width: 50px;
         height: 50px;
+        display: -webkit-flex;
+        display: -ms-flexbox;
         display: flex;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
         justify-content: center;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
         align-items: center; }
       header .header_notif .header_notif_top #notif_alert::after, header .header_notif .header_notif_top #notif_msg::after, header .header_notif .header_notif_top #notif_profil::after {
         content: "\f100";
         font-family: "Flaticon";
         font-size: 2em;
         color: #96be1f;
-        -webkit-transition: all .3s;
-        -moz-transition: all .3s;
         transition: all .3s; }
       header .header_notif .header_notif_top #notif_msg::after {
         content: "\f101"; }
@@ -289,8 +313,6 @@ header {
       height: 40px;
       margin-top: 20px;
       border: 3px solid transparent;
-      -moz-border-image: -moz-linear-gradient(top left, #96be1f 0%, #23b4b0 100%);
-      -webkit-border-image: -webkit-linear-gradient(top left, #96be1f 0%, #23b4b0 100%);
       border-image: linear-gradient(to bottom right, #96be1f 0%, #23b4b0 100%);
       border-image-slice: 1;
       background: none;
@@ -305,9 +327,17 @@ header {
   background-position: center;
   width: 100%;
   height: 450px;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
   flex-direction: column; }
   .img_accueil h1 {
     width: 21%; }
@@ -334,24 +364,34 @@ header {
     color: #23b4b0;
     margin: 50px  0; }
   #intro_accueil .presentation {
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
     justify-content: space-between; }
     #intro_accueil .presentation .col6 {
       width: 45%;
+      display: -webkit-flex;
+      display: -ms-flexbox;
       display: flex;
+      -webkit-flex-direction: column;
+      -ms-flex-direction: column;
       flex-direction: column; }
       #intro_accueil .presentation .col6 p:before {
-        content: "\f106          ";
+        content: "\f108          ";
         font-family: "Flaticon";
         color: #96be1f;
         font-weight: 800;
         font-size: 1.5em; }
   #intro_accueil img {
     max-width: 20%;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
     margin: 0 auto; }
   #intro_accueil > p {
-    max-width: 50%;
+    max-width: 80%;
     margin: 0 auto;
     margin-top: 20px; }
 
@@ -361,15 +401,34 @@ header {
 **
 ****************************************/
 #accueil_dashboard {
-  display: flex; }
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 50px; }
 
 /****************************************
 **	3.1 - SIDEBAR
 ****************************************/
 .sidebar_accueil {
-  background: #23b4b0;
+  border: 1px solid #c6c6c6;
+  padding: 20px;
+  background: #fff;
   width: 20%;
-  height: 100%; }
+  height: 100%;
+  margin-top: 20px; }
+  .sidebar_accueil h4 {
+    color: #96be1f;
+    text-align: center;
+    font-size: 2em; }
+  .sidebar_accueil form {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column; }
+    .sidebar_accueil form img {
+      margin: 0 auto; }
 
 /****************************************
 **	3.2 - DEFI
@@ -377,7 +436,7 @@ header {
 .dashboard {
   width: 80%;
   height: 100%;
-  padding-left: 50px; }
+  margin-left: 50px; }
   .dashboard h2 {
     font-size: 48px;
     color: #23b4b0;
@@ -387,68 +446,90 @@ header {
     height: 2px;
     width: 23%;
     background-image: linear-gradient(to right, #23b4b0, #96be1f); }
-  .dashboard .content_dashboard {
-    margin-top: 50px; }
-    .dashboard .content_dashboard .single_defi {
-      border: 1px solid #c6c6c6;
-      padding: 20px;
-      background: #fff;
-      display: flex;
-      margin: 20px 0; }
-      .dashboard .content_dashboard .single_defi .single_defi_text {
-        padding-left: 20px;
-        width: 100%; }
-        .dashboard .content_dashboard .single_defi .single_defi_text h3 {
-          text-transform: uppercase;
-          font-size: 20px;
-          color: #000;
-          font-weight: bold;
-          text-align: center; }
-        .dashboard .content_dashboard .single_defi .single_defi_text p {
-          font-style: italic; }
-        .dashboard .content_dashboard .single_defi .single_defi_text .single_defi_bottom {
+  .dashboard .content_dashboard .single_defi {
+    border: 1px solid #c6c6c6;
+    padding: 20px;
+    background: #fff;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    margin: 20px 0; }
+    .dashboard .content_dashboard .single_defi .single_defi_text {
+      padding-left: 20px;
+      width: 100%; }
+      .dashboard .content_dashboard .single_defi .single_defi_text h3 {
+        text-transform: uppercase;
+        font-size: 20px;
+        color: #000;
+        font-weight: bold;
+        text-align: center; }
+      .dashboard .content_dashboard .single_defi .single_defi_text p {
+        font-style: italic; }
+      .dashboard .content_dashboard .single_defi .single_defi_text .single_defi_bottom {
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        margin-top: 20px; }
+        .dashboard .content_dashboard .single_defi .single_defi_text .single_defi_bottom .icon_partage {
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex; }
+          .dashboard .content_dashboard .single_defi .single_defi_text .single_defi_bottom .icon_partage .defi_ami {
+            width: 90px;
+            height: 70px; }
+            .dashboard .content_dashboard .single_defi .single_defi_text .single_defi_bottom .icon_partage .defi_ami a {
+              height: 100%;
+              width: 100%;
+              display: -webkit-flex;
+              display: -ms-flexbox;
+              display: flex;
+              -webkit-justify-content: center;
+              -ms-flex-pack: center;
+              justify-content: center;
+              -webkit-flex-direction: column;
+              -ms-flex-direction: column;
+              flex-direction: column;
+              -webkit-align-items: center;
+              -ms-flex-align: center;
+              align-items: center; }
+              .dashboard .content_dashboard .single_defi .single_defi_text .single_defi_bottom .icon_partage .defi_ami a img {
+                width: 50%; }
+              .dashboard .content_dashboard .single_defi .single_defi_text .single_defi_bottom .icon_partage .defi_ami a span {
+                padding-top: 10px;
+                color: #7d7d7d; }
+        .dashboard .content_dashboard .single_defi .single_defi_text .single_defi_bottom .icon_info_defi {
+          display: -webkit-flex;
+          display: -ms-flexbox;
           display: flex;
-          margin-top: 20px; }
-          .dashboard .content_dashboard .single_defi .single_defi_text .single_defi_bottom .icon_partage {
-            display: flex; }
-            .dashboard .content_dashboard .single_defi .single_defi_text .single_defi_bottom .icon_partage .defi_ami {
-              width: 90px;
-              height: 70px; }
-              .dashboard .content_dashboard .single_defi .single_defi_text .single_defi_bottom .icon_partage .defi_ami a {
-                height: 100%;
-                width: 100%;
-                display: flex;
-                justify-content: center;
-                flex-direction: column;
-                align-items: center; }
-                .dashboard .content_dashboard .single_defi .single_defi_text .single_defi_bottom .icon_partage .defi_ami a img {
-                  width: 50%; }
-                .dashboard .content_dashboard .single_defi .single_defi_text .single_defi_bottom .icon_partage .defi_ami a span {
-                  padding-top: 10px;
-                  color: #7d7d7d; }
-          .dashboard .content_dashboard .single_defi .single_defi_text .single_defi_bottom .icon_info_defi {
-            display: flex;
-            justify-content: flex-end;
-            width: 100%; }
-            .dashboard .content_dashboard .single_defi .single_defi_text .single_defi_bottom .icon_info_defi .info_defi {
-              width: 90px;
-              height: 80px; }
-              .dashboard .content_dashboard .single_defi .single_defi_text .single_defi_bottom .icon_info_defi .info_defi a {
-                height: 100%;
-                width: 100%;
-                display: flex;
-                justify-content: center;
-                flex-direction: column;
-                align-items: center; }
-                .dashboard .content_dashboard .single_defi .single_defi_text .single_defi_bottom .icon_info_defi .info_defi a img {
-                  width: 50%; }
-                .dashboard .content_dashboard .single_defi .single_defi_text .single_defi_bottom .icon_info_defi .info_defi a span {
-                  padding-top: 10px;
-                  color: #7d7d7d; }
+          -webkit-justify-content: flex-end;
+          -ms-flex-pack: end;
+          justify-content: flex-end;
+          width: 100%; }
+          .dashboard .content_dashboard .single_defi .single_defi_text .single_defi_bottom .icon_info_defi .info_defi {
+            width: 90px;
+            height: 80px; }
+            .dashboard .content_dashboard .single_defi .single_defi_text .single_defi_bottom .icon_info_defi .info_defi a {
+              height: 100%;
+              width: 100%;
+              display: -webkit-flex;
+              display: -ms-flexbox;
+              display: flex;
+              -webkit-justify-content: center;
+              -ms-flex-pack: center;
+              justify-content: center;
+              -webkit-flex-direction: column;
+              -ms-flex-direction: column;
+              flex-direction: column;
+              -webkit-align-items: center;
+              -ms-flex-align: center;
+              align-items: center; }
+              .dashboard .content_dashboard .single_defi .single_defi_text .single_defi_bottom .icon_info_defi .info_defi a img {
+                width: 50%; }
+              .dashboard .content_dashboard .single_defi .single_defi_text .single_defi_bottom .icon_info_defi .info_defi a span {
+                padding-top: 10px;
+                color: #7d7d7d; }
 
 .single_defi:hover {
-  -moz-box-shadow: 5px 5px 20px 0px #656565;
-  -webkit-box-shadow: 5px 5px 20px 0px #656565;
   -o-box-shadow: 5px 5px 20px 0px #656565;
   box-shadow: 5px 5px 20px 0px #656565;
   filter: progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=134, Strength=20); }

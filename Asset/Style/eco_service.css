@@ -15,8 +15,8 @@ ul {
 	**	1.1 - COULEURS
 	****************************************/
 /****************************************
-	**	1.2 - TYPOGRAPHIE
-	****************************************/
+**	1.2 - TYPOGRAPHIE
+****************************************/
 body {
   color: #7d7d7d;
   background: #eeeeee;
@@ -30,14 +30,12 @@ body {
   src: url("../Font/order_pizza.woff2") format("woff2"), url("../Font/order_pizza.woff") format("woff");
   font-weight: normal;
   font-style: normal; }
-
 @font-face {
   font-family: "Flaticon";
   src: url("../Font/Flaticon.eot");
   src: url("../Font/Flaticon.eot?#iefix") format("embedded-opentype"), url("../Font/Flaticon.woff") format("woff"), url("../Font/Flaticon.svg#Flaticon") format("svg");
   font-weight: normal;
   font-style: normal; }
-
 a {
   text-decoration: none !important;
   color: #23b4b0; }
@@ -49,8 +47,8 @@ li {
   list-style-type: none; }
 
 /****************************************
-	**	1.3 - BLOCS & SECTIONS
-	****************************************/
+**	1.3 - BLOCS & SECTIONS
+****************************************/
 * {
   box-sizing: border-box; }
 
@@ -65,8 +63,8 @@ li {
 **
 ****************************************/
 /****************************************
-	**	2.1 - TOPBAR
-	****************************************/
+**	2.1 - TOPBAR
+****************************************/
 .topbar_index {
   width: 100%;
   height: 125px;
@@ -95,9 +93,9 @@ li {
     color: #fff;
     font-size: 1.4em;
     font-weight: 100;
-    -webkit-transition: all 0.3s;
-    -moz-transition: all 0.3s;
-    transition: all 0.3s; }
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    transition: all .3s; }
   .topbar_index .inscription a:hover {
     border: 2px solid #23b4b0;
     background: #23b4b0;
@@ -131,8 +129,8 @@ li {
       cursor: pointer; }
 
 /****************************************
-	**	2.2 - MENU
-	****************************************/
+**	2.2 - MENU
+****************************************/
 .main_menu {
   width: 100%; }
   .main_menu nav {
@@ -230,14 +228,22 @@ li {
   padding: 30px 15px;
   margin: 0;
   font-size: 3em;
-  background: #23b4b0;
-  color: white; }
-
+  color: #23b4b0; }
 #eco_service nav {
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
   align-items: center;
+  -ms-flex-line-pack: center;
+  -webkit-align-content: center;
   align-content: center;
   width: 100%;
   font-size: 1.2em;
@@ -250,6 +256,8 @@ li {
     #eco_service nav a:hover {
       color: white; }
       #eco_service nav a:hover:before {
+        -webkit-transform: translateY(-50%) translateX(-1.1em) scale(1.2);
+        -ms-transform: translateY(-50%) translateX(-1.1em) scale(1.2);
         transform: translateY(-50%) translateX(-1.1em) scale(1.2); }
     #eco_service nav a:before {
       position: absolute;
@@ -257,10 +265,10 @@ li {
       font-size: 2em;
       color: #96be1f;
       top: 50%;
+      -webkit-transform: translateY(-50%) translateX(-1.1em);
+      -ms-transform: translateY(-50%) translateX(-1.1em);
       transform: translateY(-50%) translateX(-1.1em);
-      -webkit-transition: all 0.3s;
-      -moz-transition: all 0.3s;
-      transition: all 0.3s; }
+      transition: all .3s; }
   #eco_service nav #nourrir:before {
     content: "\f102"; }
   #eco_service nav #jardin:before {
@@ -269,7 +277,6 @@ li {
     content: "\f105"; }
   #eco_service nav #others:before {
     content: "\f10c"; }
-
 #eco_service #new_service {
   position: relative;
   text-align: center;
@@ -285,18 +292,24 @@ li {
     color: #96be1f;
     position: absolute;
     top: 50%;
+    -webkit-transform: translateY(-50%) translateX(0.5em);
+    -ms-transform: translateY(-50%) translateX(0.5em);
     transform: translateY(-50%) translateX(0.5em); }
-
 #eco_service #form_service {
   display: none;
-  background: rgba(35, 180, 176, 0.2); }
+  background: #fff;
+  border: 1px solid #ccc; }
   #eco_service #form_service section {
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
     flex-wrap: wrap;
     margin: 0;
     padding: 0; }
     #eco_service #form_service section .half {
-      width: 50%;
+      width: 100%/2;
       padding: 10px 15px; }
     #eco_service #form_service section input, #eco_service #form_service section select, #eco_service #form_service section textarea {
       width: 100%;
@@ -306,6 +319,7 @@ li {
       padding: 10px;
       margin: 5px 0;
       -webkit-appearance: none;
+      -moz-appearance: none;
       appearance: none;
       color: #23b4b0; }
     #eco_service #form_service section select {
@@ -323,7 +337,6 @@ li {
       cursor: pointer; }
     #eco_service #form_service section input[type="submit"]:hover {
       background: rgba(35, 180, 176, 0.5); }
-
 #eco_service h3 {
   font-size: 2.5em;
   text-transform: uppercase;
@@ -331,22 +344,39 @@ li {
   color: #96be1f;
   margin: 0;
   padding: 30px 15px; }
-
 #eco_service .content_article {
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   padding: 7.5px; }
   #eco_service .content_article .service {
     width: 50%;
     padding: 7.5px;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
     flex-wrap: wrap; }
     #eco_service .content_article .service .card {
       background: white;
+      display: -webkit-flex;
+      display: -ms-flexbox;
       display: flex;
+      -webkit-justify-content: center;
+      -ms-flex-pack: center;
       justify-content: center;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
       align-items: center;
+      -ms-flex-line-pack: center;
+      -webkit-align-content: center;
       align-content: center;
+      -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
       flex-wrap: wrap;
       width: 100%; }
       #eco_service .content_article .service .card .link {
@@ -354,30 +384,30 @@ li {
       #eco_service .content_article .service .card > * {
         padding: 15px; }
       #eco_service .content_article .service .card > img {
-        width: 33.33333%; }
+        width: 33.333%; }
       #eco_service .content_article .service .card > div {
-        width: 66.66667%; }
-
+        width: 66.666%; }
 #eco_service h4 {
   font-size: 1.2em;
   color: #23b4bd; }
-
 #eco_service > img {
   max-width: 50%; }
-
 #eco_service p {
   color: #7d7d7d; }
-
 #eco_service span {
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
   align-items: center; }
-
 #eco_service span:before {
   font-family: "Flaticon";
   content: "\f109";
   font-size: 2em;
   color: #96be1f; }
-
 #eco_service .col3:hover {
   border: 2px solid #96be1f; }

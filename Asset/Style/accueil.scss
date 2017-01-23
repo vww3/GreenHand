@@ -15,6 +15,8 @@
 
 	header{
 		max-width: 100%;
+		display: -webkit-flex;
+		display: -ms-flexbox;
 		display: flex;
 		max-height: 200px;
 		margin: 20px 10px 61px 10px;
@@ -31,39 +33,61 @@
 			width: 40%;
 			text-align: center;
 			font-family: 'order_pizzaregular';
+			display: -webkit-flex;
+			display: -ms-flexbox;
 			display: flex;
-			justify-content: center;
-			align-items: center;
+			-webkit-justify-content: center;
+			    -ms-flex-pack: center;
+			        justify-content: center;
+			-webkit-align-items: center;
+			    -ms-flex-align: center;
+			        align-items: center;
 			font-size: 1.5em;
 			color: #96bd11;
 		}
 
 		.header_notif{
 			width:30%;
+			display: -webkit-flex;
+			display: -ms-flexbox;
 			display: flex;
-			justify-content: center;
-			align-items: flex-end;
-			flex-direction: column;
+			-webkit-justify-content: center;
+			    -ms-flex-pack: center;
+			        justify-content: center;
+			-webkit-align-items: flex-end;
+			    -ms-flex-align: end;
+			        align-items: flex-end;
+			-webkit-flex-direction: column;
+			    -ms-flex-direction: column;
+			        flex-direction: column;
 
 			.header_notif_top{
+				display: -webkit-flex;
+				display: -ms-flexbox;
 				display: flex;
 				width: 30%;
-				justify-content: space-between;
+				-webkit-justify-content: space-between;
+				    -ms-flex-pack: justify;
+				        justify-content: space-between;
 				
 				.notif_top{
 					border:2px solid $blue;
 					width: 50px;
 					height: 50px;
+					display: -webkit-flex;
+					display: -ms-flexbox;
 					display: flex;
-					justify-content: center;
-					    align-items: center;
+					-webkit-justify-content: center;
+					    -ms-flex-pack: center;
+					        justify-content: center;
+					    -webkit-align-items: center;
+					        -ms-flex-align: center;
+					            align-items: center;
 
 				}
 				#notif_alert::after{
 					content: "\f100"; font-family: "Flaticon";font-size:2em; color:$green;
-					-webkit-transition : all .3s;
-					   -moz-transition : all .3s;
-					        transition : all .3s;
+					transition : all .3s;
 				}
 				#notif_msg::after{
 					@extend #notif_alert::after;
@@ -86,8 +110,6 @@
 				height: 40px;
 				margin-top: 20px;
 				border: 3px solid transparent;
-				-moz-border-image: -moz-linear-gradient(top left, $green 0%, $blue 100%);
-				-webkit-border-image: -webkit-linear-gradient(top left, $green 0%, $blue 100%);
 				border-image: linear-gradient(to bottom right, $green 0%, $blue 100%);
 				border-image-slice: 1;
 
@@ -109,10 +131,18 @@
 		background-position: center;
 		width: 100%;
 		height: 450px;
+		display: -webkit-flex;
+		display: -ms-flexbox;
 		display: flex;
-		justify-content: center;
-		align-items:center;
-		flex-direction: column;
+		-webkit-justify-content: center;
+		    -ms-flex-pack: center;
+		        justify-content: center;
+		-webkit-align-items:center;
+		    -ms-flex-align:center;
+		        align-items:center;
+		-webkit-flex-direction: column;
+		    -ms-flex-direction: column;
+		        flex-direction: column;
 
 		h1{
 			width: 21%;
@@ -148,16 +178,25 @@
 		
 
 		.presentation{
+			display: -webkit-flex;
+			display: -ms-flexbox;
 			display: flex;
-			justify-content: space-between;
+			-webkit-justify-content: space-between;
+			    -ms-flex-pack: justify;
+			        justify-content: space-between;
 
 			.col6{
 				width:45%;
+				display: -webkit-flex;
+				display: -ms-flexbox;
 				display: flex;
-				flex-direction: column;
+				-webkit-flex-direction: column;
+				    -ms-flex-direction: column;
+				        flex-direction: column;
 
 				p:before{
-					content: "\f106          "; font-family: "Flaticon";
+					content: "\f108          ";
+					font-family: "Flaticon";
 					color:$green;
 					font-weight: 800;
 					font-size: 1.5em;
@@ -169,11 +208,13 @@
 		
 		img{
 			max-width: 20%;
+			display: -webkit-flex;
+			display: -ms-flexbox;
 			display: flex;
 			margin: 0 auto;
 		}
 		> p{
-			max-width:50%;
+			max-width:80%;
 			margin:0 auto;
 			margin-top: 20px;
 		}
@@ -186,16 +227,41 @@
 **
 ****************************************/
 	#accueil_dashboard{
+		display: -webkit-flex;
+		display: -ms-flexbox;
 		display: flex;
+		margin-top: 50px;
 	}
 
 	/****************************************
 	**	3.1 - SIDEBAR
 	****************************************/
 	.sidebar_accueil{
-		background:$blue;
+		border: 1px solid #c6c6c6;
+		padding: 20px;
+		background: #fff;
 		width: 20%;
 		height: 100%;
+		margin-top: 20px;
+
+		h4{
+			color:$green;
+			text-align: center;
+			    font-size: 2em;
+		}
+
+		form{
+			display: -webkit-flex;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-flex-direction: column;
+			    -ms-flex-direction: column;
+			        flex-direction: column;
+
+			img{
+				margin: 0 auto;
+			}
+		}
 	}
 
 
@@ -206,7 +272,7 @@
 	.dashboard{
 		width: 80%;
 		height: 100%;
-		padding-left: 50px;
+		margin-left: 50px;
 
 		h2{
 			font-size: 48px;
@@ -222,11 +288,12 @@
 		}
 
 		.content_dashboard{
-			margin-top: 50px;
 			.single_defi{
 				border: 1px solid #c6c6c6;
 				padding: 20px;
 				background: #fff;
+				display: -webkit-flex;
+				display: -ms-flexbox;
 				display: flex;
 				margin: 20px 0;
 		
@@ -248,10 +315,14 @@
 					}
 
 					.single_defi_bottom{
+						display: -webkit-flex;
+						display: -ms-flexbox;
 						display: flex;
 						margin-top: 20px;
 
 						.icon_partage{
+							display: -webkit-flex;
+							display: -ms-flexbox;
 							display: flex;
 
 							.defi_ami{
@@ -261,10 +332,18 @@
 								a{
 									height: 100%;
 									width: 100%;
+									display: -webkit-flex;
+									display: -ms-flexbox;
 									display: flex;
-									justify-content: center;
-									flex-direction: column;
-									align-items: center;
+									-webkit-justify-content: center;
+									    -ms-flex-pack: center;
+									        justify-content: center;
+									-webkit-flex-direction: column;
+									    -ms-flex-direction: column;
+									        flex-direction: column;
+									-webkit-align-items: center;
+									    -ms-flex-align: center;
+									        align-items: center;
 
 									img{
 										width: 50%;
@@ -279,8 +358,12 @@
 						}
 
 						.icon_info_defi{
+							display: -webkit-flex;
+							display: -ms-flexbox;
 							display: flex;
-							justify-content: flex-end;
+							-webkit-justify-content: flex-end;
+							    -ms-flex-pack: end;
+							        justify-content: flex-end;
 							width: 100%;
 
 							.info_defi{
@@ -290,10 +373,18 @@
 								a{
 									height: 100%;
 									width: 100%;
+									display: -webkit-flex;
+									display: -ms-flexbox;
 									display: flex;
-									justify-content: center;
-									flex-direction: column;
-									align-items: center;
+									-webkit-justify-content: center;
+									    -ms-flex-pack: center;
+									        justify-content: center;
+									-webkit-flex-direction: column;
+									    -ms-flex-direction: column;
+									        flex-direction: column;
+									-webkit-align-items: center;
+									    -ms-flex-align: center;
+									        align-items: center;
 
 									img{
 										width: 50%;
@@ -315,8 +406,6 @@
 	}
 
 .single_defi:hover{
-	-moz-box-shadow: 5px 5px 20px 0px #656565;
-	-webkit-box-shadow: 5px 5px 20px 0px #656565;
 	-o-box-shadow: 5px 5px 20px 0px #656565;
 	box-shadow: 5px 5px 20px 0px #656565;
 	filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=134, Strength=20);
