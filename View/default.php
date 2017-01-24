@@ -44,6 +44,13 @@
 		
 		<?= $this->_contentForLayout ?>
 		
+		<footer>
+			<div>
+				<h2>GreenHand - <small>Il n'y a pas de petits gestes quand on est 60 millions à le faire</small></h2>
+				<p>Projet étudiant mené par <a href="mailto:emma.louviot@gmail.com" title="Écrire à Emma">Emma Louviot</a> et <a href="mailto:mickael.boidin@icloud.com" title="Écrire à Mickaël">Mickaël Boidin</a> dans le cadre du projet de fin d'étude du <a href="http://stgi.univ-fcomte.fr/pages/fr/menu133/trouvez-votre-formation/nos-departements/3.3.2-multimedia-et-informatique-17393.html" title="En savoir plus sur le Master 2 PSM">Master 2 Produit et Services Multimédia (UFR STGI, département multimédia)</a>.</div>
+			<img src="<?= IMAGE ?>accueil/logo_blanc.svg">
+		</footer>
+		
 <?php foreach ($this->styles as $style) { ?>
         <link rel="stylesheet" href="<?= STYLE.$style ?>.css">
 <?php } ?>
